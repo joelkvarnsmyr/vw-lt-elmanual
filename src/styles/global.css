@@ -214,7 +214,11 @@ html, body, #root {
   flex-shrink: 0;
   object-fit: contain;
   opacity: 0.8;
-  transition: opacity var(--t);
+  transition: opacity var(--t), filter var(--t);
+  filter: brightness(0) invert(1);
+}
+[data-theme="light"] .header__vw-logo {
+  filter: none;
 }
 .header__vw-logo:hover { opacity: 1; }
 
