@@ -2,6 +2,8 @@ import type { WireLookupData, CompleteDatabase, WireEntry } from '../types';
 import { CIRCUIT_DIAGRAM_MAP } from '../types';
 import { MermaidDiagram } from './MermaidDiagram';
 import { WireTable } from './WireTable';
+import { useTranslation } from 'react-i18next';
+import type { ComponentInfo } from '../hooks/useWiringData';
 
 interface Props {
   selectedCircuit: string;
@@ -10,35 +12,37 @@ interface Props {
   wiresByCircuit: Map<string, WireEntry[]>;
   allColours: string[];
   allDimensions: number[];
+  componentMap: Map<string, ComponentInfo>;
 }
 
-export function CircuitBrowser({ selectedCircuit, lookup, complete, wiresByCircuit, allColours, allDimensions }: Props) {
+export function CircuitBrowser({ selectedCircuit, lookup, complete, wiresByCircuit, allColours, allDimensions, componentMap }: Props) {
+  const { t } = useTranslation();
   const info = lookup.circuits_index[selectedCircuit];
   const wires = wiresByCircuit.get(selectedCircuit) || [];
   const diagramFile = CIRCUIT_DIAGRAM_MAP[selectedCircuit];
 
-  if (!info) return <div className="panel">Välj en krets i sidomenyn.</div>;
+  if (!info) return <div className="panel">{t('circuit.noSelection')}</div>;
 
   return (
     <div className="circuit-browser">
       <div className="circuit-header">
         <h2>{selectedCircuit.replace(/_/g, ' ')}</h2>
         <div className="circuit-meta">
-          <span className="tag">Skena: {info.power_rail}</span>
-          {info.fuse && <span className="tag tag--fuse">Säkring: {info.fuse}</span>}
+          <span className="tag">{t('circuit.rail')}: {info.power_rail}</span>
+          {info.fuse && <span className="tag tag--fuse">{t('circuit.fuse')}: {info.fuse}</span>}
         </div>
         <p className="circuit-desc">{info.description}</p>
       </div>
 
       {diagramFile && (
         <details className="diagram-section" open>
-          <summary>Kopplingsschema</summary>
-          <MermaidDiagram diagramFile={diagramFile} />
+          <summary>{t('circuit.diagram')}</summary>
+          <MermaidDiagram diagramFile={diagramFile} componentMap={componentMap} />
         </details>
       )}
 
       <details open>
-        <summary>Kablar i denna krets ({wires.length})</summary>
+        <summary>{t('circuit.wiresInCircuit', { count: wires.length })}</summary>
         <WireTable
           wires={wires}
           colourCodes={complete?.meta.colour_code || null}

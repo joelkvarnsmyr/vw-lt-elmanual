@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { WireEntry, CompleteDatabase } from '../types';
 import { WireColourBadge } from './WireColourBadge';
 
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export function WireTable({ wires, colourCodes, allColours, allDimensions, filterCircuit }: Props) {
+  const { t } = useTranslation();
   const [search, setSearch] = useState('');
   const [colourFilter, setColourFilter] = useState('');
   const [dimFilter, setDimFilter] = useState('');
@@ -46,43 +48,43 @@ export function WireTable({ wires, colourCodes, allColours, allDimensions, filte
       <div className="wire-table__filters">
         <input
           type="text"
-          placeholder="Sök kabel (ID, komponent, färg, beskrivning)…"
+          placeholder={t('wires.searchPlaceholder')}
           value={search}
           onChange={e => setSearch(e.target.value)}
           className="filter-input"
         />
-        <select value={colourFilter} onChange={e => setColourFilter(e.target.value)} className="filter-select">
-          <option value="">Alla färger</option>
+        <select value={colourFilter} onChange={e => setColourFilter(e.target.value)} className="filter-select" aria-label={t('wires.allColours')}>
+          <option value="">{t('wires.allColours')}</option>
           {allColours.map(c => (
             <option key={c} value={c}>{colourName(c)}</option>
           ))}
         </select>
-        <select value={dimFilter} onChange={e => setDimFilter(e.target.value)} className="filter-select">
-          <option value="">Alla dimensioner</option>
+        <select value={dimFilter} onChange={e => setDimFilter(e.target.value)} className="filter-select" aria-label={t('wires.allDimensions')}>
+          <option value="">{t('wires.allDimensions')}</option>
           {allDimensions.map(d => (
             <option key={d} value={d}>{d} mm²</option>
           ))}
         </select>
         {!filterCircuit && (
-          <select value={manualCircuitFilter} onChange={e => setManualCircuitFilter(e.target.value)} className="filter-select">
-            <option value="">Alla kretsar</option>
+          <select value={manualCircuitFilter} onChange={e => setManualCircuitFilter(e.target.value)} className="filter-select" aria-label={t('wires.allCircuits')}>
+            <option value="">{t('wires.allCircuits')}</option>
             {circuits.map(c => (
               <option key={c} value={c}>{c.replace(/_/g, ' ')}</option>
             ))}
           </select>
         )}
       </div>
-      <div className="wire-table__count">{filtered.length} kablar</div>
+      <div className="wire-table__count">{t('wires.count', { count: filtered.length })}</div>
       <div className="table-scroll">
         <table>
           <thead>
             <tr>
               <th>ID</th>
-              <th>Från</th>
-              <th>Till</th>
-              <th>Kabel</th>
-              <th>Krets</th>
-              <th>Beskrivning</th>
+              <th>{t('wires.colFrom')}</th>
+              <th>{t('wires.colTo')}</th>
+              <th>{t('wires.colWire')}</th>
+              <th>{t('wires.colCircuit')}</th>
+              <th>{t('wires.colDesc')}</th>
             </tr>
           </thead>
           <tbody>

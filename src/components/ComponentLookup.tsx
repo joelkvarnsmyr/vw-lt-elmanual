@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { ComponentInfo } from '../hooks/useWiringData';
 import { WireColourBadge } from './WireColourBadge';
 
@@ -7,6 +8,7 @@ interface Props {
 }
 
 export function ComponentLookup({ componentMap }: Props) {
+  const { t } = useTranslation();
   const [search, setSearch] = useState('');
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
@@ -26,7 +28,7 @@ export function ComponentLookup({ componentMap }: Props) {
     <div className="component-lookup">
       <input
         type="text"
-        placeholder='Sök komponent (t.ex. "E22", "torkar", "horn")…'
+        placeholder={t('components.searchPlaceholder')}
         value={search}
         onChange={e => { setSearch(e.target.value); setSelectedId(null); }}
         className="filter-input filter-input--wide"
@@ -42,28 +44,28 @@ export function ComponentLookup({ componentMap }: Props) {
             >
               <span className="component-id">{c.id}</span>
               <span className="component-desc">{c.description}</span>
-              <span className="component-wire-count">{c.wires.length} kablar</span>
+              <span className="component-wire-count">{t('components.wiresCount', { count: c.wires.length })}</span>
             </button>
           ))}
-          {filtered.length === 0 && <div className="empty">Inga träffar</div>}
+          {filtered.length === 0 && <div className="empty">{t('components.noResults')}</div>}
         </div>
 
         {selected && (
           <div className="component-detail">
             <h3>{selected.id} – {selected.description}</h3>
-            {selected.track && <p className="mono">Spår: {selected.track}</p>}
-            <p>Kretsar: {selected.circuits.map(c => c.replace(/_/g, ' ')).join(', ')}</p>
+            {selected.track && <p className="mono">{t('components.track')}: {selected.track}</p>}
+            <p>{t('components.circuits')}: {selected.circuits.map(c => c.replace(/_/g, ' ')).join(', ')}</p>
 
-            <h4>Anslutna kablar ({selected.wires.length})</h4>
+            <h4>{t('components.connectedWires', { count: selected.wires.length })}</h4>
             <div className="table-scroll">
               <table>
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Från</th>
-                    <th>Till</th>
-                    <th>Kabel</th>
-                    <th>Krets</th>
+                    <th>{t('components.colFrom')}</th>
+                    <th>{t('components.colTo')}</th>
+                    <th>{t('components.colWire')}</th>
+                    <th>{t('components.colCircuit')}</th>
                   </tr>
                 </thead>
                 <tbody>

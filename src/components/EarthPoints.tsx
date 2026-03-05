@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import type { CompleteDatabase } from '../types';
 
 interface Props {
@@ -10,6 +11,7 @@ interface TableProps {
 }
 
 function EarthTable({ title, points }: TableProps) {
+  const { t } = useTranslation();
   return (
     <div className="earth-table-section">
       <h3>{title}</h3>
@@ -17,9 +19,9 @@ function EarthTable({ title, points }: TableProps) {
         <table>
           <thead>
             <tr>
-              <th>Nr</th>
-              <th>Placering (EN)</th>
-              <th>Placering (SV)</th>
+              <th>{t('earth.colNr')}</th>
+              <th>{t('earth.colLocationEn')}</th>
+              <th>{t('earth.colLocationSv')}</th>
             </tr>
           </thead>
           <tbody>
@@ -38,6 +40,7 @@ function EarthTable({ title, points }: TableProps) {
 }
 
 export function EarthPoints({ complete }: Props) {
+  const { t } = useTranslation();
   const ep = complete.reference.earth_points;
 
   return (
@@ -45,7 +48,7 @@ export function EarthPoints({ complete }: Props) {
       <p className="earth-desc">{ep.description}</p>
 
       <div className="earth-checklist">
-        <h3>Kontrollista</h3>
+        <h3>{t('earth.checklist')}</h3>
         <ul>
           {ep.check_list.map((item, i) => (
             <li key={i}>{item}</li>
