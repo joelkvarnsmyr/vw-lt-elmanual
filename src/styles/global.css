@@ -1071,3 +1071,327 @@ tbody tr:last-child td { border-bottom: none; }
   .content { padding: 16px 12px; }
   .content::before { display: none; }
 }
+
+/* ══ PRINT ════════════════════════════════════════════════ */
+@media print {
+  /* ── Force light colours ── */
+  :root {
+    --bg: #fff;
+    --bg-panel: #fff;
+    --bg-card: #fff;
+    --bg-elevated: #fff;
+    --bg-input: #fff;
+    --bg-hover: transparent;
+    --bg-active: transparent;
+    --text: #000;
+    --text-secondary: #333;
+    --text-muted: #666;
+    --gold: #8a6d30;
+    --gold-bright: #8a6d30;
+    --gold-dim: transparent;
+    --gold-glow: transparent;
+    --gold-border: #ccc;
+    --sage: #3d6b55;
+    --sage-dim: transparent;
+    --sage-border: #aaa;
+    --warn: #a05020;
+    --success: #2d6840;
+    --border: #ddd;
+    --border-mid: #ccc;
+  }
+
+  /* ── Page setup ── */
+  @page {
+    size: A4;
+    margin: 15mm 12mm;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  html, body, #root {
+    height: auto;
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+  }
+
+  /* ── Remove decorative elements ── */
+  .layout::after,
+  .content::before,
+  .sidebar::after,
+  .header::before,
+  .mermaid-container::before,
+  .welcome::before,
+  .welcome::after,
+  .sidebar-item--active::before,
+  .nav-btn--active::after {
+    display: none !important;
+  }
+
+  /* ── Layout: stack everything vertically ── */
+  .layout {
+    display: block;
+    height: auto;
+  }
+
+  .main {
+    display: block;
+    overflow: visible;
+  }
+
+  .content {
+    padding: 0;
+    overflow: visible;
+  }
+
+  /* ── Header: compact print header ── */
+  .header {
+    height: auto;
+    padding: 8px 0;
+    border-bottom: 2px solid #000;
+    background: #fff;
+    position: relative;
+    z-index: auto;
+  }
+
+  .header__vw-logo {
+    filter: none !important;
+    height: 24px;
+    width: 24px;
+  }
+
+  .header__logo {
+    height: 28px;
+  }
+
+  /* ── Hide interactive elements ── */
+  .header__nav,
+  .theme-toggle,
+  .wire-table__filters,
+  .filter-input,
+  .filter-select,
+  .filter-input--wide {
+    display: none !important;
+  }
+
+  /* ── Sidebar: show as list, not fixed column ── */
+  .sidebar {
+    width: 100%;
+    min-width: unset;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    padding: 8px 0;
+    overflow: visible;
+    page-break-after: always;
+  }
+
+  .sidebar-item {
+    padding: 3px 8px;
+    border-left: none;
+    font-size: 9pt;
+  }
+
+  .sidebar-item--active {
+    font-weight: 700;
+    background: transparent;
+  }
+
+  .sidebar-item__rail {
+    border: 1px solid #aaa;
+    background: transparent;
+    font-size: 7pt;
+  }
+
+  /* ── Panels ── */
+  .panel {
+    max-width: 100%;
+  }
+
+  .panel h2 {
+    font-size: 14pt;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+  }
+
+  .panel h2::after {
+    background: #000;
+    height: 1px;
+  }
+
+  /* ── Tables: clean for print ── */
+  table {
+    font-size: 9pt;
+    page-break-inside: auto;
+  }
+
+  thead th {
+    background: #f0f0f0 !important;
+    color: #000;
+    font-size: 7pt;
+    position: static;
+    border-bottom: 2px solid #000;
+    padding: 6px 8px;
+  }
+
+  tbody td {
+    padding: 4px 8px;
+    border-bottom: 1px solid #ddd;
+    color: #000;
+  }
+
+  tbody tr:hover td {
+    background: transparent;
+  }
+
+  tbody tr:hover td:first-child {
+    box-shadow: none;
+  }
+
+  tr {
+    page-break-inside: avoid;
+  }
+
+  /* ── Wire colour badges: keep colours, ensure contrast ── */
+  .wire-badge {
+    border: 1px solid #666 !important;
+    box-shadow: none !important;
+    font-size: 7pt !important;
+    padding: 1px 6px !important;
+  }
+
+  /* ── Mermaid diagrams ── */
+  .mermaid-container {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 12px;
+    margin: 8px 0;
+    page-break-inside: avoid;
+    background: #fff;
+  }
+
+  .mermaid-svg svg {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  .mermaid-loading {
+    display: none;
+  }
+
+  /* ── Details: force open for print ── */
+  details {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    page-break-inside: avoid;
+  }
+
+  details summary {
+    font-size: 9pt;
+    padding: 8px 10px;
+  }
+
+  details summary::before {
+    display: none;
+  }
+
+  /* ── Component lookup ── */
+  .component-layout {
+    display: block;
+  }
+
+  .component-list {
+    width: 100%;
+    max-height: none;
+    overflow: visible;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    page-break-after: avoid;
+  }
+
+  .component-item {
+    padding: 3px 8px;
+    font-size: 9pt;
+  }
+
+  .component-id {
+    color: #000;
+    font-weight: 700;
+  }
+
+  .component-detail {
+    animation: none;
+  }
+
+  .component-detail h3 {
+    font-size: 12pt;
+  }
+
+  /* ── Earth points ── */
+  .earth-checklist {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 14px;
+    page-break-inside: avoid;
+  }
+
+  .earth-checklist::before {
+    background: #000;
+    opacity: 1;
+    width: 2px;
+  }
+
+  /* ── Tags ── */
+  .tag {
+    border: 1px solid #999;
+    background: transparent;
+    color: #333;
+    font-size: 7pt;
+  }
+
+  .tag--fuse {
+    border-color: #999;
+    color: #333;
+  }
+
+  /* ── Mono text ── */
+  .mono {
+    color: #000;
+    font-weight: 600;
+  }
+
+  /* ── Welcome: hide (not useful in print) ── */
+  .welcome {
+    display: none;
+  }
+
+  /* ── Loading spinner: hide ── */
+  .loading::before {
+    display: none;
+  }
+
+  /* ── Page breaks ── */
+  .circuit-browser {
+    animation: none;
+  }
+
+  .circuit-header {
+    page-break-after: avoid;
+  }
+
+  .earth-table-section {
+    page-break-inside: avoid;
+  }
+
+  /* ── Links: show URL ── */
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 8pt;
+    color: #666;
+  }
+}
