@@ -1,0 +1,27 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#08080c"/>
+      <stop offset="100%" stop-color="#111118"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d0ae78"/>
+      <stop offset="100%" stop-color="#b8943e"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Top gold accent line -->
+  <rect x="0" y="0" width="1200" height="3" fill="url(#gold)"/>
+  <!-- VW Logo circle (simplified) -->
+  <circle cx="600" cy="220" r="80" fill="none" stroke="#d0ae78" stroke-width="3" opacity="0.3"/>
+  <text x="600" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="white" letter-spacing="2">VW</text>
+  <!-- Title -->
+  <text x="600" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="#ece8e0" letter-spacing="1">VW LT Elmanual</text>
+  <!-- Subtitle -->
+  <text x="600" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#d0ae78">1976–1987 · Kopplingsschema</text>
+  <!-- Description -->
+  <text x="600" y="480" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="rgba(236,232,224,0.6)">Digital elkopplingsmanual med sökbara kretsar, kablar och komponenter</text>
+  <!-- Bottom border -->
+  <rect x="0" y="627" width="1200" height="3" fill="url(#gold)"/>
+</svg>
