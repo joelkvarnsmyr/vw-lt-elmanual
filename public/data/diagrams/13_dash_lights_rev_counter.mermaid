@@ -1,0 +1,83 @@
+%% 13 Dash Lights with Rev Counter - VW LT 1985 on
+%% Source: Fig 13.84 (p293), wires W070-W080
+%% Version: 0.4 - Fixed W070/W073 routing, added W076-W080 labels
+%% Render: mmdc -i 13_dash_lights_rev_counter.mermaid -o renders/13.svg --iconPacks @iconify-json/mdi
+
+flowchart TD
+
+    subgraph PowerRail["Rail 30"]
+        S6@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S6\n10A t30", pos: "b", h: 40 }
+    end
+
+    subgraph S6_Out["S6 Distribution"]
+        A14["A14 1.0 ro/ge"]
+        D21["D21 1.5 ro/ge"]
+        A5["A5 0.5 ro"]
+        D15["D15 1.0 sw"]
+        C19["C19 0.5 ro/sw"]
+    end
+
+    subgraph RevCounter["Rev Counter"]
+        G5@{ shape: icon, icon: "mdi:speedometer", form: "square", label: "G5\nVarvräknare\nRev counter", pos: "b", h: 48 }
+    end
+
+    subgraph TachoSignal["Signal Source"]
+        N_coil@{ shape: icon, icon: "mdi:flash", form: "square", label: "N\nIgn coil\n(petrol)", pos: "b", h: 40 }
+        C_alt@{ shape: icon, icon: "mdi:lightning-bolt", form: "square", label: "C\nAlternator\n(diesel)", pos: "b", h: 40 }
+    end
+
+    subgraph DimmerCircuit["Panel Dimmer"]
+        E20@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "E20\nDimmer", pos: "b", h: 40 }
+        S50@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S50\n10A 58b", pos: "b", h: 40 }
+    end
+
+    subgraph Connectors["Connectors"]
+        T14@{ shape: icon, icon: "mdi:power-plug", form: "square", label: "T14/\n14-pin", pos: "b", h: 40 }
+        T2a_L@{ shape: icon, icon: "mdi:power-plug", form: "square", label: "T2a L", pos: "b", h: 40 }
+        T2a_R@{ shape: icon, icon: "mdi:power-plug", form: "square", label: "T2a R", pos: "b", h: 40 }
+    end
+
+    subgraph PanelLamps["Panel Lamps"]
+        L10_a@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L10 A\nPanel", pos: "b", h: 40 }
+        L10_b@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L10 B\nPanel", pos: "b", h: 40 }
+        L8@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L8\nClock", pos: "b", h: 40 }
+        L28@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L28\nCig lighter", pos: "b", h: 40 }
+        L16@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L16\nFresh air", pos: "b", h: 40 }
+        L39@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L39\nHeat window", pos: "b", h: 40 }
+    end
+
+    subgraph OtherComp["Other"]
+        R@{ shape: icon, icon: "mdi:radio", form: "square", label: "R\nRadio", pos: "b", h: 40 }
+        U1@{ shape: icon, icon: "mdi:cigarette", form: "square", label: "U1\nCig lighter", pos: "b", h: 40 }
+        E3@{ shape: icon, icon: "mdi:hazard-lights", form: "square", label: "E3\nHazard", pos: "b", h: 40 }
+    end
+
+    subgraph Earth["Earth"]
+        GND10@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚10\nBehind dash", pos: "b", h: 40 }
+    end
+
+    S6 --> A14 & D21 & A5 & D15 & C19
+
+    A14 -->|"W070 1.0 ro/ge"| E20
+    D21 -->|"W071 1.5 ro/ge"| G5
+    G5 ---|"via T14/5"| T14
+    N_coil -.->|"pulse (petrol)"| G5
+    C_alt -.->|"W+ (diesel)"| G5
+
+    A5 -->|"W072 0.5 ro"| R
+    D15 -->|"W073 1.0 sw"| F_brk["F Brake switch"]
+    D15 -->|"1.0 sw"| U1
+    C19 -->|"W074 0.5 ro/sw"| E3
+
+    E20 --> S50
+    S50 -->|"W075 0.5 gr/bl"| T2a_L & T2a_R
+    S50 -->|"W077 0.5 gr/bl"| R
+
+    T2a_L -->|"W075"| L10_a
+    T2a_L -->|"W076 0.5 gr/bl"| L8
+    T2a_R -->|"W075"| L10_b
+    T2a_R -->|"W078 0.5 gr/bl"| L28
+    T2a_R -->|"0.5 gr/bl"| L16
+    T2a_R -->|"W079 0.5 gr/bl"| L39
+
+    G5 & L10_a & L10_b & L8 & L28 & L16 & L39 -->|"W080 0.5 br"| GND10

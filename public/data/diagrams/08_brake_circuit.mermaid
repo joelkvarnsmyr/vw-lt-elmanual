@@ -1,0 +1,56 @@
+%% 08 Brake Circuit & Warning - VW LT 1980 on
+%% Source: Fig 13.83 (p292), wires W050-W061
+%% Version: 0.3 - With MDI icons
+%% Render: mmdc -i 08_brake_circuit.mermaid -o renders/08.svg --iconPacks @iconify-json/mdi
+
+flowchart TD
+
+    subgraph PowerRail["Rail 30 - via S6"]
+        S6@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S6\nt30 permanent", pos: "b", h: 40 }
+    end
+
+    subgraph BrakeSwitch["Brake Switch"]
+        F@{ shape: icon, icon: "mdi:car-brake-alert", form: "square", label: "F\nBromsljusomk.\nPressure switch", pos: "b", h: 48 }
+    end
+
+    subgraph BrakeLights["Brake Lights"]
+        M9@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "M9\nBrake L", pos: "b", h: 40 }
+        M10@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "M10\nBrake R", pos: "b", h: 40 }
+    end
+
+    subgraph WarningSystem["Warning System"]
+        K7@{ shape: icon, icon: "mdi:lightbulb-on", form: "circle", label: "K7\nDual-circuit\nbrake/handbrake\nwarning", pos: "b", h: 48 }
+        F9@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "F9\nHandbrake\nswitch", pos: "b", h: 40 }
+        F1@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "F1\nOil pressure\nswitch", pos: "b", h: 40 }
+    end
+
+    subgraph Connector["Connector"]
+        T1_brk@{ shape: icon, icon: "mdi:power-plug", form: "square", label: "T1", pos: "b", h: 40 }
+    end
+
+    subgraph EarthPoints["Earth Points"]
+        GND@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚\nBrake earth", pos: "b", h: 40 }
+        GND11@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚11\nBehind dash", pos: "b", h: 40 }
+    end
+
+    S6 -->|"W050 F20 1.0 br/ro"| F
+    S6 -->|"W051 A16 1.0 ro/sw"| K7
+    S6 -->|"W052 A2 1.0 bl/br"| F9
+    S6 -->|"W053 A14 1.0 ro/ge"| F1
+    S6 -->|"W054 G3 0.5 sw"| K7
+    S6 -->|"W055 D4 0.5 bl/br"| K7
+
+    F -->|"W058 1.0 sw/ro"| M9
+    F -->|"W059 1.0 sw/ro"| M10
+
+    F9 -->|"GND when engaged"| K7
+    F1 -->|"GND at low P"| K7
+
+    S6 -->|"W056 G9 0.5 bl/sw"| M9
+    S6 -->|"W057 C12 0.5 bl/sw"| M10
+
+    F9 ---|"via"| T1_brk
+
+    M9 -->|"W060 br"| GND
+    M10 -->|"W061 br"| GND
+    K7 -->|"br"| GND11

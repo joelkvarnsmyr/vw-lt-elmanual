@@ -1,0 +1,66 @@
+%% 06 Foglight Circuit - VW LT 1981-85 / 1986+
+%% Source: Fig 13.81/82, wires W030-W041
+%% Version: 0.3 - With MDI icons
+%% Render: mmdc -i 06_foglight.mermaid -o renders/06.svg --iconPacks @iconify-json/mdi
+
+flowchart TD
+
+    subgraph PowerRail["Rail X - via S12"]
+        S12@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S12\n8A X-rail", pos: "b", h: 40 }
+    end
+
+    subgraph Enable["Enable"]
+        E1@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "E1 t58\nSide lights ON\nrequired", pos: "b", h: 48 }
+    end
+
+    subgraph FogRelay["J5 Relay"]
+        J5@{ shape: icon, icon: "mdi:electric-switch", form: "square", label: "J5\nDimljusrelä\n86/30/85/87", pos: "b", h: 48 }
+    end
+
+    subgraph FogSwitch["Fog Switch"]
+        E23@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "E23\nDimljusomk.\n83a/83b", pos: "b", h: 48 }
+    end
+
+    subgraph FogFuse["Fuse"]
+        S28@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S28\n8A", pos: "b", h: 40 }
+    end
+
+    subgraph FrontFog["Front Fog"]
+        L22@{ shape: icon, icon: "mdi:weather-fog", form: "square", label: "L22\nFog L", pos: "b", h: 40 }
+        L23@{ shape: icon, icon: "mdi:weather-fog", form: "square", label: "L23\nFog R", pos: "b", h: 40 }
+    end
+
+    subgraph RearFog["Rear Fog"]
+        L20@{ shape: icon, icon: "mdi:weather-fog", form: "square", label: "L20\nRear fog", pos: "b", h: 40 }
+    end
+
+    subgraph Warnings["Warnings"]
+        K13@{ shape: icon, icon: "mdi:lightbulb-on", form: "circle", label: "K13\nRear fog warn\n1981-85", pos: "b", h: 40 }
+        K17@{ shape: icon, icon: "mdi:lightbulb-on", form: "circle", label: "K17\nFog warn\n1986+", pos: "b", h: 40 }
+    end
+
+    subgraph EarthPoints["Earth Points"]
+        GND12@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚12\nRelay plate", pos: "b", h: 40 }
+        GND18@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚18\nRear crossmember", pos: "b", h: 40 }
+    end
+
+    E1 -->|"W041 t58 enables"| E23
+    S12 --> J5
+
+    J5 -->|"W030 86 0.5 sw/ws coil"| E23
+    J5 -->|"W031 30 1.5 ro power"| S28
+    J5 -->|"W032 85 0.5 br earth"| GND12
+    J5 -->|"W033 87 1.5 gr/ge NO"| E23
+
+    E23 -->|"W034 83a 1.5 ws/ge"| L22
+    E23 -->|"83a 1.5 ws/ge"| L23
+    E23 -->|"W035 83b 1.0 gr/ws"| K13
+    E23 -->|"W036 83b rear"| L20
+    E23 -.-> K17
+
+    S28 --> L22 & L23
+
+    L22 -->|"W037 1.0 br"| GND12
+    L23 -->|"W038 1.0 br"| GND12
+    L20 -->|"W039 1.0 br"| GND18
+    K13 -->|"W040 0.5 br"| GND12

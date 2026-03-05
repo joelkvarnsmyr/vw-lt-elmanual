@@ -1,0 +1,40 @@
+%% 11 Starter Circuit - VW LT All Models
+%% Source: Fig 10.34 tracks 2-8
+%% Version: 0.3 - With MDI icons
+%% Render: mmdc -i 11_starter_circuit.mermaid -o renders/11.svg --iconPacks @iconify-json/mdi
+
+flowchart TD
+
+    subgraph PowerRail["Rail 30 - Permanent"]
+        A@{ shape: icon, icon: "mdi:car-battery", form: "square", label: "A\nBatteri 12V", pos: "b", h: 48 }
+    end
+
+    subgraph Charging["Charging System"]
+        C@{ shape: icon, icon: "mdi:lightning-bolt", form: "square", label: "C\nGenerator", pos: "b", h: 48 }
+        C1@{ shape: icon, icon: "mdi:resistor", form: "square", label: "C1\nRegulator", pos: "b", h: 40 }
+    end
+
+    subgraph Starting["Starting System"]
+        D@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "D\nTändningslås", pos: "b", h: 48 }
+        B_30@{ shape: icon, icon: "mdi:engine", form: "square", label: "B t30\nStartmotor", pos: "b", h: 48 }
+        B_50["B t50\nSolenoid"]
+    end
+
+    subgraph EarthStraps["Earth Straps"]
+        GND1@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚1 Battery\nstrap", pos: "b", h: 40 }
+        GND2@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚2 Generator\nstrap", pos: "b", h: 40 }
+        GND3@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚3 Gearbox\nstrap", pos: "b", h: 40 }
+        BODY["Body/Chassis"]
+    end
+
+    A ==>|"heavy sw cable"| B_30
+    D -->|"t50 sw START only"| B_50
+    B_50 -->|"engages pinion"| B_30
+    C -->|"B+ charge cable"| A
+    C1 ---|"regulates"| C
+
+    A ---|"⏚1 heavy strap"| GND1
+    GND1 --- BODY
+    C ---|"⏚2 engine strap"| GND2
+    GND2 --- BODY
+    GND3 ---|"⏚3 gearbox"| BODY

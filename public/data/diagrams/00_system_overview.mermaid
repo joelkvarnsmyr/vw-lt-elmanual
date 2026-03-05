@@ -1,0 +1,118 @@
+%% 00 System Overview - VW LT All Models
+%% Version: 0.3 - With MDI icons
+%% Render: mmdc -i 00_system_overview.mermaid -o renders/00.svg --iconPacks @iconify-json/mdi
+
+flowchart TD
+
+    subgraph PowerSource["Power Source"]
+        A@{ shape: icon, icon: "mdi:car-battery", form: "square", label: "A Batteri 12V", pos: "b", h: 48 }
+        C@{ shape: icon, icon: "mdi:lightning-bolt", form: "square", label: "C Generator", pos: "b", h: 40 }
+    end
+
+    subgraph StartCharge["11 Starter/Charging"]
+        B@{ shape: icon, icon: "mdi:engine", form: "square", label: "B Startmotor", pos: "b", h: 48 }
+        GND123@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚1/2/3\nEarth straps", pos: "b", h: 40 }
+    end
+
+    subgraph IgnSwitch["D - Ignition Switch"]
+        D@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "D Tändningslås\n30/15/X/50", pos: "b", h: 48 }
+    end
+
+    subgraph Rail30["Rail 30 - Permanent"]
+        S5@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S5 Horn", pos: "b", h: 40 }
+        S6@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S6 Brake", pos: "b", h: 40 }
+        E1@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "E1 Light sw", pos: "b", h: 40 }
+    end
+
+    subgraph Rail15["Rail 15 - Ignition"]
+        S7@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S7 Ign", pos: "b", h: 40 }
+        S8@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S8 Turn", pos: "b", h: 40 }
+        S9@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S9 Instr", pos: "b", h: 40 }
+        S10@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S10 Heat", pos: "b", h: 40 }
+    end
+
+    subgraph RailX["Rail X - Accessory"]
+        S11@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S11 Wiper", pos: "b", h: 40 }
+        S12@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S12 Fog", pos: "b", h: 40 }
+    end
+
+    subgraph Lighting["02 Lighting"]
+        J@{ shape: icon, icon: "mdi:electric-switch", form: "square", label: "J Relay", pos: "b", h: 40 }
+        L1L2@{ shape: icon, icon: "mdi:car-light-high", form: "square", label: "L1/L2", pos: "b", h: 40 }
+        M1234@{ shape: icon, icon: "mdi:car-parking-lights", form: "square", label: "M1-M4", pos: "b", h: 40 }
+        S50@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S50 Panel", pos: "b", h: 40 }
+        L10etc@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "Panel lights", pos: "b", h: 40 }
+    end
+
+    subgraph TurnSig["04 Turn Signals"]
+        J2@{ shape: icon, icon: "mdi:electric-switch", form: "square", label: "J2 Flasher", pos: "b", h: 40 }
+        E3@{ shape: icon, icon: "mdi:hazard-lights", form: "square", label: "E3 Hazard", pos: "b", h: 40 }
+        M5678@{ shape: icon, icon: "mdi:hazard-lights", form: "square", label: "M5-M8", pos: "b", h: 40 }
+    end
+
+    subgraph Wipers["03 Wiper/Washer"]
+        J31@{ shape: icon, icon: "mdi:electric-switch", form: "square", label: "J31 Relay", pos: "b", h: 40 }
+        V_wip@{ shape: icon, icon: "mdi:car-windshield", form: "square", label: "V Wiper", pos: "b", h: 40 }
+        J39@{ shape: icon, icon: "mdi:electric-switch", form: "square", label: "J39 HL wash", pos: "b", h: 40 }
+        V11_hl@{ shape: icon, icon: "mdi:spray", form: "square", label: "V11 Pump", pos: "b", h: 40 }
+    end
+
+    subgraph Instruments["05 Instruments"]
+        T10@{ shape: icon, icon: "mdi:power-plug", form: "square", label: "T10 10-pin", pos: "b", h: 40 }
+        GAUGES@{ shape: icon, icon: "mdi:gauge", form: "square", label: "Gauges", pos: "b", h: 40 }
+    end
+
+    subgraph Foglight["06 Foglight"]
+        J5@{ shape: icon, icon: "mdi:electric-switch", form: "square", label: "J5 Relay", pos: "b", h: 40 }
+        L22L23@{ shape: icon, icon: "mdi:weather-fog", form: "square", label: "L22/L23", pos: "b", h: 40 }
+    end
+
+    subgraph Brake["08 Brake"]
+        F_brk@{ shape: icon, icon: "mdi:car-brake-alert", form: "square", label: "F Brake sw", pos: "b", h: 40 }
+        M9M10@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "M9/M10", pos: "b", h: 40 }
+    end
+
+    subgraph Supplementary["09 Supplementary"]
+        J9@{ shape: icon, icon: "mdi:electric-switch", form: "square", label: "J9 Relay", pos: "b", h: 40 }
+        Z1@{ shape: icon, icon: "mdi:car-seat-heater", form: "square", label: "Z1 Window", pos: "b", h: 40 }
+        V2@{ shape: icon, icon: "mdi:fan", form: "square", label: "V2 Blower", pos: "b", h: 40 }
+        H1@{ shape: icon, icon: "mdi:bugle", form: "square", label: "H1 Horn", pos: "b", h: 40 }
+    end
+
+    subgraph FuelPump["12 Fuel"]
+        V14@{ shape: icon, icon: "mdi:gas-station", form: "square", label: "V14 Pump", pos: "b", h: 40 }
+    end
+
+    %% Power flow
+    A ==>|"heavy cable"| B
+    C --> A
+    A --- GND123
+    A --> D
+
+    %% D to rails
+    D -->|"t30"| S5 & S6
+    D -->|"t30 sw/ge"| E1
+    D -->|"t15"| S7 & S8 & S9 & S10
+    D -->|"tX"| S11 & S12
+    D -->|"t50"| B
+
+    %% Rail 30 subsystems
+    E1 -->|"t56"| J --> L1L2
+    E1 -->|"t58"| M1234
+    E1 -->|"t58"| S50 --> L10etc
+    S6 --> F_brk --> M9M10
+    S5 --> H1
+    S6 -->|"C19"| E3
+
+    %% Rail 15 subsystems
+    S8 --> J2 --> M5678
+    E3 -.-> J2
+    S9 --> T10 --> GAUGES
+    S10 --> J9 --> Z1
+    S10 --> V2
+    S7 --> V14
+
+    %% Rail X subsystems
+    S11 --> J31 --> V_wip
+    E1 -->|"t56 enables"| J39 --> V11_hl
+    S12 --> J5 --> L22L23

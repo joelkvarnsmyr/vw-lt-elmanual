@@ -1,0 +1,49 @@
+%% 15 Charging Circuit - VW LT All Models
+%% Source: Fig 10.34 tracks 2-3
+%% Version: 0.3 - With MDI icons
+%% Render: mmdc -i 15_charging_circuit.mermaid -o renders/15.svg --iconPacks @iconify-json/mdi
+
+flowchart TD
+
+    subgraph Generator["C - Generator"]
+        C@{ shape: icon, icon: "mdi:lightning-bolt", form: "square", label: "C\nGenerator\nAlternator", pos: "b", h: 48 }
+        C_Bplus["C B+\nMain output"]
+        C_Dplus["C D+\nExcitation"]
+    end
+
+    subgraph Regulator["Regulator"]
+        C1@{ shape: icon, icon: "mdi:resistor", form: "square", label: "C1\nVoltage\nregulator", pos: "b", h: 48 }
+    end
+
+    subgraph Battery["Battery"]
+        A@{ shape: icon, icon: "mdi:car-battery", form: "square", label: "A\nBatteri 12V", pos: "b", h: 48 }
+    end
+
+    subgraph IgnSwitch["Ignition"]
+        D@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "D\nIgnition switch", pos: "b", h: 48 }
+        D_G["D t(G)\nCharge terminal"]
+    end
+
+    subgraph ChargeWarning["Warning"]
+        K2@{ shape: icon, icon: "mdi:lightbulb-on", form: "circle", label: "K2\nCharge warning\nON = no charge", pos: "b", h: 48 }
+    end
+
+    subgraph EarthStraps["Earth Straps"]
+        GND1@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚1\nBattery strap", pos: "b", h: 40 }
+        GND2@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚2\nEngine strap", pos: "b", h: 40 }
+        GND3@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚3\nGearbox strap", pos: "b", h: 40 }
+        BODY["Body/Chassis"]
+    end
+
+    C --- C_Bplus & C_Dplus
+    C1 ---|"regulates"| C
+
+    C_Bplus ==>|"B+ heavy charge"| A
+
+    D --> D_G
+    D_G -->|"ign on"| K2
+    C_Dplus -->|"D+ balances K2"| K2
+
+    A ---|"⏚1 heavy strap"| GND1
+    C ---|"⏚2 engine strap"| GND2
+    GND1 & GND2 & GND3 --- BODY

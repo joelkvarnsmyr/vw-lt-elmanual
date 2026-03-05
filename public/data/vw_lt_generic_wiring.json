@@ -1,0 +1,2122 @@
+{
+  "meta": {
+    "source": "Volkswagen LT Workshop Manual 1976–1987",
+    "chapter": "Chapter 13 Supplement – Wiring Diagrams",
+    "scope": "Generic supplementary diagrams (all models, not engine-specific)",
+    "colour_code": {
+      "bl": "Blue",
+      "br": "Brown",
+      "ge": "Yellow",
+      "gn": "Green",
+      "gr": "Grey",
+      "li": "Lilac",
+      "pi": "Pink",
+      "ro": "Red",
+      "sw": "Black",
+      "ws": "White"
+    },
+    "wire_notation": "colour1/colour2 = main colour / stripe colour. Dimension in mm² before colour.",
+    "unit_notes": {
+      "wire_mm2": "Wire cross-section in mm²",
+      "fuse_A": "Fuse rating in Amperes",
+      "track": "Current track number (vertical column in diagram)"
+    },
+    "schema_version": "1.1",
+    "migration_applied_at_utc": "2026-03-04T23:30:19Z",
+    "data_contract": "Use vw_lt_wire_lookup.json as canonical flat wire table."
+  },
+  "diagrams": [
+    {
+      "figure": "13.80",
+      "title": "Supplementary wiring diagram for headlight washers",
+      "title_sv": "Tilläggskopplingsschema för strålkastartvätt",
+      "page": 289,
+      "applies": "1980 on, all models",
+      "key_page": 290,
+      "power_rails": [
+        "30",
+        "15",
+        "31",
+        "X"
+      ],
+      "components": [
+        {
+          "id": "E1",
+          "description": "Lighting switch (to terminal 56)",
+          "description_sv": "Ljusomkopplare (till terminal 56)",
+          "type": "switch",
+          "track": 10
+        },
+        {
+          "id": "E22",
+          "description": "Wiper switch for intermittent operation",
+          "description_sv": "Torkaromkopplare för intermittent funktion",
+          "type": "switch",
+          "track": "4 to 8"
+        },
+        {
+          "id": "J31",
+          "description": "Relay for wash-wipe intermittent facility",
+          "description_sv": "Relä för tork-/spolintermittent funktion",
+          "type": "relay",
+          "track": "3 to 6",
+          "contact_designations": [
+            "M18",
+            "M19",
+            "M21",
+            "M17",
+            "M26",
+            "M20"
+          ]
+        },
+        {
+          "id": "J39",
+          "description": "Headlight washer relay",
+          "description_sv": "Strålkastartvätt-relä",
+          "type": "relay",
+          "track": "11 to 13"
+        },
+        {
+          "id": "S11",
+          "description": "Fuse in fusebox",
+          "description_sv": "Säkring i säkringsdosa",
+          "type": "fuse"
+        },
+        {
+          "id": "V",
+          "description": "Windscreen wiper motor",
+          "description_sv": "Vindrutetorkarmotor",
+          "type": "motor",
+          "track": "1 to 3"
+        },
+        {
+          "id": "V5",
+          "description": "Windscreen washer pump",
+          "description_sv": "Vindrutespolarpump",
+          "type": "pump",
+          "track": 9
+        },
+        {
+          "id": "V11",
+          "description": "Headlight washer pump",
+          "description_sv": "Strålkastarspolarpump",
+          "type": "pump",
+          "track": 13
+        }
+      ],
+      "connectors": [
+        {
+          "id": "T1a",
+          "description": "Connector, single, behind dash",
+          "description_sv": "Kontakt, enkel, bakom instrumentpanelen"
+        },
+        {
+          "id": "T1b",
+          "description": "Connector, single, behind dash",
+          "description_sv": "Kontakt, enkel, bakom instrumentpanelen"
+        },
+        {
+          "id": "T2",
+          "description": "Connector, 2-pin, near windscreen washer pump",
+          "description_sv": "Kontakt, 2-polig, nära vindrutespolarpump"
+        }
+      ],
+      "ground_points": [
+        {
+          "id": "9",
+          "location": "Earth point on fusebox",
+          "location_sv": "Jordpunkt på säkringsdosa"
+        },
+        {
+          "id": "10",
+          "location": "Earth point, behind dash, near fuse box",
+          "location_sv": "Jordpunkt bakom instrumentpanelen, nära säkringsdosa"
+        }
+      ],
+      "wires": [
+        {
+          "from": "rail_X",
+          "to": "S11",
+          "description": "Power supply from X rail to fuse"
+        },
+        {
+          "from": "S11",
+          "to": "J31",
+          "via": "M18",
+          "description": "Fuse to relay"
+        },
+        {
+          "from": "J31",
+          "to": "E22",
+          "via": "M19",
+          "description": "Relay to wiper switch"
+        },
+        {
+          "from": "J31",
+          "to": "E22",
+          "via": "M21",
+          "description": "Relay to wiper switch"
+        },
+        {
+          "from": "J31",
+          "to": "V",
+          "via": "M17",
+          "description": "Relay to wiper motor"
+        },
+        {
+          "from": "J31",
+          "to": "V5",
+          "via": "M26",
+          "description": "Relay to washer pump"
+        },
+        {
+          "from": "J31",
+          "to": "J39",
+          "via": "M20",
+          "description": "Relay to headlight washer relay"
+        },
+        {
+          "from": "S11",
+          "to": "E22",
+          "wire_id": "C6",
+          "colour": "gn",
+          "mm2": null
+        },
+        {
+          "from": "S11",
+          "to": "E22",
+          "wire_id": "C16",
+          "colour": null,
+          "mm2": null
+        },
+        {
+          "from": "S11",
+          "to": "E22",
+          "wire_id": "C13",
+          "colour": null,
+          "mm2": null
+        },
+        {
+          "from": "S11",
+          "to": "E22",
+          "wire_id": "C9",
+          "colour": null,
+          "mm2": null
+        },
+        {
+          "from": "S11",
+          "to": "V",
+          "wire_id": "E16",
+          "colour": null,
+          "mm2": null
+        },
+        {
+          "from": "S11",
+          "to": "V5",
+          "wire_id": "E15",
+          "colour": null,
+          "mm2": null
+        },
+        {
+          "from": "S11",
+          "to": "E22",
+          "wire_id": "E21",
+          "colour": null,
+          "mm2": null
+        },
+        {
+          "from": "S11",
+          "to": "V",
+          "wire_id": "E18",
+          "colour": null,
+          "mm2": null
+        },
+        {
+          "from": "S11",
+          "to": "E22",
+          "wire_id": "E8",
+          "colour": null,
+          "mm2": null
+        },
+        {
+          "from": "S11",
+          "to": "E22",
+          "wire_id": "E20",
+          "colour": "0.5 gn/ro",
+          "mm2": 0.5
+        },
+        {
+          "from": "S11",
+          "to": "J39",
+          "wire_id": "E7",
+          "colour": null,
+          "mm2": null
+        },
+        {
+          "from": "S11",
+          "to": "J39",
+          "wire_id": "C17",
+          "colour": null,
+          "mm2": null
+        },
+        {
+          "from": "S11",
+          "to": "J39",
+          "wire_id": "D17",
+          "colour": null,
+          "mm2": null
+        },
+        {
+          "from": "S11",
+          "to": "J39",
+          "wire_id": "G10",
+          "colour": null,
+          "mm2": null
+        },
+        {
+          "from": "S11",
+          "to": "J39",
+          "wire_id": "G2",
+          "colour": null,
+          "mm2": null
+        },
+        {
+          "from": "S11",
+          "to": "J39",
+          "wire_id": "H",
+          "colour": null,
+          "mm2": null
+        },
+        {
+          "from": "E22",
+          "to": "V",
+          "terminal": "53",
+          "colour": null,
+          "mm2": 1.0,
+          "description": "Wiper motor continuous"
+        },
+        {
+          "from": "E22",
+          "to": "V",
+          "terminal": "53b",
+          "colour": null,
+          "mm2": 1.0,
+          "description": "Wiper motor return"
+        },
+        {
+          "from": "E22",
+          "to": "V",
+          "terminal": "53a",
+          "colour": "gn/ge",
+          "mm2": 1.0,
+          "description": "Wiper motor speed"
+        },
+        {
+          "from": "E22",
+          "to": "V",
+          "terminal": "53e",
+          "colour": null,
+          "mm2": null,
+          "description": "Wiper motor washer trigger"
+        },
+        {
+          "from": "V",
+          "to": "gnd_10",
+          "colour": "br",
+          "mm2": 1.0,
+          "description": "Wiper motor earth"
+        },
+        {
+          "from": "V5",
+          "to": "gnd_9",
+          "colour": "br",
+          "mm2": 0.5,
+          "description": "Washer pump earth"
+        },
+        {
+          "from": "V11",
+          "to": "gnd_10",
+          "colour": "br",
+          "mm2": 1.0,
+          "description": "Headlight washer pump earth"
+        }
+      ],
+      "functional_description": "When the windscreen washer is activated via E22, J31 relay controls the wash-wipe sequence. J39 is energised simultaneously to power V11 headlight washer pump via M20. The headlight washers only operate when the headlights are on (via E1 terminal 56 enabling J39 coil circuit)."
+    },
+    {
+      "figure": "13.81",
+      "title": "Supplementary wiring diagram for front and rear foglights",
+      "title_sv": "Tilläggskopplingsschema för dim- och bakljus",
+      "page": 290,
+      "applies": "1981 to 1985",
+      "key_page": 290,
+      "power_rails": [
+        "30",
+        "15",
+        "31",
+        "X"
+      ],
+      "components": [
+        {
+          "id": "E1",
+          "description": "Lighting switch (from terminal 58)",
+          "description_sv": "Ljusomkopplare (från terminal 58)",
+          "type": "switch",
+          "track": 1
+        },
+        {
+          "id": "E23",
+          "description": "Fog and rear foglight switch",
+          "description_sv": "Dim- och bakdimljusomkopplare",
+          "type": "switch",
+          "track": "5 to 8"
+        },
+        {
+          "id": "J5",
+          "description": "Foglight relay",
+          "description_sv": "Dimljusrelä",
+          "type": "relay",
+          "track": "3 to 5",
+          "terminals": {
+            "86": "Coil negative",
+            "85": "Coil positive",
+            "30": "Common (power in)",
+            "87": "Normally open (power out)"
+          }
+        },
+        {
+          "id": "K13",
+          "description": "Rear foglight warning lamp (yellow)",
+          "description_sv": "Bakdimljusvarningslampa (gul)",
+          "type": "indicator_lamp",
+          "track": 4
+        },
+        {
+          "id": "L20",
+          "description": "Rear foglight bulb",
+          "description_sv": "Bakdimljuslampa",
+          "type": "bulb",
+          "track": 6
+        },
+        {
+          "id": "L22",
+          "description": "Foglight bulb, left",
+          "description_sv": "Dimljuslampa, vänster",
+          "type": "bulb",
+          "track": 8
+        },
+        {
+          "id": "L23",
+          "description": "Foglight bulb, right",
+          "description_sv": "Dimljuslampa, höger",
+          "type": "bulb",
+          "track": 9
+        },
+        {
+          "id": "S12",
+          "description": "Fuse in fusebox",
+          "description_sv": "Säkring i säkringsdosa",
+          "type": "fuse"
+        },
+        {
+          "id": "S28",
+          "description": "Fuse for foglights (8 Amp)",
+          "description_sv": "Säkring för dimljus (8A)",
+          "type": "fuse",
+          "rating_A": 8,
+          "track": 7
+        }
+      ],
+      "connectors": [
+        {
+          "id": "T1",
+          "description": "Connector, single, behind dash"
+        },
+        {
+          "id": "T1a",
+          "description": "Connector, single, behind air vent"
+        },
+        {
+          "id": "T1b",
+          "description": "Connector, single, behind air vent"
+        },
+        {
+          "id": "T1c",
+          "description": "Connector, single, behind cross panel"
+        },
+        {
+          "id": "T1d",
+          "description": "Connector, single, behind dash"
+        },
+        {
+          "id": "T1e",
+          "description": "Connector, single, behind cross panel"
+        },
+        {
+          "id": "X",
+          "description": "Number plate light connection",
+          "track": 2
+        }
+      ],
+      "ground_points": [
+        {
+          "id": "4",
+          "location": "Earth point, on dash insert"
+        },
+        {
+          "id": "5",
+          "location": "Earth point, on cross panel/side member"
+        },
+        {
+          "id": "10",
+          "location": "Earth point, behind dash on left"
+        },
+        {
+          "id": "11",
+          "location": "Earth point, behind dash on right"
+        }
+      ],
+      "wires": [
+        {
+          "from": "rail_X",
+          "to": "S12",
+          "description": "Power from X rail"
+        },
+        {
+          "from": "S12",
+          "to": "E23",
+          "wire_id": "E9",
+          "mm2": 0.5,
+          "colour": "gr/gn",
+          "description": "Fuse to fog switch"
+        },
+        {
+          "from": "S12",
+          "to": "J5",
+          "wire_id": "F13",
+          "mm2": null,
+          "colour": null
+        },
+        {
+          "from": "S12",
+          "to": "E23",
+          "wire_id": "G4",
+          "mm2": null,
+          "colour": null
+        },
+        {
+          "from": "J5",
+          "terminal": "4/86",
+          "to": "E23",
+          "mm2": 0.5,
+          "colour": "sw/ws",
+          "description": "Relay coil to switch"
+        },
+        {
+          "from": "J5",
+          "terminal": "2/30",
+          "to": "S28",
+          "mm2": 1.5,
+          "colour": "ro",
+          "description": "Relay power to fog fuse"
+        },
+        {
+          "from": "J5",
+          "terminal": "6/85",
+          "to": "gnd",
+          "mm2": 0.5,
+          "colour": "br",
+          "description": "Relay coil earth"
+        },
+        {
+          "from": "J5",
+          "terminal": "8/87",
+          "to": "E23",
+          "mm2": 1.5,
+          "colour": "gr/ge",
+          "description": "Relay output to switch"
+        },
+        {
+          "from": "E1",
+          "terminal": "58",
+          "to": "E23",
+          "description": "Lighting switch enables foglight switch"
+        },
+        {
+          "from": "E23",
+          "terminal": "83a",
+          "to": "L22",
+          "mm2": 1.5,
+          "colour": "ws/ge",
+          "description": "Switch to left foglight"
+        },
+        {
+          "from": "E23",
+          "terminal": "83a",
+          "to": "L23",
+          "mm2": null,
+          "colour": null,
+          "description": "Switch to right foglight"
+        },
+        {
+          "from": "E23",
+          "terminal": "83b",
+          "to": "K13",
+          "mm2": 1.0,
+          "colour": "gr/ws",
+          "description": "Switch to rear fog warning"
+        },
+        {
+          "from": "E23",
+          "terminal": "83b",
+          "to": "L20",
+          "mm2": null,
+          "colour": null,
+          "description": "Switch to rear foglight"
+        },
+        {
+          "from": "K13",
+          "to": "gnd",
+          "mm2": 0.5,
+          "colour": "br",
+          "description": "Warning lamp earth"
+        },
+        {
+          "from": "L20",
+          "to": "gnd",
+          "mm2": 1.0,
+          "colour": "br",
+          "description": "Rear foglight earth"
+        },
+        {
+          "from": "L22",
+          "to": "gnd_12",
+          "mm2": 1.0,
+          "colour": "br",
+          "description": "Left foglight earth"
+        },
+        {
+          "from": "L23",
+          "to": "gnd_12",
+          "mm2": 1.0,
+          "colour": "br",
+          "description": "Right foglight earth"
+        },
+        {
+          "from": "E23",
+          "to": "T1d",
+          "mm2": 1.0,
+          "colour": "ge",
+          "description": "To single connector behind dash"
+        },
+        {
+          "from": "E23",
+          "to": "T1e",
+          "mm2": 1.0,
+          "colour": "ge",
+          "description": "To single connector behind cross panel"
+        },
+        {
+          "from": "L20",
+          "via": "T1g",
+          "to": "gnd",
+          "mm2": 1.0,
+          "colour": "sw",
+          "description": "Rear foglight via connector"
+        }
+      ],
+      "functional_description": "Foglights can only be operated when parking/dipped beam is on (E1 terminal 58 enables E23). J5 relay switches the main foglight current. E23 switch has two stages: first click = front fogs via 83a, second click = rear fog via 83b. K13 warning lamp illuminates when rear fog is active. S28 (8A) protects the fog circuit."
+    },
+    {
+      "figure": "13.82",
+      "title": "Supplementary wiring diagram for front and rear foglights",
+      "title_sv": "Tilläggskopplingsschema för dim- och bakljus",
+      "page": 291,
+      "applies": "1986 on",
+      "key_page": 290,
+      "power_rails": [
+        "30",
+        "15",
+        "X",
+        "31"
+      ],
+      "components": [
+        {
+          "id": "E1",
+          "description": "Lighting switch",
+          "description_sv": "Ljusomkopplare",
+          "type": "switch",
+          "track": 4
+        },
+        {
+          "id": "E23",
+          "description": "Fog and rear foglight switch",
+          "description_sv": "Dim- och bakdimljusomkopplare",
+          "type": "switch",
+          "track": "2 to 5"
+        },
+        {
+          "id": "J5",
+          "description": "Foglight relay on aux. relay adaptor",
+          "description_sv": "Dimljusrelä på reläadapter",
+          "type": "relay",
+          "track": "1 to 3"
+        },
+        {
+          "id": "K17",
+          "description": "Foglight warning lamp",
+          "description_sv": "Dimljusvarningslampa",
+          "type": "indicator_lamp",
+          "track": "4, 5"
+        },
+        {
+          "id": "L10",
+          "description": "Dash panel insert light bulb",
+          "description_sv": "Instrumentpanelbelysning",
+          "type": "bulb",
+          "track": 8
+        },
+        {
+          "id": "L20",
+          "description": "Rear foglight bulb",
+          "description_sv": "Bakdimljuslampa",
+          "type": "bulb",
+          "track": 4
+        },
+        {
+          "id": "L22",
+          "description": "Foglight bulb, left",
+          "description_sv": "Dimljuslampa, vänster",
+          "type": "bulb",
+          "track": 2
+        },
+        {
+          "id": "L23",
+          "description": "Foglight bulb, right",
+          "description_sv": "Dimljuslampa, höger",
+          "type": "bulb",
+          "track": 3
+        },
+        {
+          "id": "L28",
+          "description": "Cigarette lighter light bulb",
+          "description_sv": "Cigarettändarbelysning",
+          "type": "bulb",
+          "track": 7
+        },
+        {
+          "id": "L40",
+          "description": "Front and rear foglight switch bulb",
+          "description_sv": "Dimljusomkopplarbelysning",
+          "type": "bulb",
+          "track": 5
+        },
+        {
+          "id": "R",
+          "description": "Radio",
+          "description_sv": "Radio",
+          "type": "device",
+          "track": 6
+        },
+        {
+          "id": "S12",
+          "description": "Fuse in fusebox",
+          "description_sv": "Säkring i säkringsdosa",
+          "type": "fuse",
+          "rating_A": 8
+        },
+        {
+          "id": "S28",
+          "description": "Separate fuse for foglight",
+          "description_sv": "Separat säkring för dimljus",
+          "type": "fuse",
+          "rating_A": 8,
+          "track": 3
+        },
+        {
+          "id": "S50",
+          "description": "Fuse, terminal 58b, on aux. relay adaptor",
+          "description_sv": "Säkring, terminal 58b, på reläadapter",
+          "type": "fuse",
+          "track": 7
+        }
+      ],
+      "connectors": [
+        {
+          "id": "T1c",
+          "description": "Connector, single, behind dash panel"
+        },
+        {
+          "id": "T1d",
+          "description": "Connector, single, behind air vent trim"
+        },
+        {
+          "id": "T1e",
+          "description": "Connector, single, behind air vent trim"
+        },
+        {
+          "id": "T1f",
+          "description": "Connector, single, behind dash panel"
+        },
+        {
+          "id": "T1g",
+          "description": "Connector, single, behind rear apron"
+        },
+        {
+          "id": "T1h",
+          "description": "Connector, single, behind rear apron"
+        },
+        {
+          "id": "T2a",
+          "description": "Connector, 2-pin, behind dash panel"
+        },
+        {
+          "id": "T2d",
+          "description": "Connector, 2-pin, behind dash panel"
+        },
+        {
+          "id": "T4a",
+          "description": "Connector, 4-pin, behind dash panel"
+        }
+      ],
+      "ground_points": [
+        {
+          "id": "10",
+          "location": "Earth point, on dash panel insert"
+        },
+        {
+          "id": "11",
+          "location": "Earth point, behind dash panel, right"
+        },
+        {
+          "id": "12",
+          "location": "Earth point, next to relay plate"
+        },
+        {
+          "id": "18",
+          "location": "Earth point, on rear crossmember"
+        }
+      ],
+      "wires": [
+        {
+          "from": "S12",
+          "to": "J5",
+          "wire_id": "C4",
+          "mm2": 0.5,
+          "colour": "sw/ws",
+          "description": "Fuse to relay coil"
+        },
+        {
+          "from": "S12",
+          "to": "E23",
+          "wire_id": "F13",
+          "mm2": null,
+          "colour": null
+        },
+        {
+          "from": "S12",
+          "to": "J5",
+          "wire_id": "G7",
+          "mm2": 1.5,
+          "colour": "ro",
+          "description": "Fuse to relay power"
+        },
+        {
+          "from": "S12",
+          "to": "E23",
+          "wire_id": "E9",
+          "mm2": 1.0,
+          "colour": "gr",
+          "description": "Fuse to switch"
+        },
+        {
+          "from": "J5",
+          "terminal": "4/86",
+          "to": "E23",
+          "mm2": 0.5,
+          "colour": "sw/ws"
+        },
+        {
+          "from": "J5",
+          "terminal": "2/30",
+          "to": "S28",
+          "mm2": 1.5,
+          "colour": "ro"
+        },
+        {
+          "from": "J5",
+          "terminal": "6/85",
+          "to": "gnd",
+          "mm2": 0.5,
+          "colour": "br"
+        },
+        {
+          "from": "J5",
+          "terminal": "8/87",
+          "to": "E23",
+          "mm2": 1.5,
+          "colour": "gr/ge"
+        },
+        {
+          "from": "S28",
+          "to": "E23",
+          "mm2": null,
+          "colour": null,
+          "description": "Fog fuse to switch"
+        },
+        {
+          "from": "E1",
+          "terminal": "58",
+          "to": "E23",
+          "description": "Lighting enables foglight"
+        },
+        {
+          "from": "E23",
+          "terminal": "83a",
+          "to": "L22",
+          "mm2": 1.5,
+          "colour": "ws/ge"
+        },
+        {
+          "from": "E23",
+          "terminal": "83b",
+          "to": "K17",
+          "mm2": 1.0,
+          "colour": "gr/ws"
+        },
+        {
+          "from": "E23",
+          "terminal": "83b",
+          "to": "L20",
+          "mm2": null,
+          "colour": null
+        },
+        {
+          "from": "K17",
+          "terminal": "31",
+          "to": "gnd",
+          "mm2": 0.5,
+          "colour": "br"
+        },
+        {
+          "from": "L40",
+          "terminal": "31",
+          "to": "gnd",
+          "mm2": 0.5,
+          "colour": "gr/bl"
+        },
+        {
+          "from": "S50",
+          "terminal": "58b",
+          "to": "R",
+          "mm2": 0.5,
+          "colour": "gr/bl"
+        },
+        {
+          "from": "S50",
+          "to": "L10",
+          "mm2": 0.5,
+          "colour": "gr/bl"
+        },
+        {
+          "from": "S50",
+          "to": "L28",
+          "mm2": 0.5,
+          "colour": "gr/bl"
+        },
+        {
+          "from": "S50",
+          "to": "T2a",
+          "mm2": 0.5,
+          "colour": "gr/bl"
+        },
+        {
+          "from": "L22",
+          "via": "T1d",
+          "to": "gnd_12",
+          "mm2": 1.0,
+          "colour": "ge"
+        },
+        {
+          "from": "L23",
+          "via": "T1e",
+          "to": "gnd_12",
+          "mm2": 1.0,
+          "colour": "ge"
+        },
+        {
+          "from": "L20",
+          "via": "T1g",
+          "to": "gnd_18",
+          "mm2": 1.0,
+          "colour": "sw"
+        },
+        {
+          "from": "T4a",
+          "to": "T2d",
+          "mm2": 0.5,
+          "colour": "gr/bl",
+          "description": "Dash interconnection"
+        }
+      ],
+      "functional_description": "Updated foglight circuit for 1986+ models. J5 relay now on auxiliary relay adaptor. S50 provides fused 58b supply for instrument illumination (R radio, L10 dash lights, L28 cigarette lighter light, L40 foglight switch light). Fog switch E23 requires E1 terminal 58 to be active. K17 warning lamp indicates fog operation."
+    },
+    {
+      "figure": "13.83",
+      "title": "Supplementary wiring diagram for dual circuit brakes and handbrake warning lamp",
+      "title_sv": "Tilläggskopplingsschema för dubbelkrets broms och handbromsvarningslampa",
+      "page": 292,
+      "applies": "1980 on, all models",
+      "key_page": 292,
+      "power_rails": [
+        "30",
+        "15",
+        "31",
+        "X"
+      ],
+      "components": [
+        {
+          "id": "F",
+          "description": "Brake light switch",
+          "description_sv": "Bromsljusomkopplare",
+          "type": "switch",
+          "track": "2 to 4"
+        },
+        {
+          "id": "F1",
+          "description": "Oil pressure switch (to oil pressure switch)",
+          "description_sv": "Oljetrycksomkopplare",
+          "type": "switch",
+          "track": 8
+        },
+        {
+          "id": "F9",
+          "description": "Handbrake warning switch",
+          "description_sv": "Handbromsvarningsomkopplare",
+          "type": "switch",
+          "track": 6
+        },
+        {
+          "id": "K7",
+          "description": "Dual circuit and handbrake warning lamp",
+          "description_sv": "Dubbelkrets- och handbromsvarningslampa",
+          "type": "indicator_lamp",
+          "track": "5 to 7"
+        },
+        {
+          "id": "M9",
+          "description": "Brake light, left",
+          "description_sv": "Bromsljus, vänster",
+          "type": "bulb",
+          "track": 1
+        },
+        {
+          "id": "M10",
+          "description": "Brake light, right",
+          "description_sv": "Bromsljus, höger",
+          "type": "bulb",
+          "track": 2
+        },
+        {
+          "id": "S6",
+          "description": "Fuse in fusebox",
+          "description_sv": "Säkring i säkringsdosa",
+          "type": "fuse"
+        },
+        {
+          "id": "T1",
+          "description": "Connector, single, in engine compartment",
+          "description_sv": "Kontakt, enkel, i motorrum",
+          "type": "connector"
+        }
+      ],
+      "ground_points": [
+        {
+          "id": "11",
+          "location": "Earthing point behind dash",
+          "location_sv": "Jordpunkt bakom instrumentpanelen"
+        }
+      ],
+      "wires": [
+        {
+          "from": "rail_30",
+          "to": "S6",
+          "description": "Permanent supply to fuse"
+        },
+        {
+          "from": "S6",
+          "to": "F",
+          "mm2": null,
+          "colour": null,
+          "description": "Fuse to brake switch"
+        },
+        {
+          "from": "S6",
+          "to": "F",
+          "wire_id": "F20",
+          "mm2": 1.0,
+          "colour": "br/ro"
+        },
+        {
+          "from": "S6",
+          "to": "K7",
+          "wire_id": "A16",
+          "mm2": 1.0,
+          "colour": "ro/sw"
+        },
+        {
+          "from": "S6",
+          "to": "F9",
+          "wire_id": "A2",
+          "mm2": 1.0,
+          "colour": "bl/br"
+        },
+        {
+          "from": "S6",
+          "to": "F9",
+          "wire_id": "A14",
+          "mm2": 1.0,
+          "colour": "ro/ge"
+        },
+        {
+          "from": "S6",
+          "to": "K7",
+          "wire_id": "G3",
+          "mm2": 0.5,
+          "colour": "sw"
+        },
+        {
+          "from": "S6",
+          "to": "F1",
+          "wire_id": "D4",
+          "mm2": 0.5,
+          "colour": "bl/br"
+        },
+        {
+          "from": "S6",
+          "to": "K7",
+          "wire_id": "G9",
+          "mm2": 0.5,
+          "colour": "bl/sw"
+        },
+        {
+          "from": "S6",
+          "to": "K7",
+          "wire_id": "C12",
+          "mm2": 0.5,
+          "colour": "bl/sw"
+        },
+        {
+          "from": "F",
+          "to": "M9",
+          "mm2": 1.0,
+          "colour": null,
+          "description": "Brake switch to left brake light"
+        },
+        {
+          "from": "F",
+          "to": "M10",
+          "mm2": 1.0,
+          "colour": null,
+          "description": "Brake switch to right brake light"
+        },
+        {
+          "from": "F9",
+          "to": "K7",
+          "mm2": null,
+          "colour": null,
+          "description": "Handbrake switch to warning lamp"
+        },
+        {
+          "from": "F1",
+          "to": "K7",
+          "mm2": null,
+          "colour": null,
+          "description": "Oil pressure to warning lamp"
+        },
+        {
+          "from": "K7",
+          "to": "gnd_11",
+          "mm2": null,
+          "colour": "br",
+          "description": "Warning lamp earth"
+        },
+        {
+          "from": "M9",
+          "to": "gnd",
+          "mm2": null,
+          "colour": "br",
+          "description": "Left brake light earth"
+        },
+        {
+          "from": "M10",
+          "to": "gnd",
+          "mm2": null,
+          "colour": "br",
+          "description": "Right brake light earth"
+        }
+      ],
+      "functional_description": "S6 fuse provides permanent 30 supply to brake light switch F. When brake pedal is pressed, F sends current to M9 and M10 brake lights. K7 warning lamp is triggered by: F9 handbrake switch (handbrake on), or hydraulic brake pressure differential switch (brake circuit failure). F1 oil pressure switch shares earth path."
+    },
+    {
+      "figure": "13.84",
+      "title": "Supplementary wiring diagram for fusing of lights in dash with rev counter",
+      "title_sv": "Tilläggskopplingsschema för säkring av instrumentbelysning med varvräknare",
+      "page": 293,
+      "applies": "1985 on",
+      "key_page": 292,
+      "power_rails": [
+        "30",
+        "15",
+        "X",
+        "31"
+      ],
+      "components": [
+        {
+          "id": "C",
+          "description": "Alternator (only on Diesel engine)",
+          "description_sv": "Generator (endast dieselmotor)",
+          "type": "generator",
+          "track": 6,
+          "note": "Only diesel"
+        },
+        {
+          "id": "D",
+          "description": "Ignition/starter switch",
+          "description_sv": "Tändnings-/startomkopplare",
+          "type": "switch",
+          "track": 6
+        },
+        {
+          "id": "E3",
+          "description": "Emergency light switch",
+          "description_sv": "Varningsblinkeromkopplare",
+          "type": "switch",
+          "track": "2, 12"
+        },
+        {
+          "id": "E20",
+          "description": "Instrument/instrument panel lighting control",
+          "description_sv": "Instrument-/instrumentpanelbelysningsreglage",
+          "type": "control",
+          "track": 11
+        },
+        {
+          "id": "F",
+          "description": "Brake light switch",
+          "description_sv": "Bromsljusomkopplare",
+          "type": "switch",
+          "track": 1
+        },
+        {
+          "id": "G5",
+          "description": "Rev. counter",
+          "description_sv": "Varvräknare",
+          "type": "gauge",
+          "track": 5
+        },
+        {
+          "id": "L8",
+          "description": "Clock light bulb",
+          "description_sv": "Klocklyslampa",
+          "type": "bulb",
+          "track": 7
+        },
+        {
+          "id": "L10",
+          "description": "Instrument panel insert light bulb",
+          "description_sv": "Instrumentpanelbelysning",
+          "type": "bulb",
+          "track": "8 to 11"
+        },
+        {
+          "id": "L16",
+          "description": "Fresh air controls light bulb",
+          "description_sv": "Friskluftsreglagebelysning",
+          "type": "bulb",
+          "track": 13
+        },
+        {
+          "id": "L28",
+          "description": "Cigarette lighter light bulb",
+          "description_sv": "Cigarettändarbelysning",
+          "type": "bulb",
+          "track": 11
+        },
+        {
+          "id": "L39",
+          "description": "Heated rear window switch bulb",
+          "description_sv": "Bakruteuppvärmning omkopplarbelysning",
+          "type": "bulb",
+          "track": 14
+        },
+        {
+          "id": "N",
+          "description": "Ignition coil (only on petrol engine)",
+          "description_sv": "Tändspole (endast bensinmotor)",
+          "type": "coil",
+          "track": 7,
+          "note": "Only petrol"
+        },
+        {
+          "id": "R",
+          "description": "Radio connection",
+          "description_sv": "Radioanslutning",
+          "type": "connection",
+          "track": "4, 10"
+        },
+        {
+          "id": "S6",
+          "description": "Fuse in fusebox",
+          "description_sv": "Säkring i säkringsdosa",
+          "type": "fuse",
+          "rating_A": 10
+        },
+        {
+          "id": "S50",
+          "description": "Fuse on relay adaptor",
+          "description_sv": "Säkring på reläadapter",
+          "type": "fuse"
+        },
+        {
+          "id": "U1",
+          "description": "Cigarette lighter",
+          "description_sv": "Cigarettändare",
+          "type": "accessory",
+          "track": 3
+        }
+      ],
+      "connectors": [
+        {
+          "id": "T1",
+          "description": "Connector, single behind dash"
+        },
+        {
+          "id": "T1a",
+          "description": "Connector, single, behind dash"
+        },
+        {
+          "id": "T1b",
+          "description": "Connector, single, behind dash"
+        },
+        {
+          "id": "T1c",
+          "description": "Connector, single, behind dash"
+        },
+        {
+          "id": "T2",
+          "description": "Connector, 2-pin, behind dash"
+        },
+        {
+          "id": "T2a",
+          "description": "Connector, 2-pin, behind dash"
+        },
+        {
+          "id": "T2b",
+          "description": "Connector, 2-pin, behind dash"
+        },
+        {
+          "id": "T14/",
+          "description": "Connector, 14-pin, behind dash"
+        }
+      ],
+      "ground_points": [
+        {
+          "id": "10",
+          "location": "Earth point behind dash"
+        }
+      ],
+      "wires": [
+        {
+          "from": "S6",
+          "to": "A14",
+          "mm2": 1.0,
+          "colour": "ro/ge",
+          "description": "Fuse output"
+        },
+        {
+          "from": "S6",
+          "to": "D21",
+          "mm2": 1.5,
+          "colour": "ro/ge",
+          "description": "Fuse output"
+        },
+        {
+          "from": "S6",
+          "to": "A5",
+          "mm2": 0.5,
+          "colour": "ro",
+          "description": "Fuse output"
+        },
+        {
+          "from": "S6",
+          "to": "D15",
+          "mm2": 1.0,
+          "colour": "sw",
+          "description": "Fuse output"
+        },
+        {
+          "from": "S6",
+          "to": "C19",
+          "mm2": 0.5,
+          "colour": "ro/sw",
+          "description": "Fuse output"
+        },
+        {
+          "from": "E20",
+          "to": "S50",
+          "description": "Lighting control to panel fuse"
+        },
+        {
+          "from": "S50",
+          "terminal": "58b",
+          "to": "L10",
+          "mm2": 0.5,
+          "colour": "gr/bl",
+          "description": "Panel lights"
+        },
+        {
+          "from": "S50",
+          "to": "L8",
+          "mm2": 0.5,
+          "colour": "gr/bl",
+          "description": "Clock light"
+        },
+        {
+          "from": "S50",
+          "to": "R",
+          "mm2": 0.5,
+          "colour": "gr/bl",
+          "description": "Radio illumination"
+        },
+        {
+          "from": "S50",
+          "to": "L28",
+          "mm2": 0.5,
+          "colour": "gr/bl",
+          "description": "Cig lighter light"
+        },
+        {
+          "from": "S50",
+          "to": "L39",
+          "mm2": 0.5,
+          "colour": "gr/bl",
+          "description": "Rear window switch light"
+        },
+        {
+          "from": "T1",
+          "to": "E3",
+          "mm2": 0.5,
+          "colour": "ro",
+          "description": "Emergency light connection"
+        },
+        {
+          "from": "T1a",
+          "to": "G5",
+          "mm2": 0.5,
+          "colour": "ro/sw",
+          "description": "To rev counter"
+        },
+        {
+          "from": "T2a",
+          "to": "U1",
+          "mm2": 1.5,
+          "colour": "ro",
+          "description": "To cigarette lighter"
+        },
+        {
+          "from": "T2a",
+          "to": "R",
+          "mm2": 0.5,
+          "colour": "ro",
+          "description": "To radio"
+        },
+        {
+          "from": "G5",
+          "via": "T14/5",
+          "to": "L10",
+          "mm2": 0.5,
+          "colour": "gr/bl",
+          "description": "Rev counter to panel lights"
+        },
+        {
+          "from": "L10",
+          "to": "gnd_10",
+          "mm2": 0.5,
+          "colour": "br",
+          "description": "Panel lights earth"
+        }
+      ],
+      "functional_description": "S6 provides main fused supply. E20 controls instrument panel brightness via S50 fuse on relay adaptor. S50 feeds terminal 58b to all panel illumination: L10 dash inserts, L8 clock, L16 fresh air, L28 cigarette lighter, L39 heated rear window switch, and R radio backlight. G5 rev counter receives power via T1a connector. All illumination uses 0.5mm² gr/bl (grey/blue) wires."
+    },
+    {
+      "figure": "13.85",
+      "title": "Supplementary wiring diagram for fusing of lights in dash with clock and tachograph",
+      "title_sv": "Tilläggskopplingsschema för säkring av instrumentbelysning med klocka och färdskrivare",
+      "page": 294,
+      "applies": "1985 on",
+      "key_page": 292,
+      "power_rails": [
+        "30",
+        "15",
+        "X",
+        "31"
+      ],
+      "components": [
+        {
+          "id": "E3",
+          "description": "Emergency light switch",
+          "description_sv": "Varningsblinkeromkopplare",
+          "type": "switch",
+          "track": "1, 12"
+        },
+        {
+          "id": "E20",
+          "description": "Instrument/instrument panel lighting control",
+          "description_sv": "Instrument-/instrumentpanelbelysningsreglage",
+          "type": "control",
+          "track": 7
+        },
+        {
+          "id": "F",
+          "description": "Brake light switch",
+          "description_sv": "Bromsljusomkopplare",
+          "type": "switch",
+          "track": 5
+        },
+        {
+          "id": "G24",
+          "description": "Tachograph",
+          "description_sv": "Färdskrivare",
+          "type": "instrument",
+          "track": "4 to 6"
+        },
+        {
+          "id": "L8",
+          "description": "Clock light bulb",
+          "description_sv": "Klocklyslampa",
+          "type": "bulb",
+          "track": 9
+        },
+        {
+          "id": "L10",
+          "description": "Instrument panel insert light bulb",
+          "description_sv": "Instrumentpanelbelysning",
+          "type": "bulb",
+          "track": "10 to 13"
+        },
+        {
+          "id": "L16",
+          "description": "Fresh air controls light bulb",
+          "description_sv": "Friskluftsreglagebelysning",
+          "type": "bulb",
+          "track": 14
+        },
+        {
+          "id": "L28",
+          "description": "Cigarette lighter light bulb",
+          "description_sv": "Cigarettändarbelysning",
+          "type": "bulb",
+          "track": 8
+        },
+        {
+          "id": "L39",
+          "description": "Heated rear window switch bulb",
+          "description_sv": "Bakruteuppvärmning omkopplarbelysning",
+          "type": "bulb",
+          "track": 15
+        },
+        {
+          "id": "R",
+          "description": "Radio connection",
+          "description_sv": "Radioanslutning",
+          "type": "connection",
+          "track": "3, 7"
+        },
+        {
+          "id": "S6",
+          "description": "Fuse in fusebox",
+          "description_sv": "Säkring i säkringsdosa",
+          "type": "fuse",
+          "rating_A": 10
+        },
+        {
+          "id": "S50",
+          "description": "Fuse on relay adaptor",
+          "description_sv": "Säkring på reläadapter",
+          "type": "fuse"
+        },
+        {
+          "id": "U1",
+          "description": "Cigarette lighter",
+          "description_sv": "Cigarettändare",
+          "type": "accessory",
+          "track": 2
+        },
+        {
+          "id": "Y",
+          "description": "Clock",
+          "description_sv": "Klocka",
+          "type": "instrument",
+          "track": 1
+        }
+      ],
+      "connectors": [
+        {
+          "id": "T1",
+          "description": "Connector, single behind dash"
+        },
+        {
+          "id": "T1a",
+          "description": "Connector, single, behind dash"
+        },
+        {
+          "id": "T2",
+          "description": "Connector, 2-pin behind dash"
+        },
+        {
+          "id": "T2a",
+          "description": "Connector, 2-pin, behind dash"
+        },
+        {
+          "id": "T2b",
+          "description": "Connector, 2-pin, behind dash"
+        },
+        {
+          "id": "T14/",
+          "description": "Connector, 14-pin, behind dash"
+        }
+      ],
+      "ground_points": [
+        {
+          "id": "10",
+          "location": "Earth point behind dash"
+        }
+      ],
+      "wires": [
+        {
+          "from": "S6",
+          "to": "D21",
+          "mm2": 1.5,
+          "colour": "ro/ge",
+          "description": "Fuse to tachograph supply"
+        },
+        {
+          "from": "S6",
+          "to": "A14",
+          "mm2": 1.0,
+          "colour": "ro/ge",
+          "description": "Fuse output"
+        },
+        {
+          "from": "S6",
+          "to": "C19",
+          "mm2": 0.5,
+          "colour": "ro/sw",
+          "description": "Fuse output"
+        },
+        {
+          "from": "S6",
+          "to": "A5",
+          "mm2": 0.5,
+          "colour": "ro",
+          "description": "Fuse output"
+        },
+        {
+          "from": "S6",
+          "to": "D15",
+          "mm2": 1.0,
+          "colour": "sw",
+          "description": "Fuse output"
+        },
+        {
+          "from": "E20",
+          "to": "T1",
+          "description": "Lighting control"
+        },
+        {
+          "from": "T1",
+          "via": "T2b",
+          "to": "G24",
+          "description": "To tachograph"
+        },
+        {
+          "from": "S50",
+          "to": "L10",
+          "mm2": 0.5,
+          "colour": "gr/bl",
+          "description": "Panel light supply"
+        },
+        {
+          "from": "S50",
+          "to": "L8",
+          "mm2": 0.5,
+          "colour": "gr/bl",
+          "description": "Clock light"
+        },
+        {
+          "from": "S50",
+          "to": "R",
+          "mm2": 0.5,
+          "colour": "gr/bl",
+          "description": "Radio illumination"
+        },
+        {
+          "from": "S50",
+          "to": "L28",
+          "mm2": 0.5,
+          "colour": "gr/bl",
+          "description": "Cig lighter light"
+        },
+        {
+          "from": "S50",
+          "to": "L39",
+          "mm2": 0.5,
+          "colour": "gr/bl",
+          "description": "Rear window switch light"
+        },
+        {
+          "from": "S50",
+          "to": "L16",
+          "mm2": 0.5,
+          "colour": "gr/bl",
+          "description": "Fresh air light"
+        },
+        {
+          "from": "T2a",
+          "to": "T2a",
+          "mm2": null,
+          "colour": null,
+          "description": "Interconnection behind dash"
+        },
+        {
+          "from": "Y",
+          "to": "T14/7",
+          "mm2": 0.5,
+          "colour": "ro",
+          "description": "Clock power via connector"
+        },
+        {
+          "from": "U1",
+          "to": "T14/3",
+          "mm2": 1.5,
+          "colour": "ro",
+          "description": "Cig lighter via connector"
+        },
+        {
+          "from": "R",
+          "to": "T14/3",
+          "mm2": 0.5,
+          "colour": "ro",
+          "description": "Radio via connector"
+        },
+        {
+          "from": "L10",
+          "to": "gnd_10",
+          "mm2": 0.5,
+          "colour": "br",
+          "description": "Panel lights earth"
+        },
+        {
+          "from": "G24",
+          "to": "gnd_10",
+          "mm2": 0.5,
+          "colour": "br",
+          "description": "Tachograph earth"
+        }
+      ],
+      "functional_description": "Identical to Fig 13.84 but with G24 tachograph replacing G5 rev counter, and Y clock added. S6 fuse provides main supply. E20 dims panel lights via S50. All illumination on 0.5mm² gr/bl wires. G24 tachograph connects via T2b 2-pin connector behind dash."
+    },
+    {
+      "figure": "13.86",
+      "title": "Supplementary wiring diagram for trailer towing",
+      "title_sv": "Tilläggskopplingsschema för släpvagnskoppling",
+      "page": 295,
+      "applies": "1983 to 1985",
+      "key_page": null,
+      "power_rails": [
+        "30",
+        "15",
+        "X",
+        "31"
+      ],
+      "components": [
+        {
+          "id": "E1",
+          "description": "Lighting switch (via existing harness)",
+          "type": "switch"
+        },
+        {
+          "id": "E3",
+          "description": "Emergency light switch (via existing harness)",
+          "type": "switch"
+        },
+        {
+          "id": "F",
+          "description": "Brake light switch",
+          "description_sv": "Bromsljusomkopplare",
+          "type": "switch"
+        },
+        {
+          "id": "K5",
+          "description": "Turn signal warning lamp (existing)",
+          "type": "indicator_lamp"
+        },
+        {
+          "id": "K18",
+          "description": "Trailer indicator control lamp",
+          "description_sv": "Släpvagnsindikatorlampa",
+          "type": "indicator_lamp"
+        },
+        {
+          "id": "M1",
+          "description": "Sidelight left (existing)",
+          "type": "bulb"
+        },
+        {
+          "id": "M2",
+          "description": "Tail light right (existing)",
+          "type": "bulb"
+        },
+        {
+          "id": "M3",
+          "description": "Sidelight right (existing)",
+          "type": "bulb"
+        },
+        {
+          "id": "M4",
+          "description": "Tail light left (existing)",
+          "type": "bulb"
+        },
+        {
+          "id": "M5",
+          "description": "Turn signal front left (existing)",
+          "type": "bulb"
+        },
+        {
+          "id": "M6",
+          "description": "Turn signal rear left (existing)",
+          "type": "bulb"
+        },
+        {
+          "id": "M7",
+          "description": "Turn signal front right (existing)",
+          "type": "bulb"
+        },
+        {
+          "id": "M8",
+          "description": "Turn signal rear right (existing)",
+          "type": "bulb"
+        },
+        {
+          "id": "M10",
+          "description": "Brake light right (existing)",
+          "type": "bulb"
+        },
+        {
+          "id": "M12",
+          "description": "Trailer left turn",
+          "type": "bulb"
+        },
+        {
+          "id": "M16",
+          "description": "Trailer: reversing light / left tail",
+          "type": "bulb"
+        },
+        {
+          "id": "M23",
+          "description": "Trailer marker / fog",
+          "type": "bulb"
+        },
+        {
+          "id": "M24",
+          "description": "Trailer connector output",
+          "type": "bulb"
+        },
+        {
+          "id": "S14",
+          "description": "Fuse in fusebox",
+          "description_sv": "Säkring i säkringsdosa",
+          "type": "fuse",
+          "rating_A": 8
+        },
+        {
+          "id": "S13",
+          "description": "Fuse in fusebox",
+          "description_sv": "Säkring i säkringsdosa",
+          "type": "fuse",
+          "rating_A": 8
+        },
+        {
+          "id": "J2",
+          "description": "Emergency light relay (existing)",
+          "type": "relay"
+        },
+        {
+          "id": "X",
+          "description": "Number plate light / trailer coupling",
+          "type": "connection"
+        },
+        {
+          "id": "U",
+          "description": "Trailer socket (7-pin or 13-pin)",
+          "description_sv": "Släpvagnsuttag",
+          "type": "socket"
+        }
+      ],
+      "connectors": [
+        {
+          "id": "T1",
+          "description": "Connector, single, behind dash"
+        },
+        {
+          "id": "T1e",
+          "description": "Connector, single, behind dash"
+        },
+        {
+          "id": "T14/4",
+          "description": "Pin 4 on 14-pin connector on dash panel insert"
+        },
+        {
+          "id": "T2",
+          "description": "Connector, 2-pin"
+        }
+      ],
+      "ground_points": [
+        {
+          "id": "18",
+          "location": "Earth point on rear crossmember"
+        },
+        {
+          "id": "19",
+          "location": "Earth point on rear crossmember"
+        }
+      ],
+      "wires": [
+        {
+          "from": "S14",
+          "to": "trailer",
+          "wire_id": "A6",
+          "mm2": 1.0,
+          "colour": "sw/ro",
+          "description": "Fuse to trailer left side"
+        },
+        {
+          "from": "S14",
+          "to": "trailer",
+          "wire_id": "E19",
+          "mm2": 1.0,
+          "colour": "sw/ro",
+          "description": "Fuse to trailer"
+        },
+        {
+          "from": "S14",
+          "to": "trailer",
+          "wire_id": "F19",
+          "mm2": 1.0,
+          "colour": "sw/ro",
+          "description": "Fuse to trailer"
+        },
+        {
+          "from": "S13",
+          "to": "trailer",
+          "wire_id": "F20",
+          "mm2": 1.0,
+          "colour": "sw/ro",
+          "description": "Fuse to trailer right side"
+        },
+        {
+          "from": "S14",
+          "to": "E19",
+          "mm2": 1.0,
+          "colour": "sw/ro"
+        },
+        {
+          "from": "S14",
+          "to": "A9",
+          "mm2": 0.3,
+          "colour": "gn/sw"
+        },
+        {
+          "from": "S14",
+          "to": "F1",
+          "mm2": 1.0,
+          "colour": "gn/sw"
+        },
+        {
+          "from": "S13",
+          "to": "F20",
+          "mm2": 1.0,
+          "colour": null
+        },
+        {
+          "from": "S13",
+          "to": "A9",
+          "mm2": 0.3,
+          "colour": "gn/sw"
+        },
+        {
+          "from": "trailer_socket",
+          "pin": "54",
+          "to": "M_trailer",
+          "colour": "sw/ro",
+          "description": "Brake lights trailer"
+        },
+        {
+          "from": "trailer_socket",
+          "pin": "58L",
+          "to": "M_trailer",
+          "description": "Left tail trailer"
+        },
+        {
+          "from": "trailer_socket",
+          "pin": "BL/L",
+          "to": "M_trailer",
+          "description": "Left blinker trailer"
+        },
+        {
+          "from": "trailer_socket",
+          "pin": "BK/R",
+          "to": "M_trailer",
+          "description": "Right blinker trailer"
+        },
+        {
+          "from": "trailer_socket",
+          "pin": "58R",
+          "to": "M_trailer",
+          "description": "Right tail trailer"
+        },
+        {
+          "from": "trailer_socket",
+          "pin": "54g",
+          "to": "M_trailer",
+          "description": "Fog / reverse trailer"
+        },
+        {
+          "from": "trailer_socket",
+          "pin": "31",
+          "to": "gnd",
+          "description": "Earth trailer"
+        },
+        {
+          "from": "existing_turn_L",
+          "to": "trailer_L_turn",
+          "mm2": 1.0,
+          "colour": "sw/ws",
+          "description": "Left turn to trailer"
+        },
+        {
+          "from": "existing_turn_R",
+          "to": "trailer_R_turn",
+          "mm2": 1.0,
+          "colour": "sw/ro",
+          "description": "Right turn to trailer"
+        },
+        {
+          "from": "existing_tail_L",
+          "to": "trailer_L_tail",
+          "mm2": 1.0,
+          "colour": "gr/sw",
+          "description": "Left tail to trailer"
+        },
+        {
+          "from": "existing_tail_R",
+          "to": "trailer_R_tail",
+          "mm2": 1.0,
+          "colour": "sw/gr",
+          "description": "Right tail to trailer"
+        },
+        {
+          "from": "existing_brake",
+          "to": "trailer_brake",
+          "mm2": 1.0,
+          "colour": "gn/ro",
+          "description": "Brake to trailer"
+        },
+        {
+          "from": "T1e",
+          "to": "K18",
+          "mm2": 0.75,
+          "colour": "sw",
+          "description": "Trailer indicator control"
+        },
+        {
+          "from": "K18",
+          "to": "gnd",
+          "mm2": 0.75,
+          "colour": "br",
+          "description": "Trailer indicator earth"
+        },
+        {
+          "from": "M23",
+          "to": "gnd_18",
+          "mm2": 0.75,
+          "colour": "br",
+          "description": "Trailer marker earth"
+        },
+        {
+          "from": "M6",
+          "to": "T2",
+          "mm2": 1.0,
+          "colour": null,
+          "description": "Rear left turn via connector"
+        },
+        {
+          "from": "T14/4",
+          "to": "K18",
+          "mm2": 0.5,
+          "colour": "br/li",
+          "description": "Trailer lamp control from dash connector"
+        }
+      ],
+      "trailer_socket_pinout": {
+        "type": "7-pin (ISO 1724)",
+        "pins": [
+          {
+            "pin": "L",
+            "function": "Left turn signal",
+            "colour": "sw/ws"
+          },
+          {
+            "pin": "54g",
+            "function": "Rear fog / reverse",
+            "colour": null
+          },
+          {
+            "pin": "31",
+            "function": "Earth",
+            "colour": "br"
+          },
+          {
+            "pin": "R",
+            "function": "Right turn signal",
+            "colour": "sw/ro"
+          },
+          {
+            "pin": "58R",
+            "function": "Right tail light",
+            "colour": "sw/gr"
+          },
+          {
+            "pin": "54",
+            "function": "Brake lights",
+            "colour": "gn/ro"
+          },
+          {
+            "pin": "58L",
+            "function": "Left tail light",
+            "colour": "gr/sw"
+          }
+        ]
+      },
+      "functional_description": "Trailer towing harness taps into existing lighting circuits. S14 (8A) and S13 (8A) provide fused supply for trailer lights. Turn signals, tail lights, and brake lights are connected in parallel with vehicle lights. K18 on dash indicates trailer connection status. All trailer wires are typically 1.0mm². Earth via pins 31 to rear crossmember ground points 18/19."
+    }
+  ],
+  "engine_specific_index": {
+    "4cyl_CH": {
+      "figure": "13.77",
+      "included_in_this_file": false,
+      "reason": "This file is generic (all models) only."
+    }
+  }
+}

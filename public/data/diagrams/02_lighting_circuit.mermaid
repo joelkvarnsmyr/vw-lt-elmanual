@@ -1,0 +1,92 @@
+%% 02 Lighting Circuit - VW LT All Models
+%% Source: Fig 10.34 tracks 15-36
+%% Version: 0.4 - Expanded panel lamps (L8/L16/L28/L39/R), added W075-W080
+%% Render: mmdc -i 02_lighting_circuit.mermaid -o renders/02.svg --iconPacks @iconify-json/mdi
+
+flowchart TD
+
+    subgraph PowerRail["Rail 30 - Permanent"]
+        D30@{ shape: icon, icon: "mdi:flash", form: "square", label: "D t30\nPermanent +12V", pos: "b", h: 40 }
+    end
+
+    subgraph LightSwitch["Light Switch"]
+        E1@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "E1\nLjusomkopplare", pos: "b", h: 48 }
+    end
+
+    subgraph DipFlash["Dip/Flash Control"]
+        E4@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "E4\nDimspak", pos: "b", h: 40 }
+        J@{ shape: icon, icon: "mdi:electric-switch", form: "square", label: "J\nLjusrelä\n56a/56b", pos: "b", h: 48 }
+    end
+
+    subgraph HeadlightFuses["Headlight Fuses"]
+        S1@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S1\n56b L", pos: "b", h: 40 }
+        S2@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S2\n56b R", pos: "b", h: 40 }
+        S3@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S3\n56a L", pos: "b", h: 40 }
+        S4@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S4\n56a R", pos: "b", h: 40 }
+    end
+
+    subgraph Headlights["Headlights"]
+        L1_lo@{ shape: icon, icon: "mdi:car-light-dimmed", form: "square", label: "L1 56b\nHalvljus vä", pos: "b", h: 40 }
+        L2_lo@{ shape: icon, icon: "mdi:car-light-dimmed", form: "square", label: "L2 56b\nHalvljus hö", pos: "b", h: 40 }
+        L1_hi@{ shape: icon, icon: "mdi:car-light-high", form: "square", label: "L1 56a\nHelljus vä", pos: "b", h: 40 }
+        L2_hi@{ shape: icon, icon: "mdi:car-light-high", form: "square", label: "L2 56a\nHelljus hö", pos: "b", h: 40 }
+    end
+
+    subgraph Warning["Warning"]
+        K1@{ shape: icon, icon: "mdi:car-light-high", form: "circle", label: "K1\nHelljusvarning", pos: "b", h: 40 }
+    end
+
+    subgraph SideLights["Side / Tail Lights"]
+        M1@{ shape: icon, icon: "mdi:car-parking-lights", form: "square", label: "M1\nSido vä", pos: "b", h: 40 }
+        M2@{ shape: icon, icon: "mdi:car-parking-lights", form: "square", label: "M2\nBak hö", pos: "b", h: 40 }
+        M3@{ shape: icon, icon: "mdi:car-parking-lights", form: "square", label: "M3\nSido hö", pos: "b", h: 40 }
+        M4@{ shape: icon, icon: "mdi:car-parking-lights", form: "square", label: "M4\nBak vä", pos: "b", h: 40 }
+    end
+
+    subgraph PanelLights["Panel Illumination"]
+        E20@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "E20\nDimmer", pos: "b", h: 40 }
+        S50@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S50\n58b", pos: "b", h: 40 }
+        L10@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L10\nPanel insert", pos: "b", h: 40 }
+        L8@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L8\nClock light", pos: "b", h: 40 }
+        L28@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L28\nCig lighter", pos: "b", h: 40 }
+        L16@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L16\nFresh air ctrl", pos: "b", h: 40 }
+        L39@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L39\nHeat window sw", pos: "b", h: 40 }
+        R@{ shape: icon, icon: "mdi:radio", form: "square", label: "R\nRadio backlight", pos: "b", h: 40 }
+    end
+
+    subgraph EarthPoints["Earth Points"]
+        GND@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚\nbr ground", pos: "b", h: 40 }
+        GND10@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚10\nInstr panel", pos: "b", h: 40 }
+    end
+
+    D30 -->|"sw/ge"| E1
+    E1 -->|"t56"| J
+    E4 -->|"dip/flash"| J
+    J -->|"56b dipped"| S1 & S2
+    J -->|"56a main"| S3 & S4
+
+    S1 --> L1_lo
+    S2 --> L2_lo
+    S3 --> L1_hi
+    S4 --> L2_hi
+    S3 -.-> K1
+    S4 -.-> K1
+
+    E1 -->|"t58"| M1 & M2 & M3 & M4
+
+    %% Panel illumination - W070: S6 feeds E20 (fig 13.84), E1 t58 also connects
+    E1 -->|"t58"| E20
+    E20 --> S50
+    S50 -->|"W075 0.5 gr/bl"| L10
+    S50 -->|"W076 0.5 gr/bl"| L8
+    S50 -->|"W077 0.5 gr/bl"| R
+    S50 -->|"W078 0.5 gr/bl"| L28
+    S50 -->|"W079 0.5 gr/bl"| L39
+    S50 -.->|"0.5 gr/bl"| L16
+
+    L1_lo & L2_lo -->|"br"| GND
+    L1_hi & L2_hi -->|"br"| GND
+    M1 & M2 & M3 & M4 -->|"br"| GND
+    L10 & L8 & L28 & L16 & L39 -->|"W080 0.5 br"| GND10
+    R -->|"br"| GND10
+    K1 -->|"br"| GND10

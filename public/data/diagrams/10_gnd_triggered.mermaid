@@ -1,0 +1,51 @@
+%% 10 Ground-Triggered Circuits - Conceptual/Teaching Diagram
+%% Shows the ground-switching principle used in VW LT
+%% Version: 0.3 - With MDI icons
+%% Render: mmdc -i 10_gnd_triggered.mermaid -o renders/10.svg --iconPacks @iconify-json/mdi
+
+flowchart LR
+
+    subgraph Concept["Ground-Triggered Principle"]
+        direction TB
+        PLUS@{ shape: icon, icon: "mdi:flash", form: "square", label: "+12V\nPermanent to load", pos: "b", h: 40 }
+        LOAD@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "Load\nlamp/horn/etc", pos: "b", h: 40 }
+        SW@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "Switch\nProvides GND", pos: "b", h: 40 }
+        GND_C@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚ GND", pos: "b", h: 40 }
+
+        PLUS --> LOAD
+        SW -->|"completes circuit"| LOAD
+        SW --- GND_C
+    end
+
+    subgraph Example1["Horn (S5 → H1)"]
+        S5@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S5 +12V", pos: "b", h: 40 }
+        H1@{ shape: icon, icon: "mdi:bugle", form: "square", label: "H1 Horn", pos: "b", h: 48 }
+        H@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "H Button\nGND via column", pos: "b", h: 40 }
+        GND_H@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚ column", pos: "b", h: 40 }
+
+        S5 --> H1
+        H -->|"GND pressed"| H1
+        H --- GND_H
+    end
+
+    subgraph Example2["Interior Light (30 → W)"]
+        B30@{ shape: icon, icon: "mdi:flash", form: "square", label: "30 +12V", pos: "b", h: 40 }
+        W@{ shape: icon, icon: "mdi:ceiling-light", form: "square", label: "W Interior", pos: "b", h: 48 }
+        F2@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "F2 Door\nGND open", pos: "b", h: 40 }
+        GND_F2@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚ chassis", pos: "b", h: 40 }
+
+        B30 --> W
+        F2 -->|"0.5 br/ws"| W
+        F2 --- GND_F2
+    end
+
+    subgraph Example3["Oil Warning (S6 → K3)"]
+        S6@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S6 +12V", pos: "b", h: 40 }
+        K3@{ shape: icon, icon: "mdi:lightbulb-on", form: "circle", label: "K3 Oil warn", pos: "b", h: 40 }
+        F1@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "F1 Oil sw\nGND low P", pos: "b", h: 40 }
+        GND_F1@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚ engine", pos: "b", h: 40 }
+
+        S6 --> K3
+        F1 -->|"GND low P"| K3
+        F1 --- GND_F1
+    end

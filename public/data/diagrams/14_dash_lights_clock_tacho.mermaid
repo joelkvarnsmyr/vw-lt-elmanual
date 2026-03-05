@@ -1,0 +1,74 @@
+%% 14 Dash Lights with Clock/Tachograph - VW LT 1985 on
+%% Source: Fig 13.85 (p294)
+%% Version: 0.4 - Fixed C19 colour, added wire ID labels
+%% Render: mmdc -i 14_dash_lights_clock_tacho.mermaid -o renders/14.svg --iconPacks @iconify-json/mdi
+
+flowchart TD
+
+    subgraph PowerRail["Rail 30"]
+        S6@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S6\n10A t30", pos: "b", h: 40 }
+    end
+
+    subgraph S6_Out["S6 Distribution"]
+        D21_out["D21 1.5 ro/ge"]
+        A14_out["A14 1.0 ro/ge"]
+        C19_out["C19 0.5 ro/sw"]
+        A5_out["A5 0.5 ro"]
+        D15_out["D15"]
+    end
+
+    subgraph Tachograph["Tachograph"]
+        G24@{ shape: icon, icon: "mdi:speedometer", form: "square", label: "G24\nFärdskrivare\nTachograph", pos: "b", h: 48 }
+    end
+
+    subgraph ClockUnit["Clock"]
+        Y@{ shape: icon, icon: "mdi:clock", form: "square", label: "Y\nKlocka\nClock", pos: "b", h: 48 }
+    end
+
+    subgraph HazardRef["Hazard"]
+        E3@{ shape: icon, icon: "mdi:hazard-lights", form: "square", label: "E3\nHazard switch", pos: "b", h: 40 }
+    end
+
+    subgraph DimmerCircuit["Panel Dimmer"]
+        E20@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "E20\nDimmer", pos: "b", h: 40 }
+        S50@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S50\n10A 58b", pos: "b", h: 40 }
+    end
+
+    subgraph Connectors["Connectors"]
+        T2a_L@{ shape: icon, icon: "mdi:power-plug", form: "square", label: "T2a L", pos: "b", h: 40 }
+        T2a_R@{ shape: icon, icon: "mdi:power-plug", form: "square", label: "T2a R", pos: "b", h: 40 }
+    end
+
+    subgraph PanelLamps["Panel Lamps"]
+        L8@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L8 Clock", pos: "b", h: 40 }
+        L10_1@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L10 #1", pos: "b", h: 40 }
+        L10_2@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L10 #2", pos: "b", h: 40 }
+        L10_3@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L10 #3", pos: "b", h: 40 }
+        L28@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L28 Cig", pos: "b", h: 40 }
+        L16@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L16 Air", pos: "b", h: 40 }
+        L39@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L39 Heat", pos: "b", h: 40 }
+    end
+
+    subgraph OtherComp["Other"]
+        R@{ shape: icon, icon: "mdi:radio", form: "square", label: "R Radio", pos: "b", h: 40 }
+        U1@{ shape: icon, icon: "mdi:cigarette", form: "square", label: "U1 Cig", pos: "b", h: 40 }
+    end
+
+    subgraph Earth["Earth"]
+        GND10@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚10\nBehind dash", pos: "b", h: 40 }
+    end
+
+    S6 --> D21_out & A14_out & C19_out & A5_out & D15_out
+    A14_out -->|"1.0 ro/ge"| G24
+    E3 -->|"permanent"| Y
+    A5_out -->|"0.5 ro"| R
+    D15_out --> U1
+
+    E20 --> S50
+    S50 -->|"0.5 gr/bl"| T2a_L & T2a_R
+    S50 -->|"0.5 gr/bl"| R
+
+    T2a_L --> L8 & L10_1 & L10_2
+    T2a_R --> L10_3 & L28 & L16 & L39
+
+    G24 & L8 & L10_1 & L10_2 & L10_3 & L28 & L16 & L39 -->|"br"| GND10

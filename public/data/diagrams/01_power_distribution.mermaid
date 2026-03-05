@@ -1,0 +1,87 @@
+%% 01 Power Distribution - VW LT All Models
+%% Source: Fig 10.34 (p154-155), Fig 13.77/78/79
+%% Version: 0.3 - With MDI icons
+%% Render: mmdc -i 01_power_distribution.mermaid -o renders/01.svg --iconPacks @iconify-json/mdi
+%% Cross-refs: All other diagrams depend on this power rail layout
+
+flowchart LR
+    classDef power fill:#FF6B6B,stroke:#CC0000,color:#fff
+    classDef ground fill:#8B4513,stroke:#5C2D00,color:#fff
+    classDef fuse fill:#B0B0B0,stroke:#666,color:#000
+    classDef relay fill:#54A0FF,stroke:#0066CC,color:#fff
+    classDef switch fill:#26DE81,stroke:#009933,color:#fff
+
+    subgraph PowerSource["Power Source"]
+        A@{ shape: icon, icon: "mdi:car-battery", form: "square", label: "A\nBatteri 12V", pos: "b", h: 48 }
+        C@{ shape: icon, icon: "mdi:lightning-bolt", form: "square", label: "C\nGenerator", pos: "b", h: 48 }
+        C1["C1 Regulator"]:::power
+    end
+
+    subgraph Starter["Starter"]
+        B@{ shape: icon, icon: "mdi:engine", form: "square", label: "B\nStartmotor", pos: "b", h: 48 }
+    end
+
+    subgraph IgnSwitch["D - Ignition Switch"]
+        D@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "D\nTändningslås\n30/15/X/50", pos: "b", h: 48 }
+    end
+
+    subgraph FuseBox["Fusebox / Relay Plate"]
+        S1@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S1\n56b L", pos: "b", h: 40 }
+        S2@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S2\n56b R", pos: "b", h: 40 }
+        S3@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S3\n56a L", pos: "b", h: 40 }
+        S4@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S4\n56a R", pos: "b", h: 40 }
+        S5@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S5\nHorn", pos: "b", h: 40 }
+        S6@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S6\nBrake", pos: "b", h: 40 }
+        S7@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S7\nIgn", pos: "b", h: 40 }
+        S8@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S8\nTurn", pos: "b", h: 40 }
+        S9@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S9\nInstr", pos: "b", h: 40 }
+        S10@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S10\nHeat", pos: "b", h: 40 }
+        S11@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S11\nWiper", pos: "b", h: 40 }
+        S12@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S12\nFog", pos: "b", h: 40 }
+        S28@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S28\n8A Fog", pos: "b", h: 40 }
+        S50@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S50\n58b Panel", pos: "b", h: 40 }
+    end
+
+    subgraph LightSwitch["Light Switch"]
+        E1@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "E1\nLjusomkopplare\nt30/56/58", pos: "b", h: 48 }
+    end
+
+    subgraph EarthPoints["Earth Points"]
+        GND1@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚1\nBattery/body", pos: "b", h: 40 }
+        GND2@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚2\nGenerator/engine", pos: "b", h: 40 }
+        GND3@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚3\nGearbox/chassis", pos: "b", h: 40 }
+    end
+
+    %% Battery connections
+    A ==>|"heavy sw cable"| B
+    A ---|"⏚1 strap"| GND1
+    C -->|"B+ charge"| A
+    C1 --- C
+    C ---|"⏚2 strap"| GND2
+
+    %% Rail 30 (permanent)
+    A -->|"30 permanent"| D
+    D -->|"t30 sw"| S5
+    D -->|"t30 sw"| S6
+    D -->|"t30 sw/ge"| E1
+
+    %% Rail 15 (ignition on)
+    D -->|"t15 ign"| S7
+    D -->|"t15 ign"| S8
+    D -->|"t15 ign"| S9
+    D -->|"t15 ign"| S10
+
+    %% Rail X (accessory)
+    D -->|"tX acc"| S11
+    D -->|"tX acc"| S12
+
+    %% Start
+    D -->|"t50 START"| B
+
+    %% Light switch outputs
+    E1 -->|"t56 headlights"| S1
+    E1 -->|"t56 headlights"| S2
+    E1 -->|"t56 headlights"| S3
+    E1 -->|"t56 headlights"| S4
+    E1 -->|"t58 side/panel"| S50
+    E1 -->|"t58 side/panel"| S28

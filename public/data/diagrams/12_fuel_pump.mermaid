@@ -1,0 +1,17 @@
+%% 12 Fuel Pump Circuit - VW LT
+%% Source: Fig 10.34 track 72
+%% Version: 0.3 - With MDI icons
+%% Render: mmdc -i 12_fuel_pump.mermaid -o renders/12.svg --iconPacks @iconify-json/mdi
+
+flowchart LR
+
+    D15@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "D t15\nIgnition on", pos: "b", h: 48 }
+    S15@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S15\nFuse", pos: "b", h: 40 }
+    T1@{ shape: icon, icon: "mdi:power-plug", form: "square", label: "T1\nConnector", pos: "b", h: 40 }
+    V14@{ shape: icon, icon: "mdi:gas-station", form: "square", label: "V14\nBränslepump", pos: "b", h: 48 }
+    GND@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚\nEarth", pos: "b", h: 40 }
+
+    D15 -->|"ign on"| S15
+    S15 -->|"C15 1.5mm² sw/gn"| T1
+    T1 -->|"1.5mm² sw/gn"| V14
+    V14 -->|"br ground"| GND

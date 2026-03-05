@@ -1,0 +1,59 @@
+%% 05 Instruments & Gauges - VW LT All Models
+%% Source: Fig 10.34 tracks 59-66
+%% Version: 0.3 - With MDI icons
+%% Render: mmdc -i 05_instruments.mermaid -o renders/05.svg --iconPacks @iconify-json/mdi
+
+flowchart TD
+
+    subgraph PowerRail["Rail 15 - Ignition On"]
+        S9@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S9\nt15 ignition", pos: "b", h: 40 }
+    end
+
+    subgraph MultiConnector["T10 Connector"]
+        T10@{ shape: icon, icon: "mdi:power-plug", form: "square", label: "T10\n10-pin\nInstrument cluster", pos: "b", h: 48 }
+    end
+
+    subgraph FuelSystem["Fuel Gauge"]
+        G@{ shape: icon, icon: "mdi:gas-station", form: "square", label: "G\nFuel sender\ntrack 66", pos: "b", h: 40 }
+        G1@{ shape: icon, icon: "mdi:gauge", form: "square", label: "G1\nFuel gauge\ntrack 59", pos: "b", h: 40 }
+    end
+
+    subgraph TempSystem["Temperature"]
+        G2@{ shape: icon, icon: "mdi:thermometer", form: "square", label: "G2\nCoolant sender\ntrack 65", pos: "b", h: 40 }
+        G3@{ shape: icon, icon: "mdi:gauge", form: "square", label: "G3\nTemp gauge\ntrack 60", pos: "b", h: 40 }
+    end
+
+    subgraph WarningLamps["Warning Lamps"]
+        K2@{ shape: icon, icon: "mdi:lightbulb-on", form: "circle", label: "K2\nCharge warn\ntrack 62", pos: "b", h: 40 }
+        K3@{ shape: icon, icon: "mdi:lightbulb-on", form: "circle", label: "K3\nOil pressure\ntrack 61", pos: "b", h: 40 }
+        K5@{ shape: icon, icon: "mdi:lightbulb-on", form: "circle", label: "K5\nIndicator warn\ntrack 63", pos: "b", h: 40 }
+    end
+
+    subgraph ChargingRef["Alternator"]
+        C_D@{ shape: icon, icon: "mdi:lightning-bolt", form: "square", label: "C D+\nGenerator", pos: "b", h: 40 }
+    end
+
+    subgraph OilSwitch["Oil Switch"]
+        F1@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "F1\nOil pressure\nswitch", pos: "b", h: 40 }
+    end
+
+    subgraph PanelLights["Panel"]
+        L10@{ shape: icon, icon: "mdi:lightbulb-on", form: "square", label: "L10\nPanel lights", pos: "b", h: 40 }
+    end
+
+    subgraph EarthPoints["Earth Points"]
+        GND@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚ br", pos: "b", h: 40 }
+        GND10@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚10\nInstr panel", pos: "b", h: 40 }
+    end
+
+    S9 -->|"ign on"| T10
+    T10 --> G1 & G3 & K2 & K3 & K5
+    T10 -->|"gr/bl"| L10
+
+    G -->|"variable R"| G1
+    G2 -->|"variable R"| G3
+    C_D -->|"D+ no charge = ON"| K2
+    F1 -->|"GND at low P"| K3
+
+    G & G2 & F1 -->|"br"| GND
+    G1 & G3 & K2 & K3 & L10 -->|"br"| GND10

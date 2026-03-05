@@ -1,0 +1,87 @@
+%% 03 Wiper/Washer Circuit - VW LT All Models
+%% Source: Fig 13.80 (p289), Fig 10.35, wires W001-W027
+%% Version: 0.4 - Added W008-W011, W023, T1b connector
+%% Render: mmdc -i 03_wiper_washer.mermaid -o renders/03.svg --iconPacks @iconify-json/mdi
+
+flowchart TD
+
+    subgraph PowerRail["Rail X - Accessory"]
+        S11@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S11\nFuse X-rail", pos: "b", h: 40 }
+    end
+
+    subgraph WipeRelay["J31 Relay"]
+        J31@{ shape: icon, icon: "mdi:electric-switch", form: "square", label: "J31\nIntermittent\ntork/spol-relä", pos: "b", h: 48 }
+    end
+
+    subgraph WiperSwitch["Wiper Switch"]
+        E22@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "E22\nTorkaromkopplare\n53b/53/53a/53e/J", pos: "b", h: 48 }
+    end
+
+    subgraph WiperMotor["Wiper Motor"]
+        V@{ shape: icon, icon: "mdi:car-windshield", form: "square", label: "V\nTorkarmotor", pos: "b", h: 48 }
+    end
+
+    subgraph WasherPump["Washer Pump"]
+        V5@{ shape: icon, icon: "mdi:spray", form: "square", label: "V5\nSpolarpump", pos: "b", h: 48 }
+    end
+
+    subgraph HeadlightWash["Headlight Washer"]
+        E1_56@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "E1 t56\nLight switch\nenables", pos: "b", h: 40 }
+        J39@{ shape: icon, icon: "mdi:electric-switch", form: "square", label: "J39\nHL-tvätt relä\nS/31/P", pos: "b", h: 48 }
+        V11@{ shape: icon, icon: "mdi:spray", form: "square", label: "V11\nHL-pump", pos: "b", h: 48 }
+    end
+
+    subgraph Connectors["Connectors"]
+        T1a@{ shape: icon, icon: "mdi:power-plug", form: "square", label: "T1a", pos: "b", h: 40 }
+        T1b@{ shape: icon, icon: "mdi:power-plug", form: "square", label: "T1b\n1-pin behind dash", pos: "b", h: 40 }
+        T2@{ shape: icon, icon: "mdi:power-plug", form: "square", label: "T2\n2-pin", pos: "b", h: 40 }
+    end
+
+    subgraph EarthPoints["Earth Points"]
+        GND9@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚9\nFusebox", pos: "b", h: 40 }
+        GND10@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚10\nBehind dash", pos: "b", h: 40 }
+    end
+
+    %% S11 to relay and components
+    S11 -->|"W001 C6 1.0 gn"| J31
+    S11 -->|"W002-W004 C16/C13/C9 1.0 gn"| E22
+    S11 -->|"W005 E16 1.0 gn/sw"| V
+    S11 -->|"W006 E15 1.0 gn"| V5
+    S11 -->|"W007 E21 1.0 gn/ge"| E22
+    S11 -->|"W008 E18 1.0 gn"| V
+    S11 -->|"W009 E8 1.0 gn"| E22
+    S11 -->|"W010 E20 0.5 gn/ro"| E20_dim["E20 Dimmer"]
+    S11 -->|"W011 E7 1.0 gn/ro"| J39
+    S11 ==>|"W016 H 6.0 ro"| J39
+
+    %% J31 relay
+    J31 -->|"M17"| V
+    J31 -->|"M26"| V5
+    J31 -->|"M20 HL wash"| J39
+
+    %% E22 to motor
+    E22 -->|"W020 53b 1.0 sw/gr park"| V
+    E22 -->|"W021 53 1.0 gn/sw slow"| V
+    E22 -->|"W022 53a 1.0 gn/ge fast"| V
+    E22 -->|"W023 53e washer→wiper"| V
+    E22 -->|"W018 J 0.5 gn/ro trigger"| J39
+
+    %% E1 enables HL wash
+    E1_56 -->|"W017 1.5 ws/sw"| J39
+
+    %% J39 output
+    J39 ==>|"W019 P 2.5 ro"| V11
+
+    %% Connectors
+    V5 ---|"via"| T1a
+    J31 ---|"via"| T1b
+    V11 ---|"via"| T2
+
+    %% Earths
+    V -->|"W024 1.0 br"| GND10
+    V5 -->|"W025 1.0 br"| GND9
+    V11 -->|"W026 0.5 br"| GND9
+    J39 -->|"W027 br"| GND10
+
+    %% UNVERIFIED: W012-W015 colours null (tracks 10-11, S11→J39 headlight washer area)
+    %% UNVERIFIED: W023 colour/mm2 null (53e washer position to motor)

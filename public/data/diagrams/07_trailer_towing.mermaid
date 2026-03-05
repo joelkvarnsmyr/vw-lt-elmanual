@@ -1,0 +1,47 @@
+%% 07 Trailer Towing - VW LT 1983-1985
+%% Source: Fig 13.86 (p295), wires W090-W095
+%% Version: 0.3 - With MDI icons
+%% Render: mmdc -i 07_trailer_towing.mermaid -o renders/07.svg --iconPacks @iconify-json/mdi
+
+flowchart TD
+
+    subgraph PowerRails["Fuses"]
+        S14@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S14\n8A", pos: "b", h: 40 }
+        S13@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S13\n8A", pos: "b", h: 40 }
+    end
+
+    subgraph VehicleLamps["Vehicle Sources"]
+        M6_src@{ shape: icon, icon: "mdi:hazard-lights", form: "square", label: "M6\nRear L ind", pos: "b", h: 40 }
+        M8_src@{ shape: icon, icon: "mdi:hazard-lights", form: "square", label: "M8\nRear R ind", pos: "b", h: 40 }
+        M4_src@{ shape: icon, icon: "mdi:car-parking-lights", form: "square", label: "M4\nTail L", pos: "b", h: 40 }
+        M2_src@{ shape: icon, icon: "mdi:car-parking-lights", form: "square", label: "M2\nTail R", pos: "b", h: 40 }
+        F_src@{ shape: icon, icon: "mdi:car-brake-alert", form: "square", label: "F\nBrake switch", pos: "b", h: 40 }
+    end
+
+    subgraph TrailerSocket["7-pin Trailer Socket"]
+        PIN_L@{ shape: icon, icon: "mdi:trailer", form: "square", label: "Pin L\nTurn L", pos: "b", h: 40 }
+        PIN_R@{ shape: icon, icon: "mdi:trailer", form: "square", label: "Pin R\nTurn R", pos: "b", h: 40 }
+        PIN_58L@{ shape: icon, icon: "mdi:trailer", form: "square", label: "Pin 58L\nTail L", pos: "b", h: 40 }
+        PIN_58R@{ shape: icon, icon: "mdi:trailer", form: "square", label: "Pin 58R\nTail R", pos: "b", h: 40 }
+        PIN_54@{ shape: icon, icon: "mdi:trailer", form: "square", label: "Pin 54\nBrake", pos: "b", h: 40 }
+        PIN_31@{ shape: icon, icon: "mdi:trailer", form: "square", label: "Pin 31\nEarth", pos: "b", h: 40 }
+    end
+
+    subgraph Warning["Warning"]
+        K18@{ shape: icon, icon: "mdi:lightbulb-on", form: "circle", label: "K18\nTrailer connected", pos: "b", h: 40 }
+    end
+
+    subgraph EarthPoints["Earth"]
+        GND18@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚18/19", pos: "b", h: 40 }
+    end
+
+    S14 -->|"W090 1.0 sw/ws"| PIN_L
+    S13 -->|"W091 1.0 sw/ro"| PIN_R
+    M4_src -->|"W092 1.0 gr/sw"| PIN_58L
+    M2_src -->|"W093 1.0 sw/gr"| PIN_58R
+    F_src -->|"W094 1.0 gn/ro"| PIN_54
+    PIN_31 -->|"W095 1.0 br"| GND18
+
+    PIN_L & PIN_R -.-> K18
+    M6_src -.->|"parallel"| S14
+    M8_src -.->|"parallel"| S13

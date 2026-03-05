@@ -1,0 +1,692 @@
+{
+  "meta": {
+    "source": "Volkswagen LT Workshop Manual 1976–1987",
+    "chapters": [
+      "Chapter 10 Electrical system",
+      "Chapter 13 Supplement"
+    ],
+    "scope": "All generic/universal wiring data (not engine-specific)",
+    "colour_code": {
+      "bl": {
+        "en": "Blue",
+        "sv": "Blå"
+      },
+      "br": {
+        "en": "Brown",
+        "sv": "Brun"
+      },
+      "ge": {
+        "en": "Yellow",
+        "sv": "Gul"
+      },
+      "gn": {
+        "en": "Green",
+        "sv": "Grön"
+      },
+      "gr": {
+        "en": "Grey",
+        "sv": "Grå"
+      },
+      "li": {
+        "en": "Lilac",
+        "sv": "Lila"
+      },
+      "pi": {
+        "en": "Pink",
+        "sv": "Rosa"
+      },
+      "ro": {
+        "en": "Red",
+        "sv": "Röd"
+      },
+      "sw": {
+        "en": "Black",
+        "sv": "Svart"
+      },
+      "ws": {
+        "en": "White",
+        "sv": "Vit"
+      }
+    },
+    "wire_notation": "Format: [mm²][colour1]/[colour2]. Example: 1.0 ro/sw = 1.0mm² red with black stripe. Dimension before colour on diagram.",
+    "unit_notes": {
+      "wire_mm2": "Wire cross-section in mm²",
+      "fuse_A": "Fuse rating in Amperes",
+      "track": "Current track number (vertical column in diagram)",
+      "DXA": "Not used here - reference only for docx skill"
+    },
+    "schema_version": "1.1",
+    "migration_applied_at_utc": "2026-03-04T23:30:19Z",
+    "is_wire_table": false
+  },
+  "diagram_reading_guide": {
+    "figure": "10.33",
+    "page": 153,
+    "title": "Sample current flow diagram with explanatory notes",
+    "notes": [
+      "All switches and contacts are illustrated in the mechanical OFF position.",
+      "The grey area represents the relay plate with fuse holder.",
+      "Wire cross section in mm² is shown as a number on the wire (e.g. 0.5, 1.0, 1.5, 2.5, 4.0, 6.0, 16.0, 25.0, 35.0).",
+      "Wiring colours are shown in the actual colours found on the vehicle.",
+      "Numbers/number combinations indicate individual contacts in a multi-point connector, e.g. T10/4 = ten-point connector, contact 4.",
+      "Numbers in yellow squares indicate that a wire is discontinued in the diagram and refer to the current track where it is continued.",
+      "Terminals with numbers are the numbers on the actual parts (e.g. 15, 30, 31, 50, 56, 58).",
+      "Symbols (e.g. W = interior light) – using the legend you can find which part is referred to.",
+      "Numbers in circles indicate the locations of earthing points (see legend).",
+      "Current track numbers at the bottom help find parts in the diagram (see legend).",
+      "Pictorial illustrations of parts whose symbols are given in the current track above.",
+      "Internal connections (thin lines) are NOT found in the form of wires. They are however current-carrying connections, making it possible to check the flow of current within a component or unit."
+    ]
+  },
+  "symbols": {
+    "figure": "10.32",
+    "page": 152,
+    "title": "Symbols used in current flow diagrams",
+    "symbol_list": [
+      {
+        "symbol_description": "Battery",
+        "type": "power_source"
+      },
+      {
+        "symbol_description": "Alternator with voltage regulator",
+        "type": "power_source"
+      },
+      {
+        "symbol_description": "Starter (motor with M)",
+        "type": "motor"
+      },
+      {
+        "symbol_description": "Ignition coil",
+        "type": "coil"
+      },
+      {
+        "symbol_description": "Wiper motor – 2-speed (motor with dashed relay)",
+        "type": "motor"
+      },
+      {
+        "symbol_description": "Electric motor (motor symbol M)",
+        "type": "motor"
+      },
+      {
+        "symbol_description": "Switch (hand operated, on/off)",
+        "type": "switch"
+      },
+      {
+        "symbol_description": "Switch (pressure-operated)",
+        "type": "switch"
+      },
+      {
+        "symbol_description": "Switch (mechanically operated) – with cam",
+        "type": "switch"
+      },
+      {
+        "symbol_description": "Switch (mechanically operated) – microswitch type",
+        "type": "switch"
+      },
+      {
+        "symbol_description": "Switch (thermo operated) – with temperature symbol",
+        "type": "switch"
+      },
+      {
+        "symbol_description": "Fuse – rectangular block symbol",
+        "type": "fuse"
+      },
+      {
+        "symbol_description": "Solenoid valve",
+        "type": "actuator"
+      },
+      {
+        "symbol_description": "Sender unit for coolant temperature gauge",
+        "type": "sensor"
+      },
+      {
+        "symbol_description": "Sender unit for fuel gauge",
+        "type": "sensor"
+      },
+      {
+        "symbol_description": "Instrument (gauge with pointer)",
+        "type": "gauge"
+      },
+      {
+        "symbol_description": "Clock (circle with clock hand)",
+        "type": "instrument"
+      },
+      {
+        "symbol_description": "Bulb (circle with X)",
+        "type": "bulb"
+      },
+      {
+        "symbol_description": "Relay (electronically controlled) – box with K and dashed coil",
+        "type": "relay"
+      },
+      {
+        "symbol_description": "Horn – rectangular with sound waves",
+        "type": "actuator"
+      },
+      {
+        "symbol_description": "Relay (with diode) – relay box with diode symbol",
+        "type": "relay"
+      },
+      {
+        "symbol_description": "Cigarette lighter – plug symbol with heating element",
+        "type": "accessory"
+      },
+      {
+        "symbol_description": "Heated rear window – rectangle with zigzag element",
+        "type": "heater"
+      },
+      {
+        "symbol_description": "Interior light (circle with X and switch arms)",
+        "type": "bulb"
+      },
+      {
+        "symbol_description": "Spark gap (two arrows pointing at each other)",
+        "type": "ignition"
+      },
+      {
+        "symbol_description": "Flat connector (small rectangle on wire)",
+        "type": "connector"
+      },
+      {
+        "symbol_description": "Connector (multi-point) – rectangle with multiple pins",
+        "type": "connector"
+      },
+      {
+        "symbol_description": "Wiring connection, detachable (open circle on wire)",
+        "type": "connector"
+      },
+      {
+        "symbol_description": "Wiring connection, fixed (filled circle on wire)",
+        "type": "connector"
+      },
+      {
+        "symbol_description": "Crossed wires (not connected) – wires cross without dot",
+        "type": "notation"
+      }
+    ]
+  },
+  "ignition_starter_switch": {
+    "page": 139,
+    "figure": "10.10",
+    "title": "Ignition/starter switch viewed from below",
+    "description": "Terminal layout of ignition/starter switch (refer to Wiring Diagram)",
+    "terminals": [
+      {
+        "number": 1,
+        "terminal": "30",
+        "function": "Battery positive (permanent live)",
+        "function_sv": "Batteriplus (permanent ström)"
+      },
+      {
+        "number": 2,
+        "terminal": "50",
+        "function": "Starter motor solenoid",
+        "function_sv": "Startmotormagnet"
+      },
+      {
+        "number": 3,
+        "terminal": "15",
+        "function": "Ignition circuit (switched)",
+        "function_sv": "Tändningskrets (kopplad)"
+      },
+      {
+        "number": 4,
+        "terminal": "X",
+        "function": "Accessory circuit (switched, also in accessory position)",
+        "function_sv": "Tillbehörskrets (kopplad)"
+      },
+      {
+        "number": 5,
+        "terminal": "P",
+        "function": "Parking light",
+        "function_sv": "Parkeringsljus"
+      },
+      {
+        "number": 6,
+        "terminal": "S",
+        "function": "Start position (momentary)",
+        "function_sv": "Startläge (momentant)"
+      },
+      {
+        "number": 7,
+        "terminal": "G",
+        "function": "To alternator warning light / charge indicator",
+        "function_sv": "Till laddningsindikatorlampa"
+      }
+    ],
+    "positions": [
+      {
+        "position": "0",
+        "name": "Off",
+        "name_sv": "Av",
+        "active_terminals": []
+      },
+      {
+        "position": "I",
+        "name": "Accessory",
+        "name_sv": "Tillbehör",
+        "active_terminals": [
+          "X",
+          "P"
+        ]
+      },
+      {
+        "position": "II",
+        "name": "Ignition on",
+        "name_sv": "Tändning på",
+        "active_terminals": [
+          "15",
+          "X",
+          "P",
+          "G"
+        ]
+      },
+      {
+        "position": "III",
+        "name": "Start",
+        "name_sv": "Start",
+        "active_terminals": [
+          "50",
+          "15",
+          "S",
+          "G"
+        ]
+      }
+    ],
+    "notes": "The switch controls which power rails are energised. Terminal 30 is always live from battery. Terminal 15 provides switched ignition power to fuses/relays. Terminal X provides accessory power."
+  },
+  "earth_points": {
+    "page": 150,
+    "section": 27,
+    "title": "Earthing points – location and function",
+    "description": "Satisfactory operation of the starter motor, ignition system and electrical accessories depends upon the provision of clean, secure earth bonds.",
+    "check_list": [
+      "Gearbox extension housing to side-member",
+      "Battery negative lead to body",
+      "Steering column flexible coupling",
+      "Rear left-hand chassis side-member",
+      "Rear chassis crossmember"
+    ],
+    "earth_point_table_fig_10_34": [
+      {
+        "id": "1",
+        "location": "Earthing strap, battery/body",
+        "location_sv": "Jordband, batteri/kaross"
+      },
+      {
+        "id": "2",
+        "location": "Earthing strap, alternator/engine",
+        "location_sv": "Jordband, generator/motor"
+      },
+      {
+        "id": "3",
+        "location": "Earthing strap, gearbox/chassis",
+        "location_sv": "Jordband, växellåda/chassi"
+      },
+      {
+        "id": "10",
+        "location": "Earthing point, instrument panel insert",
+        "location_sv": "Jordpunkt, instrumentpanelinsats"
+      }
+    ],
+    "earth_point_table_fig_13_77_4cyl": [
+      {
+        "id": "1",
+        "location": "Battery earthing strap"
+      },
+      {
+        "id": "3",
+        "location": "Earthing strap from engine to body"
+      },
+      {
+        "id": "10",
+        "location": "Earthing point, instrument panel insert"
+      },
+      {
+        "id": "11",
+        "location": "Earthing point behind instrument panel"
+      },
+      {
+        "id": "12",
+        "location": "Earthing point underneath instrument panel near fusebox"
+      },
+      {
+        "id": "13",
+        "location": "Earthing point, on rear door"
+      },
+      {
+        "id": "14",
+        "location": "Earthing point, on roof crossmember, passenger compartment"
+      },
+      {
+        "id": "15",
+        "location": "Earthing point, at rear of longitudinal member"
+      },
+      {
+        "id": "17",
+        "location": "Earthing point, on steering gear"
+      },
+      {
+        "id": "18",
+        "location": "Earthing point, on longitudinal member, rear left"
+      },
+      {
+        "id": "19",
+        "location": "Earthing point, on longitudinal member, rear right"
+      },
+      {
+        "id": "20",
+        "location": "Earthing point, in engine compartment"
+      }
+    ],
+    "earth_point_table_fig_13_78_6cyl": [
+      {
+        "id": "1",
+        "location": "Earthing strap, battery – body"
+      },
+      {
+        "id": "3",
+        "location": "Earthing strap, engine – body"
+      },
+      {
+        "id": "15",
+        "location": "Earth point on cylinder head"
+      },
+      {
+        "id": "23",
+        "location": "Earth wire above steering gear"
+      },
+      {
+        "id": "30",
+        "location": "Earth point next to relay plate"
+      },
+      {
+        "id": "31",
+        "location": "Earth point on dash panel insert"
+      },
+      {
+        "id": "33",
+        "location": "Earth point behind dash panel, right"
+      },
+      {
+        "id": "65",
+        "location": "Earth point on left hand longitudinal member, rear"
+      },
+      {
+        "id": "68",
+        "location": "Earth point on rear crossmember, left"
+      },
+      {
+        "id": "69",
+        "location": "Earth point on rear crossmember, right"
+      },
+      {
+        "id": "71",
+        "location": "Earth point on front roof rail"
+      },
+      {
+        "id": "72",
+        "location": "Earth point on roof rail"
+      },
+      {
+        "id": "79",
+        "location": "Earth point near interior light, rear"
+      }
+    ]
+  },
+  "fault_diagnosis": {
+    "pages": [
+      150,
+      151
+    ],
+    "section": 28,
+    "title": "Fault diagnosis – electrical system",
+    "symptoms": [
+      {
+        "symptom": "Starter motor fails to turn engine",
+        "reasons": [
+          "Battery discharged",
+          "Battery defective internally",
+          "Battery terminal leads loose or earth lead not securely attached to body",
+          "Loose or broken connections in starter motor circuit",
+          "Starter motor switch or solenoid faulty",
+          "Starter brushes badly worn, sticking, or brush wires loose",
+          "Commutator dirty, worn or burnt",
+          "Starter armature faulty",
+          "Field coils earthed"
+        ]
+      },
+      {
+        "symptom": "Starter motor turns engine very slowly",
+        "reasons": [
+          "Battery in discharged condition",
+          "Starter brushes badly worn, sticking, or brush wires loose",
+          "Loose wires in starter motor circuit"
+        ]
+      },
+      {
+        "symptom": "Starter motor operates without turning engine",
+        "reasons": [
+          "Pinion or flywheel gear teeth broken or worn"
+        ]
+      },
+      {
+        "symptom": "Starter motor noisy or has an excessively rough engagement",
+        "reasons": [
+          "Pinion or flywheel gear teeth broken or worn",
+          "Starter motor retaining bolts loose"
+        ]
+      },
+      {
+        "symptom": "Battery will not hold charge for more than a few days",
+        "reasons": [
+          "Battery defective internally",
+          "Electrolyte level too low or electrolyte too weak due to leakage",
+          "Plate separators no longer fully effective",
+          "Battery plates severely sulphated",
+          "Alternator belt slipping",
+          "Battery terminal connections loose or corroded",
+          "Alternator not charging properly",
+          "Short in lighting circuit causing continual battery drain"
+        ]
+      },
+      {
+        "symptom": "Ignition light fails to go out; battery runs flat in a few days",
+        "reasons": [
+          "Alternator belt loose and slipping or broken",
+          "Alternator faulty"
+        ]
+      },
+      {
+        "symptom": "Fuel gauge gives no reading",
+        "reasons": [
+          "Fuel tank empty!",
+          "Cable between tank sender unit and gauge earthed or loose",
+          "Fuel gauge case not earthed",
+          "Fuel gauge supply cable interrupted",
+          "Fuel gauge unit broken"
+        ]
+      },
+      {
+        "symptom": "Fuel gauge registers full all the time",
+        "reasons": [
+          "Faulty instrument voltage stabilizer",
+          "Cable between tank unit and gauge broken or disconnected"
+        ]
+      },
+      {
+        "symptom": "Horn operates all the time",
+        "reasons": [
+          "Horn push either earthed or stuck down",
+          "Horn cable to horn push earthed"
+        ]
+      },
+      {
+        "symptom": "Horn fails to operate",
+        "reasons": [
+          "Blown fuse",
+          "Cable or cable connection loose, broken or disconnected",
+          "Horn has an internal fault"
+        ]
+      },
+      {
+        "symptom": "Horn emits intermittent or unsatisfactory noise",
+        "reasons": [
+          "Cable connections loose"
+        ]
+      },
+      {
+        "symptom": "Lights do not come on",
+        "reasons": [
+          "Blown fuse",
+          "If engine not running, battery discharged",
+          "Light bulb filament burnt out or bulbs broken",
+          "Wire connections loose, disconnected or broken",
+          "Light switch shorting or otherwise faulty"
+        ]
+      },
+      {
+        "symptom": "Lights come on but fade out",
+        "reasons": [
+          "If engine not running, battery discharged"
+        ]
+      },
+      {
+        "symptom": "Lights give very poor illumination",
+        "reasons": [
+          "Lamp glasses dirty",
+          "Reflector tarnished or dirty",
+          "Lamps badly out of adjustment",
+          "Incorrect bulb with too low wattage fitted",
+          "Existing bulbs old and badly discoloured",
+          "Electrical wiring too thin not allowing full current to pass"
+        ]
+      },
+      {
+        "symptom": "Lights work erratically – flashing on and off, especially over bumps",
+        "reasons": [
+          "Battery terminals or earth connection loose",
+          "Lights not earthing properly",
+          "Contacts in light switch faulty"
+        ]
+      },
+      {
+        "symptom": "Wiper motor fails to work",
+        "reasons": [
+          "Blown fuse",
+          "Wire connections loose, disconnected or broken",
+          "Brushes badly worn",
+          "Armature worn or faulty",
+          "Field coils faulty"
+        ]
+      },
+      {
+        "symptom": "Wiper motor works very slowly and takes excessive current",
+        "reasons": [
+          "Commutator dirty, greasy or burnt",
+          "Drive to wheelboxes bent or unlubricated",
+          "Wheelbox spindle binding or damaged",
+          "Armature bearings dry",
+          "Armature badly worn or faulty"
+        ]
+      },
+      {
+        "symptom": "Wiper motor works slowly and takes little current",
+        "reasons": [
+          "Brushes badly worn",
+          "Commutator dirty, greasy or burnt",
+          "Armature badly worn or faulty"
+        ]
+      },
+      {
+        "symptom": "Wiper motor works but wiper blades remain static",
+        "reasons": [
+          "Wheelbox gear and spindle damaged or worn",
+          "Wiper motor gearbox parts badly worn"
+        ]
+      }
+    ]
+  },
+  "washer_system": {
+    "page": 149,
+    "figure": "10.27",
+    "title": "Electric washer system",
+    "components": [
+      {
+        "id": 1,
+        "description": "Fluid container",
+        "description_sv": "Vätskebehållare"
+      },
+      {
+        "id": 2,
+        "description": "Headlamp washer jets",
+        "description_sv": "Strålkastarspolarmunstycken"
+      },
+      {
+        "id": 3,
+        "description": "Headlamp washer pump",
+        "description_sv": "Strålkastarspolarpump"
+      },
+      {
+        "id": 4,
+        "description": "Windscreen washer jets",
+        "description_sv": "Vindrutespolarmunstycken"
+      },
+      {
+        "id": 5,
+        "description": "Windscreen washer pump",
+        "description_sv": "Vindrutespolarpump"
+      },
+      {
+        "id": 6,
+        "description": "Pressure regulating valves",
+        "description_sv": "Tryckregleringsventiler"
+      }
+    ],
+    "headlamp_jet_adjustment": {
+      "figure": "10.28",
+      "setting": "24.0 mm (0.94 in) from centre of jet to centre of lamp lens"
+    },
+    "wiper_blade_setting": {
+      "figure": "10.24",
+      "dimensions": {
+        "a": "120.0 mm (4.72 in)",
+        "b": "130.0 mm (5.1 in)",
+        "c": "Manual 50.0 mm (1.96 in), electric 200.0 mm (7.9 in)",
+        "d": "Manual 50.0 mm (1.96 in), electric 200.0 mm (7.9 in)",
+        "f": "540.0 mm (21.3 in)"
+      }
+    },
+    "wiper_motor_crank_arm": {
+      "figure_lhd": "10.25",
+      "figure_rhd": "10.26",
+      "tolerance": "8 degrees",
+      "motor_part_number": "1955 113 / E59301A1",
+      "voltage": "12V"
+    },
+    "maintenance_notes": [
+      "All later models have electrically-operated windscreen washer.",
+      "Some versions also have headlamp washers.",
+      "Early models have a foot-operated pump.",
+      "Maintain fluid level and use washer cleaning liquid or methylated spirit in freezing temperatures.",
+      "Never add cooling system antifreeze to washer fluid.",
+      "Check security of washer tubes and electrical leads."
+    ]
+  },
+  "heated_rear_window": {
+    "page": 150,
+    "section": 26,
+    "notes": [
+      "Certain models are fitted with a driving cab heated rear window.",
+      "A relay for this electrical accessory is located on the fuse block.",
+      "Avoid scratching the heater element and do not stick labels over it.",
+      "Clean the glass with water only, and rub in the direction of the element heater strips.",
+      "It may be possible to repair a break in the heater element by using a proprietary conductive paint. Failing this, renewal of the window will be necessary."
+    ]
+  },
+  "integration_notes": {
+    "canonical_wires": "vw_lt_wire_lookup.json",
+    "canonical_fig10": "vw_lt_fig10_34_35.json",
+    "canonical_generic": "vw_lt_generic_wiring.json"
+  }
+}

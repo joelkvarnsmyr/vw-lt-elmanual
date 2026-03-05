@@ -1,0 +1,58 @@
+%% 09 Supplementary Circuits - VW LT All Models
+%% Source: Fig 10.34 tracks 1-2, 48-54, 69-70
+%% Version: 0.3 - With MDI icons
+%% Render: mmdc -i 09_supplementary.mermaid -o renders/09.svg --iconPacks @iconify-json/mdi
+
+flowchart TD
+
+    subgraph PowerRails["Power Rails"]
+        S10@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S10\nt15 ignition", pos: "b", h: 40 }
+        S5@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S5\nt30 permanent", pos: "b", h: 40 }
+        B30@{ shape: icon, icon: "mdi:flash", form: "square", label: "30\nPermanent\n(unfused)", pos: "b", h: 40 }
+    end
+
+    subgraph HeatedWindow["Heated Rear Window"]
+        E15@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "E15\nHeated window\nswitch", pos: "b", h: 48 }
+        K10@{ shape: icon, icon: "mdi:lightbulb-on", form: "circle", label: "K10\nWarning", pos: "b", h: 40 }
+        J9@{ shape: icon, icon: "mdi:electric-switch", form: "square", label: "J9\nRelay\nt85/30/86/87", pos: "b", h: 48 }
+        Z1@{ shape: icon, icon: "mdi:car-seat-heater", form: "square", label: "Z1\nHeated rear\nwindow", pos: "b", h: 48 }
+    end
+
+    subgraph Blower["Blower / Heater Fan"]
+        E9@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "E9\n3-speed\nblower switch", pos: "b", h: 48 }
+        V2@{ shape: icon, icon: "mdi:fan", form: "square", label: "V2\nFläktmotor\nBlower motor", pos: "b", h: 48 }
+    end
+
+    subgraph InteriorLight["Interior Light"]
+        F2@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "F2\nDoor contact\nGND when open", pos: "b", h: 40 }
+        W@{ shape: icon, icon: "mdi:ceiling-light", form: "square", label: "W\nInnerbelysning\nInterior light", pos: "b", h: 48 }
+    end
+
+    subgraph Horn["Horn"]
+        H@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "H\nHorn button\nGND via column", pos: "b", h: 40 }
+        H1@{ shape: icon, icon: "mdi:bugle", form: "square", label: "H1\nTuta\nHorn", pos: "b", h: 48 }
+    end
+
+    subgraph EarthPoints["Earth Points"]
+        GND@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚\nbr earth", pos: "b", h: 40 }
+    end
+
+    %% Heated rear window
+    S10 --> E15
+    E15 --> K10
+    E15 --> J9
+    J9 -->|"t87 switched"| Z1
+    Z1 -->|"br"| GND
+
+    %% Blower
+    S10 --> E9
+    E9 -->|"3 speeds via resistor"| V2
+    V2 -->|"br"| GND
+
+    %% Interior light
+    B30 -->|"permanent +12V"| W
+    F2 -->|"0.5 br/ws GND open"| W
+
+    %% Horn
+    S5 -->|"+12V"| H1
+    H -->|"GND via column"| H1

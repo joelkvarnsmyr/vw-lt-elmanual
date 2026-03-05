@@ -1,0 +1,61 @@
+%% 04 Turn Signals & Emergency Flashers - VW LT All Models
+%% Source: Fig 10.34 tracks 38-47, Fig 13.84 (E3/C19)
+%% Version: 0.3 - With MDI icons
+%% Render: mmdc -i 04_turn_signals.mermaid -o renders/04.svg --iconPacks @iconify-json/mdi
+
+flowchart TD
+
+    subgraph PowerRails["Power Rails"]
+        S8@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S8\nt15 ignition", pos: "b", h: 40 }
+        S6_e3@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S6\nt30 permanent", pos: "b", h: 40 }
+    end
+
+    subgraph FlasherRelay["Flasher Relay"]
+        J2@{ shape: icon, icon: "mdi:electric-switch", form: "square", label: "J2\nFlasher relay\nt49/t31", pos: "b", h: 48 }
+    end
+
+    subgraph HazardSwitch["Hazard Switch"]
+        E3@{ shape: icon, icon: "mdi:hazard-lights", form: "square", label: "E3\nVarningsblinker\nHazard switch", pos: "b", h: 48 }
+    end
+
+    subgraph TurnStalk["Turn Stalk"]
+        E2@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "E2\nBlinkeromkopplare\nL / R outputs", pos: "b", h: 48 }
+    end
+
+    subgraph LeftIndicators["Left Indicators"]
+        M5@{ shape: icon, icon: "mdi:hazard-lights", form: "square", label: "M5\nFront L", pos: "b", h: 40 }
+        M6@{ shape: icon, icon: "mdi:hazard-lights", form: "square", label: "M6\nRear L", pos: "b", h: 40 }
+    end
+
+    subgraph RightIndicators["Right Indicators"]
+        M7@{ shape: icon, icon: "mdi:hazard-lights", form: "square", label: "M7\nFront R", pos: "b", h: 40 }
+        M8@{ shape: icon, icon: "mdi:hazard-lights", form: "square", label: "M8\nRear R", pos: "b", h: 40 }
+    end
+
+    subgraph Warnings["Warnings"]
+        K5@{ shape: icon, icon: "mdi:lightbulb-on", form: "circle", label: "K5\nIndicator warn", pos: "b", h: 40 }
+        K6@{ shape: icon, icon: "mdi:lightbulb-on", form: "circle", label: "K6\nHazard warn", pos: "b", h: 40 }
+    end
+
+    subgraph EarthPoints["Earth Points"]
+        GND_L@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚ Left earth", pos: "b", h: 40 }
+        GND_R@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚ Right earth", pos: "b", h: 40 }
+    end
+
+    S8 -->|"ign on"| J2
+    S6_e3 -->|"W074 C19 0.5 ro/sw"| E3
+    E3 -->|"hazard bypasses ign"| J2
+    J2 -->|"t49"| E2
+
+    E2 -->|"L 1.0 sw/bl"| M5
+    E2 -->|"L 1.0 sw/bl"| M6
+    E2 -->|"R 1.0 sw/gn"| M7
+    E2 -->|"R 1.0 sw/gn"| M8
+
+    E3 -.->|"hazard"| M5 & M6 & M7 & M8
+
+    E2 -.-> K5
+    E3 -.-> K6
+
+    M5 & M6 -->|"br"| GND_L
+    M7 & M8 -->|"br"| GND_R
