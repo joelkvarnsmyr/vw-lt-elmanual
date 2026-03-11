@@ -31,7 +31,7 @@ function App() {
   const [view, setView] = useState<View>(getInitialView);
   const [selectedCircuit, setSelectedCircuit] = useState<string>('');
   const [pdmCircuit, setPdmCircuit] = useState<string>('');
-  const [pdmSubView, setPdmSubView] = useState<'circuits' | 'inputs' | 'outputs' | 'overview'>('overview');
+  const [pdmSubView, setPdmSubView] = useState<'circuits' | 'inputs' | 'outputs' | 'kablar' | 'overview'>('overview');
   const [theme, setTheme] = useState<Theme>(getInitialTheme);
   const [lang, setLang] = useState<Language>(() => (i18n.language as Language) ?? 'sv');
 

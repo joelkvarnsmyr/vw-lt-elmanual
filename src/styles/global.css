@@ -1842,7 +1842,9 @@ tbody tr:last-child td { border-bottom: none; }
   .mermaid-loading,
   .mcp-section,
   .welcome .mcp-section,
-  .footer-credit a::after {
+  .footer-credit a::after,
+  .pdm-subnav,
+  .print-hide {
     display: none !important;
   }
 
@@ -1888,9 +1890,10 @@ tbody tr:last-child td { border-bottom: none; }
   }
 
   /* ── Tables: clean for print ── */
-  table {
+  table, .pdm-table {
     font-size: 9pt;
     page-break-inside: auto;
+    width: 100%;
   }
 
   thead th {

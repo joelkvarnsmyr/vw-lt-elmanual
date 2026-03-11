@@ -1,14 +1,24 @@
 import { useEffect, useState } from 'react';
 import { MermaidDiagram } from './MermaidDiagram';
+import type { WireEntry } from '../types';
+import { WireTable } from './WireTable';
 
 interface PdmOutput {
   id: string;
   label: string;
   pin: string;
-  fuse_a: number | null;
-  function: string | null;
-  description: string;
+  pdm_name?: string;
+  fuse_a?: number | null;
+  high_fuse_A?: number | null;
+  function?: string | null;
+  description?: string;
+  note?: string;
   mode?: string;
+  loads?: string[];
+  load_terminal?: string;
+  cable_label?: string;
+  cable_mm2?: number;
+  cable_colour?: string;
 }
 
 interface PdmInput {
@@ -18,7 +28,12 @@ interface PdmInput {
   type: string;
   mode?: string;
   source_component: string;
-  source_description: string;
+  source_terminal?: string;
+  source_description?: string;
+  note?: string;
+  cable_label?: string;
+  cable_mm2?: number;
+  cable_colour?: string;
 }
 
 interface CircuitEntry {
@@ -40,7 +55,7 @@ interface PdmData {
   generic_functions: Array<{ id: string; label: string; function: string; description: string }>;
 }
 
-type SubView = 'circuits' | 'inputs' | 'outputs' | 'overview';
+type SubView = 'circuits' | 'inputs' | 'outputs' | 'kablar' | 'overview';
 
 interface Props {
   selectedCircuit: string;
@@ -68,13 +83,13 @@ export function PDM25View({ selectedCircuit, onCircuitChange, subView, onSubView
   return (
     <div className="pdm-view">
       <div className="pdm-subnav">
-        {(['circuits', 'inputs', 'outputs', 'overview'] as SubView[]).map(v => (
+        {(['circuits', 'inputs', 'outputs', 'kablar', 'overview'] as SubView[]).map(v => (
           <button
             key={v}
             className={`pdm-subnav__btn ${subView === v ? 'pdm-subnav__btn--active' : ''}`}
             onClick={() => onSubViewChange(v)}
           >
-            {v === 'circuits' ? 'Kretsar' : v === 'inputs' ? 'Inputs' : v === 'outputs' ? 'Outputs' : 'Översikt'}
+            {v === 'circuits' ? 'Kretsar' : v === 'inputs' ? 'Inputs' : v === 'outputs' ? 'Outputs' : v === 'kablar' ? 'Kablar' : 'Översikt'}
           </button>
         ))}
       </div>
@@ -217,13 +232,13 @@ export function PDM25View({ selectedCircuit, onCircuitChange, subView, onSubView
               </thead>
               <tbody>
                 {data.outputs.map(out => (
-                  <tr key={out.id} className={!out.fuse_a ? 'pdm-table__row--dim' : ''}>
+                  <tr key={out.id} className={!out.fuse_a && !out.high_fuse_A ? 'pdm-table__row--dim' : ''}>
                     <td><code>{out.id}</code></td>
-                    <td><strong>{out.label}</strong></td>
+                    <td><strong>{out.label || out.pdm_name}</strong></td>
                     <td><code>{out.pin}</code></td>
-                    <td>{out.fuse_a ? `${out.fuse_a}A` : <span style={{ color: 'var(--text-muted)' }}>Reserv</span>}</td>
+                    <td>{out.fuse_a || out.high_fuse_A ? `${out.fuse_a || out.high_fuse_A}A` : <span style={{ color: 'var(--text-muted)' }}>Reserv</span>}</td>
                     <td><code className="pdm-function">{out.function ?? '—'}</code></td>
-                    <td className="pdm-table__desc">{out.description}</td>
+                    <td className="pdm-table__desc">{out.description || out.note}</td>
                   </tr>
                 ))}
               </tbody>
@@ -231,6 +246,81 @@ export function PDM25View({ selectedCircuit, onCircuitChange, subView, onSubView
           </div>
         </div>
       )}
+
+      {subView === 'kablar' && (() => {
+        // Transform PDM inputs/outputs to WireEntry for the WireTable
+        
+        const pdmWires: WireEntry[] = [];
+        
+        // Helper to parse colour
+        const parseCol = (c?: string) => {
+          if (!c) return { main: null, stripe: null };
+          const parts = c.split('/');
+          return { main: parts[0] || null, stripe: parts[1] || null };
+        };
+
+        let wId = 1;
+
+        data.inputs.forEach(inp => {
+          if (!inp.cable_label) return;
+          const { main, stripe } = parseCol(inp.cable_colour);
+          pdmWires.push({
+            id: `W-IN-${wId++}`,
+            figure: 'PDM25',
+            from_component: inp.source_component,
+            from_terminal: inp.source_terminal || null,
+            to_component: 'PDM25',
+            to_terminal: inp.pin,
+            wire_id: inp.cable_label,
+            mm2: inp.cable_mm2 || null,
+            colour_main: main,
+            colour_stripe: stripe,
+            colour_code: inp.cable_colour || null,
+            track: null,
+            circuit: 'pdm_input',
+            description: inp.source_description || inp.note || '',
+            confidence: 'high'
+          });
+        });
+
+        data.outputs.forEach(out => {
+          if (!out.cable_label) return;
+          const { main, stripe } = parseCol(out.cable_colour);
+          pdmWires.push({
+            id: `W-OUT-${wId++}`,
+            figure: 'PDM25',
+            from_component: 'PDM25',
+            from_terminal: out.pin,
+            to_component: (out.loads || []).join(', ') || '?',
+            to_terminal: out.load_terminal || null,
+            wire_id: out.cable_label,
+            mm2: out.cable_mm2 || null,
+            colour_main: main,
+            colour_stripe: stripe,
+            colour_code: out.cable_colour || null,
+            track: null,
+            circuit: 'pdm_output',
+            description: out.description || out.note || '',
+            confidence: 'high'
+          });
+        });
+
+        const allColours = Array.from(new Set(pdmWires.flatMap(w => [w.colour_main, w.colour_stripe]).filter(Boolean))) as string[];
+        const allDimensions = Array.from(new Set(pdmWires.map(w => w.mm2).filter(Boolean))).sort((a,b) => a! - b!) as number[];
+
+        return (
+          <div className="panel print-friendly">
+            <h2>Kabelmärkning (PDM25)</h2>
+            <p className="print-hide">Detta är en genererad lista över alla kablar till/från PDM25. Listan är utskriftsvänlig.</p>
+            <WireTable 
+              wires={pdmWires}
+              colourCodes={null} // We don't have descriptions in JSON easily mapped, fallback to codes
+              allColours={allColours}
+              allDimensions={allDimensions}
+            />
+          </div>
+        );
+      })()}
     </div>
   );
 }
