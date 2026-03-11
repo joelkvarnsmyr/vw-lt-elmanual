@@ -1,8 +1,18 @@
 %% 00 System Overview - VW LT All Models
-%% Version: 0.3 - With MDI icons
+%% Version: 0.5 - classDef styling (10 classes), all nodes classed
 %% Render: mmdc -i 00_system_overview.mermaid -o renders/00.svg --iconPacks @iconify-json/mdi
 
 flowchart TD
+    classDef power fill:#FF6B6B,stroke:#CC0000,color:#fff
+    classDef ignition fill:#FFA500,stroke:#CC7A00,color:#fff
+    classDef ground fill:#8B4513,stroke:#5C2D00,color:#fff
+    classDef fuse fill:#B0B0B0,stroke:#666,color:#000
+    classDef relay fill:#54A0FF,stroke:#0066CC,color:#fff
+    classDef switch fill:#26DE81,stroke:#009933,color:#fff
+    classDef lamp fill:#FFD700,stroke:#B8860B,color:#000
+    classDef motor fill:#A855F7,stroke:#7C3AED,color:#fff
+    classDef sensor fill:#2DD4BF,stroke:#14B8A6,color:#fff
+    classDef connector fill:#D1D5DB,stroke:#9CA3AF,color:#000
 
     subgraph PowerSource["Power Source"]
         A@{ shape: icon, icon: "mdi:car-battery", form: "square", label: "A Batteri 12V", pos: "b", h: 48 }
@@ -116,3 +126,17 @@ flowchart TD
     S11 --> J31 --> V_wip
     E1 -->|"t56 enables"| J39 --> V11_hl
     S12 --> J5 --> L22L23
+
+    %% Class assignments
+    class A,C power
+    class B motor
+    class GND123 ground
+    class D ignition
+    class S5,S6,S7,S8,S9,S10,S11,S12,S50 fuse
+    class E1,E3 switch
+    class J,J2,J31,J39,J5,J9 relay
+    class L1L2,M1234,L10etc,M5678,L22L23,M9M10 lamp
+    class V_wip,V11_hl,V2,V14,Z1,H1 motor
+    class T10 connector
+    class GAUGES sensor
+    class F_brk switch

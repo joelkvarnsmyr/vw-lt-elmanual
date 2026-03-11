@@ -1,9 +1,19 @@
 %% 07 Trailer Towing - VW LT 1983-1985
 %% Source: Fig 13.86 (p295), wires W090-W095
-%% Version: 0.3 - With MDI icons
+%% Version: 0.5 - classDef styling (10 classes), all nodes classed
 %% Render: mmdc -i 07_trailer_towing.mermaid -o renders/07.svg --iconPacks @iconify-json/mdi
 
 flowchart TD
+    classDef power fill:#FF6B6B,stroke:#CC0000,color:#fff
+    classDef ignition fill:#FFA500,stroke:#CC7A00,color:#fff
+    classDef ground fill:#8B4513,stroke:#5C2D00,color:#fff
+    classDef fuse fill:#B0B0B0,stroke:#666,color:#000
+    classDef relay fill:#54A0FF,stroke:#0066CC,color:#fff
+    classDef switch fill:#26DE81,stroke:#009933,color:#fff
+    classDef lamp fill:#FFD700,stroke:#B8860B,color:#000
+    classDef motor fill:#A855F7,stroke:#7C3AED,color:#fff
+    classDef sensor fill:#2DD4BF,stroke:#14B8A6,color:#fff
+    classDef connector fill:#D1D5DB,stroke:#9CA3AF,color:#000
 
     subgraph PowerRails["Fuses"]
         S14@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S14\n8A", pos: "b", h: 40 }
@@ -32,7 +42,7 @@ flowchart TD
     end
 
     subgraph EarthPoints["Earth"]
-        GND18@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚18/19", pos: "b", h: 40 }
+        GND18@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚18\nRear left beam", pos: "b", h: 40 }
     end
 
     S14 -->|"W090 1.0 sw/ws"| PIN_L
@@ -45,3 +55,11 @@ flowchart TD
     PIN_L & PIN_R -.-> K18
     M6_src -.->|"parallel"| S14
     M8_src -.->|"parallel"| S13
+
+    %% Class assignments
+    class S14,S13 fuse
+    class M6_src,M8_src,M4_src,M2_src lamp
+    class F_src switch
+    class PIN_L,PIN_R,PIN_58L,PIN_58R,PIN_54,PIN_31 connector
+    class K18 lamp
+    class GND18 ground

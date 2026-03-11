@@ -4,7 +4,7 @@ import type { Language } from '../i18n/index';
 
 const MCP_URL = 'https://vw-lt-mcp.vercel.app/mcp';
 
-type View = 'circuits' | 'wires' | 'components' | 'earth' | 'blog';
+type View = 'circuits' | 'wires' | 'components' | 'earth' | 'blog' | 'pdm25';
 
 interface Props {
   currentView: View;
@@ -70,12 +70,12 @@ function MoonIcon() {
   );
 }
 
-const AI_CLIENTS = [
-  { name: 'Claude', url: 'https://docs.anthropic.com/en/docs/agents-and-tools/remote-mcp' },
-  { name: 'Gemini', url: 'https://ai.google.dev/gemini-api/docs/mcp' },
-  { name: 'Grok', url: 'https://docs.x.ai/docs/mcp-servers' },
-  { name: 'ChatGPT', url: 'https://platform.openai.com/docs/guides/tools/mcp' },
-  { name: 'Cursor', url: 'https://docs.cursor.com/context/model-context-protocol' },
+const AI_CLIENTS: { name: string; url: string; howKey: string }[] = [
+  { name: 'Claude', url: 'https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp', howKey: 'footer.howClaude' },
+  { name: 'ChatGPT', url: 'https://platform.openai.com/docs/guides/tools-connectors-mcp', howKey: 'footer.howChatGPT' },
+  { name: 'Grok', url: 'https://docs.x.ai/docs/guides/tools/remote-mcp-tools', howKey: 'footer.howGrok' },
+  { name: 'Cursor', url: 'https://cursor.com/docs/context/mcp', howKey: 'footer.howCursor' },
+  { name: 'Claude Code', url: 'https://code.claude.com/docs/en/mcp', howKey: 'footer.howClaudeCode' },
 ];
 
 function McpSection() {
@@ -111,41 +111,32 @@ function McpSection() {
 
       <div className="mcp-section__clients">
         <span className="mcp-section__clients-label">{t('footer.aiClients')}</span>
-        <div className="mcp-section__clients-row">
+        <div className="mcp-section__clients-list">
           {AI_CLIENTS.map(client => (
-            <a
-              key={client.name}
-              href={client.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mcp-client"
-              title={`${client.name} – ${t('footer.aiDocsLink')}`}
-            >
-              <span className="mcp-client__name">{client.name}</span>
-            </a>
+            <div key={client.name} className="mcp-client-card">
+              <div className="mcp-client-card__header">
+                <span className="mcp-client-card__name">{client.name}</span>
+                <a
+                  href={client.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mcp-client-card__docs"
+                >{t('footer.aiDocsLink')}</a>
+              </div>
+              <p className="mcp-client-card__how">{t(client.howKey)}</p>
+            </div>
           ))}
         </div>
       </div>
 
-      <div className="mcp-section__columns">
-        <div className="mcp-section__col">
-          <h5>{t('footer.aiHowTo')}</h5>
-          <ol className="mcp-section__steps">
-            <li>{t('footer.aiStep1')}</li>
-            <li>{t('footer.aiStep2')}</li>
-            <li>{t('footer.aiStep3')}</li>
-            <li>{t('footer.aiStep4')}</li>
-          </ol>
-        </div>
-        <div className="mcp-section__col">
-          <h5>{t('footer.aiExamples')}</h5>
-          <ul className="mcp-section__examples">
-            <li>{t('footer.aiEx1')}</li>
-            <li>{t('footer.aiEx2')}</li>
-            <li>{t('footer.aiEx3')}</li>
-            <li>{t('footer.aiEx4')}</li>
-          </ul>
-        </div>
+      <div className="mcp-section__examples-block">
+        <h5>{t('footer.aiExamples')}</h5>
+        <ul className="mcp-section__examples">
+          <li>{t('footer.aiEx1')}</li>
+          <li>{t('footer.aiEx2')}</li>
+          <li>{t('footer.aiEx3')}</li>
+          <li>{t('footer.aiEx4')}</li>
+        </ul>
       </div>
     </div>
   );

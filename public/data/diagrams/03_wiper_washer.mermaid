@@ -1,9 +1,19 @@
 %% 03 Wiper/Washer Circuit - VW LT All Models
 %% Source: Fig 13.80 (p289), Fig 10.35, wires W001-W027
-%% Version: 0.4 - Added W008-W011, W023, T1b connector
+%% Version: 0.5 - classDef styling (10 classes), all nodes classed
 %% Render: mmdc -i 03_wiper_washer.mermaid -o renders/03.svg --iconPacks @iconify-json/mdi
 
 flowchart TD
+    classDef power fill:#FF6B6B,stroke:#CC0000,color:#fff
+    classDef ignition fill:#FFA500,stroke:#CC7A00,color:#fff
+    classDef ground fill:#8B4513,stroke:#5C2D00,color:#fff
+    classDef fuse fill:#B0B0B0,stroke:#666,color:#000
+    classDef relay fill:#54A0FF,stroke:#0066CC,color:#fff
+    classDef switch fill:#26DE81,stroke:#009933,color:#fff
+    classDef lamp fill:#FFD700,stroke:#B8860B,color:#000
+    classDef motor fill:#A855F7,stroke:#7C3AED,color:#fff
+    classDef sensor fill:#2DD4BF,stroke:#14B8A6,color:#fff
+    classDef connector fill:#D1D5DB,stroke:#9CA3AF,color:#000
 
     subgraph PowerRail["Rail X - Accessory"]
         S11@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S11\nFuse X-rail", pos: "b", h: 40 }
@@ -67,10 +77,12 @@ flowchart TD
     E22 -->|"W018 J 0.5 gn/ro trigger"| J39
 
     %% E1 enables HL wash
-    E1_56 -->|"W017 1.5 ws/sw"| J39
+    %% NOTE: Fig 13.80 says 1.5mm², Fig 10.35 says 2.5mm². Using 10.35 value.
+    E1_56 -->|"W017/W120 2.5 ws/sw"| J39
 
     %% J39 output
-    J39 ==>|"W019 P 2.5 ro"| V11
+    %% NOTE: Fig 13.80 says 2.5mm², Fig 10.35 says 4.0mm². Using 10.35 value.
+    J39 ==>|"W019/W121 P 4.0 ro"| V11
 
     %% Connectors
     V5 ---|"via"| T1a
@@ -78,10 +90,20 @@ flowchart TD
     V11 ---|"via"| T2
 
     %% Earths
-    V -->|"W024 1.0 br"| GND10
-    V5 -->|"W025 1.0 br"| GND9
-    V11 -->|"W026 0.5 br"| GND9
-    J39 -->|"W027 br"| GND10
+    V -->|"W024/W123 1.0 br"| GND10
+    V5 -->|"W025/W124 0.5 br"| GND9
+    V11 -->|"W026/W122 4.0 br"| GND9
+    J39 -->|"W027/W125 br"| GND10
 
     %% UNVERIFIED: W012-W015 colours null (tracks 10-11, S11→J39 headlight washer area)
+    S11 -.->|"W012-W015 HL wash area (UNVERIFIED)"| J39
     %% UNVERIFIED: W023 colour/mm2 null (53e washer position to motor)
+
+    %% Class assignments
+    class S11 fuse
+    class J31,J39 relay
+    class E22,E1_56 switch
+    class V,V5,V11 motor
+    class E20_dim switch
+    class T1a,T1b,T2 connector
+    class GND9,GND10 ground

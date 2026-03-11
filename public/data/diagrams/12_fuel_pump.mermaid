@@ -1,17 +1,34 @@
 %% 12 Fuel Pump Circuit - VW LT
 %% Source: Fig 10.34 track 72
-%% Version: 0.3 - With MDI icons
+%% Version: 0.5 - classDef styling (10 classes), specific earth point
 %% Render: mmdc -i 12_fuel_pump.mermaid -o renders/12.svg --iconPacks @iconify-json/mdi
 
 flowchart LR
+    classDef power fill:#FF6B6B,stroke:#CC0000,color:#fff
+    classDef ignition fill:#FFA500,stroke:#CC7A00,color:#fff
+    classDef ground fill:#8B4513,stroke:#5C2D00,color:#fff
+    classDef fuse fill:#B0B0B0,stroke:#666,color:#000
+    classDef relay fill:#54A0FF,stroke:#0066CC,color:#fff
+    classDef switch fill:#26DE81,stroke:#009933,color:#fff
+    classDef lamp fill:#FFD700,stroke:#B8860B,color:#000
+    classDef motor fill:#A855F7,stroke:#7C3AED,color:#fff
+    classDef sensor fill:#2DD4BF,stroke:#14B8A6,color:#fff
+    classDef connector fill:#D1D5DB,stroke:#9CA3AF,color:#000
 
     D15@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "D t15\nIgnition on", pos: "b", h: 48 }
     S15@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S15\nFuse", pos: "b", h: 40 }
     T1@{ shape: icon, icon: "mdi:power-plug", form: "square", label: "T1\nConnector", pos: "b", h: 40 }
     V14@{ shape: icon, icon: "mdi:gas-station", form: "square", label: "V14\nBränslepump", pos: "b", h: 48 }
-    GND@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚\nEarth", pos: "b", h: 40 }
+    GND20@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚20\nEngine comp.", pos: "b", h: 40 }
 
     D15 -->|"ign on"| S15
     S15 -->|"C15 1.5mm² sw/gn"| T1
     T1 -->|"1.5mm² sw/gn"| V14
-    V14 -->|"br ground"| GND
+    V14 -->|"br ground"| GND20
+
+    %% Class assignments
+    class D15 ignition
+    class S15 fuse
+    class T1 connector
+    class V14 motor
+    class GND20 ground

@@ -1,9 +1,19 @@
 %% 04 Turn Signals & Emergency Flashers - VW LT All Models
 %% Source: Fig 10.34 tracks 38-47, Fig 13.84 (E3/C19)
-%% Version: 0.3 - With MDI icons
+%% Version: 0.5 - classDef styling (10 classes), specific earth points
 %% Render: mmdc -i 04_turn_signals.mermaid -o renders/04.svg --iconPacks @iconify-json/mdi
 
 flowchart TD
+    classDef power fill:#FF6B6B,stroke:#CC0000,color:#fff
+    classDef ignition fill:#FFA500,stroke:#CC7A00,color:#fff
+    classDef ground fill:#8B4513,stroke:#5C2D00,color:#fff
+    classDef fuse fill:#B0B0B0,stroke:#666,color:#000
+    classDef relay fill:#54A0FF,stroke:#0066CC,color:#fff
+    classDef switch fill:#26DE81,stroke:#009933,color:#fff
+    classDef lamp fill:#FFD700,stroke:#B8860B,color:#000
+    classDef motor fill:#A855F7,stroke:#7C3AED,color:#fff
+    classDef sensor fill:#2DD4BF,stroke:#14B8A6,color:#fff
+    classDef connector fill:#D1D5DB,stroke:#9CA3AF,color:#000
 
     subgraph PowerRails["Power Rails"]
         S8@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S8\nt15 ignition", pos: "b", h: 40 }
@@ -38,8 +48,8 @@ flowchart TD
     end
 
     subgraph EarthPoints["Earth Points"]
-        GND_L@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚ Left earth", pos: "b", h: 40 }
-        GND_R@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚ Right earth", pos: "b", h: 40 }
+        GND18@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚18\nRear left beam", pos: "b", h: 40 }
+        GND19@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚19\nRear right beam", pos: "b", h: 40 }
     end
 
     S8 -->|"ign on"| J2
@@ -47,15 +57,22 @@ flowchart TD
     E3 -->|"hazard bypasses ign"| J2
     J2 -->|"t49"| E2
 
-    E2 -->|"L 1.0 sw/bl"| M5
-    E2 -->|"L 1.0 sw/bl"| M6
-    E2 -->|"R 1.0 sw/gn"| M7
-    E2 -->|"R 1.0 sw/gn"| M8
+    E2 -->|"W110 L 1.0 sw/bl"| M5
+    E2 -->|"W111 L 1.0 sw/bl"| M6
+    E2 -->|"W112 R 1.0 sw/gn"| M7
+    E2 -->|"W113 R 1.0 sw/gn"| M8
 
     E3 -.->|"hazard"| M5 & M6 & M7 & M8
 
     E2 -.-> K5
     E3 -.-> K6
 
-    M5 & M6 -->|"br"| GND_L
-    M7 & M8 -->|"br"| GND_R
+    M5 & M6 -->|"br"| GND18
+    M7 & M8 -->|"br"| GND19
+
+    %% Class assignments
+    class S8,S6_e3 fuse
+    class J2 relay
+    class E3,E2 switch
+    class M5,M6,M7,M8,K5,K6 lamp
+    class GND18,GND19 ground

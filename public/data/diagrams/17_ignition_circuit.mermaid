@@ -1,0 +1,93 @@
+%% 17 Ignition Circuit - VW LT 4-cylinder (CH engine)
+%% Source: Fig 13.77 tracks 5-8, Fig 10.34 tracks 7-13
+%% Version: 0.5 - classDef styling (10 classes)
+%% Render: mmdc -i 17_ignition_circuit.mermaid -o renders/17.svg --iconPacks @iconify-json/mdi
+
+flowchart TD
+    classDef power fill:#FF6B6B,stroke:#CC0000,color:#fff
+    classDef ignition fill:#FFA500,stroke:#CC7A00,color:#fff
+    classDef ground fill:#8B4513,stroke:#5C2D00,color:#fff
+    classDef fuse fill:#B0B0B0,stroke:#666,color:#000
+    classDef relay fill:#54A0FF,stroke:#0066CC,color:#fff
+    classDef switch fill:#26DE81,stroke:#009933,color:#fff
+    classDef lamp fill:#FFD700,stroke:#B8860B,color:#000
+    classDef motor fill:#A855F7,stroke:#7C3AED,color:#fff
+    classDef sensor fill:#2DD4BF,stroke:#14B8A6,color:#fff
+    classDef connector fill:#D1D5DB,stroke:#9CA3AF,color:#000
+
+    subgraph PowerRails["Strömmatning"]
+        RAIL30["Rail 30\nPermanent +12V"]
+        RAIL15["Rail 15\nTändning ON"]
+    end
+
+    subgraph IgnSwitch["Tändningslås"]
+        D@{ shape: icon, icon: "mdi:key-variant", form: "square", label: "D\nTändningslås\nkl.15 / kl.50", pos: "b", h: 48 }
+    end
+
+    subgraph IgnCoil["Tändspole & Ballast"]
+        N6@{ shape: icon, icon: "mdi:resistor", form: "square", label: "N6\nBallastmotstånd\n(seriemotstånd)", pos: "b", h: 48 }
+        N@{ shape: icon, icon: "mdi:lightning-bolt", form: "square", label: "N\nTändspole\nt1 / t15 / t4", pos: "b", h: 48 }
+        N1@{ shape: icon, icon: "mdi:flash-off", form: "square", label: "N1\nGnistgap\n(störningsskydd)", pos: "b", h: 40 }
+        N3@{ shape: icon, icon: "mdi:resistor", form: "square", label: "N3\nSeriemotståndstråd\n(kondensator)", pos: "b", h: 40 }
+    end
+
+    subgraph Distributor["Fördelare"]
+        O@{ shape: icon, icon: "mdi:rotate-right", form: "square", label: "O\nFördelare\n(brytare + kondensator)", pos: "b", h: 48 }
+    end
+
+    subgraph SparkPlugs["Tändstift"]
+        P@{ shape: icon, icon: "mdi:connection", form: "square", label: "P\nTändkabelanslutning\n(fördelarlocket)", pos: "b", h: 40 }
+        Q1["Q1 Tändstift cyl 1"]
+        Q2["Q2 Tändstift cyl 2"]
+        Q3["Q3 Tändstift cyl 3"]
+        Q4["Q4 Tändstift cyl 4"]
+    end
+
+    subgraph Indicators["Instrument"]
+        K2@{ shape: icon, icon: "mdi:lightbulb", form: "circle", label: "K2\nLaddnings-\nvarning", pos: "b", h: 36 }
+    end
+
+    subgraph Earth["Jord"]
+        GND20@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚20\nMotorrum", pos: "b", h: 40 }
+    end
+
+    %% Power path
+    RAIL15 -->|"kl.15"| D
+    D -->|"4.0 ro/sw\nW082 (E17)\nkl.15 → N6"| N6
+    N6 -->|"0.5 ws/li\nvia N6 → N t15"| N
+
+    %% Coil to distributor
+    N -->|"1.0 gn\nN t1 → O\n(primärkrets)"| O
+
+    %% Distributor to spark plugs (HT = high tension)
+    O ==>|"HT-kabel\n(fördelarlocket)"| P
+    P -->|"HT cyl 1"| Q1
+    P -->|"HT cyl 2"| Q2
+    P -->|"HT cyl 3"| Q3
+    P -->|"HT cyl 4"| Q4
+
+    %% Suppression / auxiliary
+    N1 ---|"gnistgap\nnära spole"| N
+    N3 ---|"seriemotstånd\nstörningsskydd"| N
+
+    %% Charge indicator lamp path
+    RAIL30 -->|"0.5 bl\nD+ laddindikator"| K2
+    K2 -->|"0.5 bl\nK2 → C (generator)"| D
+
+    %% Earth
+    O -->|"1.0 br\n⏚20"| GND20
+    Q1 -->|"jord via motor"| GND20
+    Q2 -->|"jord via motor"| GND20
+    Q3 -->|"jord via motor"| GND20
+    Q4 -->|"jord via motor"| GND20
+
+    %% Class assignments
+    class RAIL30 power
+    class RAIL15 ignition
+    class D switch
+    class N6,N,N1,N3 sensor
+    class O motor
+    class P connector
+    class Q1,Q2,Q3,Q4 sensor
+    class K2 lamp
+    class GND20 ground

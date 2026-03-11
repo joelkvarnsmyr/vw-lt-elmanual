@@ -1,9 +1,19 @@
 %% 10 Ground-Triggered Circuits - Conceptual/Teaching Diagram
 %% Shows the ground-switching principle used in VW LT
-%% Version: 0.3 - With MDI icons
+%% Version: 0.5 - classDef styling (10 classes), all nodes classed
 %% Render: mmdc -i 10_gnd_triggered.mermaid -o renders/10.svg --iconPacks @iconify-json/mdi
 
 flowchart LR
+    classDef power fill:#FF6B6B,stroke:#CC0000,color:#fff
+    classDef ignition fill:#FFA500,stroke:#CC7A00,color:#fff
+    classDef ground fill:#8B4513,stroke:#5C2D00,color:#fff
+    classDef fuse fill:#B0B0B0,stroke:#666,color:#000
+    classDef relay fill:#54A0FF,stroke:#0066CC,color:#fff
+    classDef switch fill:#26DE81,stroke:#009933,color:#fff
+    classDef lamp fill:#FFD700,stroke:#B8860B,color:#000
+    classDef motor fill:#A855F7,stroke:#7C3AED,color:#fff
+    classDef sensor fill:#2DD4BF,stroke:#14B8A6,color:#fff
+    classDef connector fill:#D1D5DB,stroke:#9CA3AF,color:#000
 
     subgraph Concept["Ground-Triggered Principle"]
         direction TB
@@ -21,7 +31,7 @@ flowchart LR
         S5@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S5 +12V", pos: "b", h: 40 }
         H1@{ shape: icon, icon: "mdi:bugle", form: "square", label: "H1 Horn", pos: "b", h: 48 }
         H@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "H Button\nGND via column", pos: "b", h: 40 }
-        GND_H@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚ column", pos: "b", h: 40 }
+        GND_H@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚17\nSteering", pos: "b", h: 40 }
 
         S5 --> H1
         H -->|"GND pressed"| H1
@@ -32,7 +42,7 @@ flowchart LR
         B30@{ shape: icon, icon: "mdi:flash", form: "square", label: "30 +12V", pos: "b", h: 40 }
         W@{ shape: icon, icon: "mdi:ceiling-light", form: "square", label: "W Interior", pos: "b", h: 48 }
         F2@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "F2 Door\nGND open", pos: "b", h: 40 }
-        GND_F2@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚ chassis", pos: "b", h: 40 }
+        GND_F2@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚14\nRoof beam", pos: "b", h: 40 }
 
         B30 --> W
         F2 -->|"0.5 br/ws"| W
@@ -43,9 +53,17 @@ flowchart LR
         S6@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S6 +12V", pos: "b", h: 40 }
         K3@{ shape: icon, icon: "mdi:lightbulb-on", form: "circle", label: "K3 Oil warn", pos: "b", h: 40 }
         F1@{ shape: icon, icon: "mdi:toggle-switch", form: "square", label: "F1 Oil sw\nGND low P", pos: "b", h: 40 }
-        GND_F1@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚ engine", pos: "b", h: 40 }
+        GND_F1@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚20\nEngine", pos: "b", h: 40 }
 
         S6 --> K3
         F1 -->|"GND low P"| K3
         F1 --- GND_F1
     end
+
+    %% Class assignments
+    class PLUS,B30 power
+    class LOAD,W,K3 lamp
+    class SW,H,F2,F1 switch
+    class GND_C,GND_H,GND_F2,GND_F1 ground
+    class S5,S6 fuse
+    class H1 motor

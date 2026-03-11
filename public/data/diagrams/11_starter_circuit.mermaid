@@ -1,9 +1,19 @@
 %% 11 Starter Circuit - VW LT All Models
 %% Source: Fig 10.34 tracks 2-8
-%% Version: 0.3 - With MDI icons
+%% Version: 0.5 - classDef styling (10 classes), all nodes classed
 %% Render: mmdc -i 11_starter_circuit.mermaid -o renders/11.svg --iconPacks @iconify-json/mdi
 
 flowchart TD
+    classDef power fill:#FF6B6B,stroke:#CC0000,color:#fff
+    classDef ignition fill:#FFA500,stroke:#CC7A00,color:#fff
+    classDef ground fill:#8B4513,stroke:#5C2D00,color:#fff
+    classDef fuse fill:#B0B0B0,stroke:#666,color:#000
+    classDef relay fill:#54A0FF,stroke:#0066CC,color:#fff
+    classDef switch fill:#26DE81,stroke:#009933,color:#fff
+    classDef lamp fill:#FFD700,stroke:#B8860B,color:#000
+    classDef motor fill:#A855F7,stroke:#7C3AED,color:#fff
+    classDef sensor fill:#2DD4BF,stroke:#14B8A6,color:#fff
+    classDef connector fill:#D1D5DB,stroke:#9CA3AF,color:#000
 
     subgraph PowerRail["Rail 30 - Permanent"]
         A@{ shape: icon, icon: "mdi:car-battery", form: "square", label: "A\nBatteri 12V", pos: "b", h: 48 }
@@ -27,10 +37,10 @@ flowchart TD
         BODY["Body/Chassis"]
     end
 
-    A ==>|"heavy sw cable"| B_30
-    D -->|"t50 sw START only"| B_50
+    A ==>|"W100 heavy sw cable"| B_30
+    D -->|"W101 t50 sw START only"| B_50
     B_50 -->|"engages pinion"| B_30
-    C -->|"B+ charge cable"| A
+    C -->|"W102 B+ charge cable"| A
     C1 ---|"regulates"| C
 
     A ---|"⏚1 heavy strap"| GND1
@@ -38,3 +48,9 @@ flowchart TD
     C ---|"⏚2 engine strap"| GND2
     GND2 --- BODY
     GND3 ---|"⏚3 gearbox"| BODY
+
+    %% Class assignments
+    class A,C,C1 power
+    class D ignition
+    class B_30,B_50 motor
+    class GND1,GND2,GND3,BODY ground

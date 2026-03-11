@@ -13,9 +13,10 @@ interface Props {
   allColours: string[];
   allDimensions: number[];
   componentMap: Map<string, ComponentInfo>;
+  theme?: 'dark' | 'light';
 }
 
-export function CircuitBrowser({ selectedCircuit, lookup, complete, wiresByCircuit, allColours, allDimensions, componentMap }: Props) {
+export function CircuitBrowser({ selectedCircuit, lookup, complete, wiresByCircuit, allColours, allDimensions, componentMap, theme }: Props) {
   const { t } = useTranslation();
   const info = lookup.circuits_index[selectedCircuit];
   const wires = wiresByCircuit.get(selectedCircuit) || [];
@@ -37,7 +38,7 @@ export function CircuitBrowser({ selectedCircuit, lookup, complete, wiresByCircu
       {diagramFile && (
         <details className="diagram-section" open>
           <summary>{t('circuit.diagram')}</summary>
-          <MermaidDiagram diagramFile={diagramFile} componentMap={componentMap} />
+          <MermaidDiagram diagramFile={diagramFile} componentMap={componentMap} wires={wires} theme={theme} />
         </details>
       )}
 

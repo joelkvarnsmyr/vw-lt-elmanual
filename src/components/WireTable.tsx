@@ -99,6 +99,7 @@ export function WireTable({ wires, colourCodes, allColours, allDimensions, filte
                     colourStripe={w.colour_stripe}
                     mm2={w.mm2}
                     colourCode={w.colour_code}
+                    confidence={w.confidence}
                   />
                 </td>
                 <td>{w.circuit.replace(/_/g, ' ')}</td>

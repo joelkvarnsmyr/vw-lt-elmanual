@@ -131,6 +131,41 @@
 [data-theme="light"] .mermaid-container::before {
   border-color: var(--gold-border);
 }
+/* Light-mode mermaid SVG overrides for text readability */
+[data-theme="light"] .mermaid-svg .edgeLabel {
+  color: #1c1a17 !important;
+  fill: #1c1a17 !important;
+}
+[data-theme="light"] .mermaid-svg .edgeLabel .label-container {
+  background-color: #f4f1ec !important;
+}
+/* Cluster/subgraph title text */
+[data-theme="light"] .mermaid-svg .cluster-label .nodeLabel {
+  color: #3a3730 !important;
+  fill: #3a3730 !important;
+  font-weight: 600 !important;
+}
+/* Edge labels: slightly bolder for readability */
+[data-theme="light"] .mermaid-svg .edgeLabel span {
+  font-weight: 500 !important;
+}
+/* Lines: ensure visible in light mode */
+[data-theme="light"] .mermaid-svg .flowchart-link {
+  stroke: rgba(100,80,40,0.45) !important;
+}
+[data-theme="light"] .mermaid-node-hover rect,
+[data-theme="light"] .mermaid-node-hover circle,
+[data-theme="light"] .mermaid-node-hover polygon,
+[data-theme="light"] .mermaid-node-hover path {
+  filter: drop-shadow(0 0 6px rgba(158,124,60,0.45));
+  stroke: var(--gold) !important;
+}
+[data-theme="light"] .mermaid-tooltip {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+[data-theme="light"] .mermaid-popover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 0 0 1px rgba(158,124,60,0.12);
+}
 
 /* ── Reset ─────────────────────────────────────────────── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -268,7 +303,7 @@ html, body, #root {
   align-items: center;
   gap: 1px;
   margin-left: auto;
-  background: rgba(255,255,255,0.02);
+  background: var(--bg-hover);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 3px;
@@ -315,7 +350,7 @@ html, body, #root {
   opacity: 0.7;
 }
 .nav-btn--active:hover {
-  background: rgba(208,174,120,0.11);
+  background: var(--bg-active);
 }
 
 .nav-icon {
@@ -783,6 +818,33 @@ details > *:not(summary) {
   stroke-width: 2px;
 }
 
+/* ── Mermaid interactive edges ── */
+.mermaid-edge-interactive {
+  cursor: pointer;
+}
+.mermaid-edge-interactive .label-container {
+  transition: filter var(--t-fast), border-color var(--t-fast);
+  border-radius: 3px;
+}
+.mermaid-edge-hover .label-container {
+  filter: drop-shadow(0 0 4px rgba(208,174,120,0.5));
+  outline: 1.5px solid var(--gold);
+  outline-offset: 1px;
+}
+.mermaid-edge-hover-line {
+  stroke: var(--gold) !important;
+  stroke-width: 2.5px !important;
+  filter: drop-shadow(0 0 4px rgba(208,174,120,0.4));
+}
+[data-theme="light"] .mermaid-edge-hover .label-container {
+  filter: drop-shadow(0 0 4px rgba(158,124,60,0.4));
+  outline-color: var(--gold);
+}
+[data-theme="light"] .mermaid-edge-hover-line {
+  stroke: var(--gold) !important;
+  filter: drop-shadow(0 0 4px rgba(158,124,60,0.35));
+}
+
 /* ── Mermaid tooltip (hover) ── */
 .mermaid-tooltip {
   position: absolute;
@@ -809,6 +871,29 @@ details > *:not(summary) {
   color: var(--text-muted);
   font-size: 0.68rem;
   font-family: var(--font-mono);
+}
+.mermaid-tooltip__route {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text);
+  font-weight: 500;
+}
+.mermaid-tooltip__desc {
+  color: var(--text-secondary);
+  font-size: 0.68rem;
+  font-style: italic;
+}
+.mermaid-wire-badge {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 1px 2px rgba(0,0,0,0.2);
 }
 
 /* ── Mermaid popover (click) ── */
@@ -950,7 +1035,7 @@ thead th {
 
 tbody td {
   padding: 8px 14px;
-  border-bottom: 1px solid rgba(255,255,255,0.03);
+  border-bottom: 1px solid var(--border);
   color: var(--text);
   transition: background var(--t-fast);
 }
@@ -1499,46 +1584,59 @@ tbody tr:last-child td { border-bottom: none; }
   letter-spacing: 0.08em;
   margin-bottom: 6px;
 }
-.mcp-section__clients-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+.mcp-section__clients-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
 }
-.mcp-client {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 12px;
+.mcp-client-card {
+  padding: 12px 14px;
   background: var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  color: var(--text-secondary);
-  font-family: var(--font);
-  font-size: 0.7rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.15s ease;
-  cursor: pointer;
+  transition: border-color 0.15s ease;
 }
-.mcp-client:hover {
-  color: var(--gold);
+.mcp-client-card:hover {
   border-color: var(--gold-border);
-  background: var(--gold-dim);
 }
-.mcp-client__name {
+.mcp-client-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.mcp-client-card__name {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
   letter-spacing: 0.01em;
 }
-.mcp-section__columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+.mcp-client-card__docs {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--gold);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
 }
-@media (max-width: 640px) {
-  .mcp-section__columns {
-    grid-template-columns: 1fr;
-  }
+.mcp-client-card__docs:hover {
+  opacity: 1;
 }
-.mcp-section__col h5 {
+.mcp-client-card__how {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+.mcp-section__examples-block {
+  margin-top: 16px;
+}
+.mcp-section__examples-block h5 {
   margin: 0 0 8px;
   font-family: var(--font-display);
   font-size: 0.7rem;
@@ -1547,22 +1645,15 @@ tbody tr:last-child td { border-bottom: none; }
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
-.mcp-section__steps,
 .mcp-section__examples {
   margin: 0;
-  padding: 0 0 0 16px;
+  padding: 0;
+  list-style: none;
   font-family: var(--font);
   font-size: 0.72rem;
   color: var(--text-secondary);
   line-height: 1.7;
   letter-spacing: 0;
-}
-.mcp-section__steps li {
-  margin-bottom: 2px;
-}
-.mcp-section__examples {
-  list-style: none;
-  padding-left: 0;
 }
 .mcp-section__examples li {
   padding: 4px 8px;
@@ -1636,30 +1727,30 @@ tbody tr:last-child td { border-bottom: none; }
 
 /* ══ PRINT ════════════════════════════════════════════════ */
 @media print {
-  /* ── Force light colours ── */
-  :root {
-    --bg: #fff;
-    --bg-panel: #fff;
-    --bg-card: #fff;
-    --bg-elevated: #fff;
-    --bg-input: #fff;
-    --bg-hover: transparent;
-    --bg-active: transparent;
-    --text: #000;
-    --text-secondary: #333;
-    --text-muted: #666;
-    --gold: #8a6d30;
-    --gold-bright: #8a6d30;
-    --gold-dim: transparent;
-    --gold-glow: transparent;
-    --gold-border: #ccc;
-    --sage: #3d6b55;
-    --sage-dim: transparent;
-    --sage-border: #aaa;
-    --warn: #a05020;
-    --success: #2d6840;
-    --border: #ddd;
-    --border-mid: #ccc;
+  /* ── Force light colours (override both :root dark and [data-theme] dark) ── */
+  :root, [data-theme="dark"] {
+    --bg: #fff !important;
+    --bg-panel: #fff !important;
+    --bg-card: #fff !important;
+    --bg-elevated: #fff !important;
+    --bg-input: #fff !important;
+    --bg-hover: transparent !important;
+    --bg-active: transparent !important;
+    --text: #000 !important;
+    --text-secondary: #333 !important;
+    --text-muted: #666 !important;
+    --gold: #8a6d30 !important;
+    --gold-bright: #8a6d30 !important;
+    --gold-dim: transparent !important;
+    --gold-glow: transparent !important;
+    --gold-border: #ccc !important;
+    --sage: #3d6b55 !important;
+    --sage-dim: transparent !important;
+    --sage-border: #aaa !important;
+    --warn: #a05020 !important;
+    --success: #2d6840 !important;
+    --border: #ddd !important;
+    --border-mid: #ccc !important;
   }
 
   /* ── Page setup ── */
@@ -1713,72 +1804,71 @@ tbody tr:last-child td { border-bottom: none; }
   /* ── Header: compact print header ── */
   .header {
     height: auto;
-    padding: 8px 0;
+    padding: 6px 0;
     border-bottom: 2px solid #000;
     background: #fff;
     position: relative;
     z-index: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .header__vw-logo {
     filter: none !important;
-    height: 24px;
-    width: 24px;
+    height: 22px;
+    width: 22px;
   }
 
   .header__logo {
-    height: 28px;
+    height: 24px;
   }
 
-  /* ── Hide interactive elements ── */
+  .header__divider {
+    display: none;
+  }
+
+  /* ── Hide interactive / non-print elements ── */
   .header__nav,
   .theme-toggle,
+  .lang-toggle,
   .wire-table__filters,
   .filter-input,
   .filter-select,
   .filter-input--wide,
   .mermaid-tooltip,
-  .mermaid-popover {
+  .mermaid-popover,
+  .mermaid-edge-hitarea,
+  .mermaid-loading,
+  .mcp-section,
+  .welcome .mcp-section,
+  .footer-credit a::after {
     display: none !important;
   }
 
-  .mermaid-node-interactive {
+  .mermaid-node-interactive,
+  .mermaid-edge-interactive {
     cursor: default;
   }
   .mermaid-node-hover rect,
   .mermaid-node-hover circle,
   .mermaid-node-hover polygon,
   .mermaid-node-hover path {
-    filter: none;
+    filter: none !important;
     stroke: inherit !important;
   }
+  .mermaid-edge-hover .label-container {
+    filter: none !important;
+    outline: none !important;
+  }
+  .mermaid-edge-hover-line {
+    stroke: inherit !important;
+    filter: none !important;
+  }
 
-  /* ── Sidebar: show as list, not fixed column ── */
+  /* ── Sidebar: hide in print (wastes a full page) ── */
   .sidebar {
-    width: 100%;
-    min-width: unset;
-    border-right: none;
-    border-bottom: 1px solid #ccc;
-    padding: 8px 0;
-    overflow: visible;
-    page-break-after: always;
-  }
-
-  .sidebar-item {
-    padding: 3px 8px;
-    border-left: none;
-    font-size: 9pt;
-  }
-
-  .sidebar-item--active {
-    font-weight: 700;
-    background: transparent;
-  }
-
-  .sidebar-item__rail {
-    border: 1px solid #aaa;
-    background: transparent;
-    font-size: 7pt;
+    display: none !important;
   }
 
   /* ── Panels ── */
@@ -1853,25 +1943,56 @@ tbody tr:last-child td { border-bottom: none; }
     height: auto !important;
   }
 
-  .mermaid-loading {
-    display: none;
+  /* Lighten subgraph backgrounds for print */
+  .mermaid-svg .cluster rect {
+    fill: #f5f5f3 !important;
+    stroke: #bbb !important;
+  }
+  .mermaid-svg .cluster-label .nodeLabel {
+    font-weight: 700 !important;
+  }
+
+  /* Edge labels readable */
+  .mermaid-svg .edgeLabel .label-container {
+    background-color: #fff !important;
+    border: 1px solid #ccc !important;
+  }
+
+  /* Lines darker for print */
+  .mermaid-svg .flowchart-link {
+    stroke: #444 !important;
+    stroke-width: 1.5px !important;
   }
 
   /* ── Details: force open for print ── */
   details {
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: none;
     margin-bottom: 8px;
-    page-break-inside: avoid;
+  }
+  /* Prevent closed details from hiding content in print */
+  details:not([open]) > *:not(summary) {
+    display: block !important;
   }
 
   details summary {
-    font-size: 9pt;
-    padding: 8px 10px;
+    font-size: 10pt;
+    font-weight: 700;
+    padding: 4px 0;
+    border-bottom: 1px solid #999;
+    margin-bottom: 8px;
+    list-style: none;
   }
-
+  details summary::-webkit-details-marker,
+  details summary::marker {
+    display: none;
+  }
   details summary::before {
     display: none;
+  }
+
+  /* Diagram section should not break across pages */
+  .diagram-section {
+    page-break-inside: avoid;
   }
 
   /* ── Component lookup ── */
@@ -1940,9 +2061,9 @@ tbody tr:last-child td { border-bottom: none; }
     font-weight: 600;
   }
 
-  /* ── Welcome: hide (not useful in print) ── */
-  .welcome {
-    display: none;
+  /* ── Welcome: hide MCP section, keep rest ── */
+  .welcome .mcp-section {
+    display: none !important;
   }
 
   /* ── Loading spinner: hide ── */
@@ -1957,16 +2078,45 @@ tbody tr:last-child td { border-bottom: none; }
 
   .circuit-header {
     page-break-after: avoid;
+    margin-bottom: 12px;
+  }
+
+  .circuit-header h2 {
+    font-size: 16pt;
+    margin-bottom: 6px;
+  }
+
+  .circuit-desc {
+    font-size: 9pt;
+    color: #444;
   }
 
   .earth-table-section {
     page-break-inside: avoid;
   }
 
-  /* ── Links: show URL ── */
-  a[href]::after {
-    content: " (" attr(href) ")";
+  /* ── Footer ── */
+  .app-footer {
+    margin-top: 24px;
+    padding-top: 8px;
+    border-top: 1px solid #ccc;
+  }
+
+  .app-footer__credit {
     font-size: 8pt;
     color: #666;
+  }
+
+  /* ── Links: show URL for external only ── */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 7pt;
+    color: #888;
+  }
+  /* Don't show URL for mailto, internal, or anchor links */
+  a[href^="mailto"]::after,
+  a[href^="#"]::after,
+  a[href^="/"]::after {
+    content: none;
   }
 }

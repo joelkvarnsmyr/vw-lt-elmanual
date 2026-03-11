@@ -1,9 +1,19 @@
 %% 15 Charging Circuit - VW LT All Models
 %% Source: Fig 10.34 tracks 2-3
-%% Version: 0.3 - With MDI icons
+%% Version: 0.5 - classDef styling (10 classes), all nodes classed
 %% Render: mmdc -i 15_charging_circuit.mermaid -o renders/15.svg --iconPacks @iconify-json/mdi
 
 flowchart TD
+    classDef power fill:#FF6B6B,stroke:#CC0000,color:#fff
+    classDef ignition fill:#FFA500,stroke:#CC7A00,color:#fff
+    classDef ground fill:#8B4513,stroke:#5C2D00,color:#fff
+    classDef fuse fill:#B0B0B0,stroke:#666,color:#000
+    classDef relay fill:#54A0FF,stroke:#0066CC,color:#fff
+    classDef switch fill:#26DE81,stroke:#009933,color:#fff
+    classDef lamp fill:#FFD700,stroke:#B8860B,color:#000
+    classDef motor fill:#A855F7,stroke:#7C3AED,color:#fff
+    classDef sensor fill:#2DD4BF,stroke:#14B8A6,color:#fff
+    classDef connector fill:#D1D5DB,stroke:#9CA3AF,color:#000
 
     subgraph Generator["C - Generator"]
         C@{ shape: icon, icon: "mdi:lightning-bolt", form: "square", label: "C\nGenerator\nAlternator", pos: "b", h: 48 }
@@ -38,7 +48,7 @@ flowchart TD
     C --- C_Bplus & C_Dplus
     C1 ---|"regulates"| C
 
-    C_Bplus ==>|"B+ heavy charge"| A
+    C_Bplus ==>|"W102 B+ heavy charge"| A
 
     D --> D_G
     D_G -->|"ign on"| K2
@@ -47,3 +57,10 @@ flowchart TD
     A ---|"⏚1 heavy strap"| GND1
     C ---|"⏚2 engine strap"| GND2
     GND1 & GND2 & GND3 --- BODY
+
+    %% Class assignments
+    class C,C1,C_Bplus,C_Dplus,A power
+    class D ignition
+    class D_G ignition
+    class K2 lamp
+    class GND1,GND2,GND3,BODY ground

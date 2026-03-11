@@ -1,20 +1,25 @@
 %% 01 Power Distribution - VW LT All Models
 %% Source: Fig 10.34 (p154-155), Fig 13.77/78/79
-%% Version: 0.3 - With MDI icons
+%% Version: 0.5 - classDef styling (10 classes), all nodes classed
 %% Render: mmdc -i 01_power_distribution.mermaid -o renders/01.svg --iconPacks @iconify-json/mdi
 %% Cross-refs: All other diagrams depend on this power rail layout
 
 flowchart LR
     classDef power fill:#FF6B6B,stroke:#CC0000,color:#fff
+    classDef ignition fill:#FFA500,stroke:#CC7A00,color:#fff
     classDef ground fill:#8B4513,stroke:#5C2D00,color:#fff
     classDef fuse fill:#B0B0B0,stroke:#666,color:#000
     classDef relay fill:#54A0FF,stroke:#0066CC,color:#fff
     classDef switch fill:#26DE81,stroke:#009933,color:#fff
+    classDef lamp fill:#FFD700,stroke:#B8860B,color:#000
+    classDef motor fill:#A855F7,stroke:#7C3AED,color:#fff
+    classDef sensor fill:#2DD4BF,stroke:#14B8A6,color:#fff
+    classDef connector fill:#D1D5DB,stroke:#9CA3AF,color:#000
 
     subgraph PowerSource["Power Source"]
         A@{ shape: icon, icon: "mdi:car-battery", form: "square", label: "A\nBatteri 12V", pos: "b", h: 48 }
         C@{ shape: icon, icon: "mdi:lightning-bolt", form: "square", label: "C\nGenerator", pos: "b", h: 48 }
-        C1["C1 Regulator"]:::power
+        C1["C1 Regulator"]
     end
 
     subgraph Starter["Starter"]
@@ -63,10 +68,10 @@ flowchart LR
     A -->|"30 permanent"| D
     D -->|"t30 sw"| S5
     D -->|"t30 sw"| S6
-    D -->|"t30 sw/ge"| E1
+    D -->|"W104 t30 sw/ge"| E1
 
     %% Rail 15 (ignition on)
-    D -->|"t15 ign"| S7
+    D -->|"W103 t15 ign"| S7
     D -->|"t15 ign"| S8
     D -->|"t15 ign"| S9
     D -->|"t15 ign"| S10
@@ -85,3 +90,11 @@ flowchart LR
     E1 -->|"t56 headlights"| S4
     E1 -->|"t58 side/panel"| S50
     E1 -->|"t58 side/panel"| S28
+
+    %% Class assignments
+    class A,C,C1 power
+    class B motor
+    class D ignition
+    class S1,S2,S3,S4,S5,S6,S7,S8,S9,S10,S11,S12,S28,S50 fuse
+    class E1 switch
+    class GND1,GND2,GND3 ground

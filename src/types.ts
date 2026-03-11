@@ -14,6 +14,7 @@ export interface WireEntry {
   track: number | string | null;
   circuit: string;
   description: string;
+  confidence?: 'high' | 'medium' | 'low' | null;
 }
 
 export interface CircuitInfo {
@@ -116,7 +117,7 @@ export const COLOUR_HEX: Record<string, string> = {
 export const CIRCUIT_DIAGRAM_MAP: Record<string, string> = {
   starting: '11_starter_circuit.mermaid',
   charging: '15_charging_circuit.mermaid',
-  ignition: '11_starter_circuit.mermaid',
+  ignition: '17_ignition_circuit.mermaid',
   headlights: '02_lighting_circuit.mermaid',
   lighting: '02_lighting_circuit.mermaid',
   panel_illumination: '02_lighting_circuit.mermaid',
@@ -136,7 +137,8 @@ export const CIRCUIT_DIAGRAM_MAP: Record<string, string> = {
   oil_pressure: '05_instruments.mermaid',
   fuel_gauge: '05_instruments.mermaid',
   temp_gauge: '05_instruments.mermaid',
-  reversing_light: '09_supplementary.mermaid',
+  reversing_light: '16_reversing_light.mermaid',
+  fuel_pump: '12_fuel_pump.mermaid',
   foglight: '06_foglight.mermaid',
   foglight_front: '06_foglight.mermaid',
   foglight_rear: '06_foglight.mermaid',

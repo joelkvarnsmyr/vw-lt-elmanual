@@ -1,9 +1,19 @@
 %% 02 Lighting Circuit - VW LT All Models
 %% Source: Fig 10.34 tracks 15-36
-%% Version: 0.4 - Expanded panel lamps (L8/L16/L28/L39/R), added W075-W080
+%% Version: 0.5 - classDef styling (10 classes), all nodes classed
 %% Render: mmdc -i 02_lighting_circuit.mermaid -o renders/02.svg --iconPacks @iconify-json/mdi
 
 flowchart TD
+    classDef power fill:#FF6B6B,stroke:#CC0000,color:#fff
+    classDef ignition fill:#FFA500,stroke:#CC7A00,color:#fff
+    classDef ground fill:#8B4513,stroke:#5C2D00,color:#fff
+    classDef fuse fill:#B0B0B0,stroke:#666,color:#000
+    classDef relay fill:#54A0FF,stroke:#0066CC,color:#fff
+    classDef switch fill:#26DE81,stroke:#009933,color:#fff
+    classDef lamp fill:#FFD700,stroke:#B8860B,color:#000
+    classDef motor fill:#A855F7,stroke:#7C3AED,color:#fff
+    classDef sensor fill:#2DD4BF,stroke:#14B8A6,color:#fff
+    classDef connector fill:#D1D5DB,stroke:#9CA3AF,color:#000
 
     subgraph PowerRail["Rail 30 - Permanent"]
         D30@{ shape: icon, icon: "mdi:flash", form: "square", label: "D t30\nPermanent +12V", pos: "b", h: 40 }
@@ -55,12 +65,12 @@ flowchart TD
     end
 
     subgraph EarthPoints["Earth Points"]
-        GND@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚\nbr ground", pos: "b", h: 40 }
+        GND15@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚15\nRear beam", pos: "b", h: 40 }
         GND10@{ shape: icon, icon: "mdi:connection", form: "circle", label: "⏚10\nInstr panel", pos: "b", h: 40 }
     end
 
-    D30 -->|"sw/ge"| E1
-    E1 -->|"t56"| J
+    D30 -->|"W104 sw/ge"| E1
+    E1 -->|"W105 t56"| J
     E4 -->|"dip/flash"| J
     J -->|"56b dipped"| S1 & S2
     J -->|"56a main"| S3 & S4
@@ -75,7 +85,7 @@ flowchart TD
     E1 -->|"t58"| M1 & M2 & M3 & M4
 
     %% Panel illumination - W070: S6 feeds E20 (fig 13.84), E1 t58 also connects
-    E1 -->|"t58"| E20
+    E1 -->|"W106 t58"| E20
     E20 --> S50
     S50 -->|"W075 0.5 gr/bl"| L10
     S50 -->|"W076 0.5 gr/bl"| L8
@@ -84,9 +94,18 @@ flowchart TD
     S50 -->|"W079 0.5 gr/bl"| L39
     S50 -.->|"0.5 gr/bl"| L16
 
-    L1_lo & L2_lo -->|"br"| GND
-    L1_hi & L2_hi -->|"br"| GND
-    M1 & M2 & M3 & M4 -->|"br"| GND
+    L1_lo & L2_lo -->|"br"| GND15
+    L1_hi & L2_hi -->|"br"| GND15
+    M1 & M2 & M3 & M4 -->|"br"| GND15
     L10 & L8 & L28 & L16 & L39 -->|"W080 0.5 br"| GND10
     R -->|"br"| GND10
     K1 -->|"br"| GND10
+
+    %% Class assignments
+    class D30 power
+    class E1,E4,E20 switch
+    class J relay
+    class S1,S2,S3,S4,S50 fuse
+    class L1_lo,L2_lo,L1_hi,L2_hi,K1,M1,M2,M3,M4,L10,L8,L28,L16,L39 lamp
+    class R connector
+    class GND15,GND10 ground

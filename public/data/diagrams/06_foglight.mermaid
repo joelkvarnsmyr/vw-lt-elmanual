@@ -1,9 +1,19 @@
 %% 06 Foglight Circuit - VW LT 1981-85 / 1986+
 %% Source: Fig 13.81/82, wires W030-W041
-%% Version: 0.3 - With MDI icons
+%% Version: 0.5 - classDef styling (10 classes), all nodes classed
 %% Render: mmdc -i 06_foglight.mermaid -o renders/06.svg --iconPacks @iconify-json/mdi
 
 flowchart TD
+    classDef power fill:#FF6B6B,stroke:#CC0000,color:#fff
+    classDef ignition fill:#FFA500,stroke:#CC7A00,color:#fff
+    classDef ground fill:#8B4513,stroke:#5C2D00,color:#fff
+    classDef fuse fill:#B0B0B0,stroke:#666,color:#000
+    classDef relay fill:#54A0FF,stroke:#0066CC,color:#fff
+    classDef switch fill:#26DE81,stroke:#009933,color:#fff
+    classDef lamp fill:#FFD700,stroke:#B8860B,color:#000
+    classDef motor fill:#A855F7,stroke:#7C3AED,color:#fff
+    classDef sensor fill:#2DD4BF,stroke:#14B8A6,color:#fff
+    classDef connector fill:#D1D5DB,stroke:#9CA3AF,color:#000
 
     subgraph PowerRail["Rail X - via S12"]
         S12@{ shape: icon, icon: "mdi:fuse", form: "square", label: "S12\n8A X-rail", pos: "b", h: 40 }
@@ -64,3 +74,10 @@ flowchart TD
     L23 -->|"W038 1.0 br"| GND12
     L20 -->|"W039 1.0 br"| GND18
     K13 -->|"W040 0.5 br"| GND12
+
+    %% Class assignments
+    class S12,S28 fuse
+    class E1,E23 switch
+    class J5 relay
+    class L22,L23,L20,K13,K17 lamp
+    class GND12,GND18 ground

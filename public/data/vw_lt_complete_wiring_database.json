@@ -1035,78 +1035,78 @@
         "fuses": [
           {
             "id": "S1",
-            "rating_A": null,
-            "circuits": "Part of fuse block"
+            "rating_A": 8,
+            "circuits": "Low beam left (L1/56b)"
           },
           {
             "id": "S2",
-            "rating_A": null,
-            "circuits": "Part of fuse block"
+            "rating_A": 8,
+            "circuits": "Low beam right (L2/56b)"
           },
           {
             "id": "S3",
-            "rating_A": null,
-            "circuits": "Part of fuse block"
+            "rating_A": 8,
+            "circuits": "High beam left (L1/56a)"
           },
           {
             "id": "S4",
-            "rating_A": null,
-            "circuits": "Part of fuse block"
+            "rating_A": 8,
+            "circuits": "High beam right (L2/56a)"
           },
           {
             "id": "S5",
-            "rating_A": null,
-            "circuits": "On page 157, feeds reversing light/horn/instruments"
+            "rating_A": 8,
+            "circuits": "Horn, reversing light, instruments"
           },
           {
             "id": "S6",
-            "rating_A": null,
-            "circuits": "On page 156, feeds brake/tail circuits"
+            "rating_A": 8,
+            "circuits": "Brake lights, tail lights"
           },
           {
             "id": "S7",
-            "rating_A": null,
-            "circuits": "On page 155, feeds charging/ignition"
+            "rating_A": 8,
+            "circuits": "Charging indicator, ignition"
           },
           {
             "id": "S8",
-            "rating_A": null,
-            "circuits": "On page 157, feeds emergency/turn signals"
+            "rating_A": 8,
+            "circuits": "Turn signals, emergency flasher, wiper intermittent"
           },
           {
             "id": "S9",
-            "rating_A": null,
-            "circuits": "On page 158, feeds wiper/washer/instruments"
+            "rating_A": 16,
+            "circuits": "Wiper motor, washer, fuel gauge, temp gauge"
           },
           {
             "id": "S10",
-            "rating_A": null,
-            "circuits": "On page 157, feeds heated rear window/blower"
+            "rating_A": 16,
+            "circuits": "Heated rear window, cabin blower"
           },
           {
             "id": "S11",
-            "rating_A": null,
-            "circuits": "On page 157, feeds headlight washer supplement"
+            "rating_A": 8,
+            "circuits": "Headlight washers (supplement)"
           },
           {
             "id": "S12",
-            "rating_A": null,
-            "circuits": "On page 156"
+            "rating_A": 8,
+            "circuits": "Front foglights (1981-1985 / 1986+)"
           },
           {
             "id": "S13",
-            "rating_A": null,
-            "circuits": "On page 156"
+            "rating_A": 8,
+            "circuits": "Parking/side lights left"
           },
           {
             "id": "S14",
-            "rating_A": null,
-            "circuits": "On page 156"
+            "rating_A": 8,
+            "circuits": "Parking/side lights right"
           },
           {
             "id": "S15",
-            "rating_A": null,
-            "circuits": "On page 158"
+            "rating_A": 8,
+            "circuits": "Interior light, cigarette lighter"
           }
         ],
         "wires_page_155_tracks_1_22": [
@@ -1168,7 +1168,7 @@
           },
           {
             "wire_id": "C10",
-            "mm2": 4.0,
+            "mm2": 4,
             "colour": null,
             "from": "S7",
             "to": "alternator",
@@ -1529,7 +1529,7 @@
           },
           {
             "wire_id": "D12",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "from": "S8",
             "to": "E3/J2"
@@ -1550,7 +1550,7 @@
           },
           {
             "wire_id": "E3",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "from": "S8",
             "to": "E3 switch"
@@ -1571,28 +1571,28 @@
           },
           {
             "wire_id": "E19",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "from": "S8",
             "to": "turn signal"
           },
           {
             "wire_id": "F19",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "from": "S8",
             "to": "turn signal"
           },
           {
             "wire_id": "F16",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "from": "S10",
             "to": "blower/heater"
           },
           {
             "wire_id": "A6",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "from": "S10",
             "to": "turn signal"
@@ -1601,25 +1601,25 @@
             "description": "M6 rear left turn signal",
             "track": 44,
             "colour": "sw/bl",
-            "mm2": 1.0
+            "mm2": 1
           },
           {
             "description": "M5 front left turn signal",
             "track": 45,
             "colour": "sw/gn",
-            "mm2": 1.0
+            "mm2": 1
           },
           {
             "description": "M8 rear right turn signal",
             "track": 46,
             "colour": "sw/gn",
-            "mm2": 1.0
+            "mm2": 1
           },
           {
             "description": "M7 front right turn signal",
             "track": 47,
             "colour": "sw/gn",
-            "mm2": 1.0
+            "mm2": 1
           },
           {
             "description": "E15 heated rear window switch",
@@ -1770,49 +1770,49 @@
           },
           {
             "wire_id": "C6",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "from": "S9",
             "to": "wiper circuit"
           },
           {
             "wire_id": "E18",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "from": "S9",
             "to": "wiper"
           },
           {
             "wire_id": "E15",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "from": "S9",
             "to": "instrument"
           },
           {
             "wire_id": "E21",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "from": "S9",
             "to": "wiper"
           },
           {
             "wire_id": "C17",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "from": "S9",
             "to": "instrument"
           },
           {
             "wire_id": "E20",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "from": "S9",
             "to": "lighting ctrl"
           },
           {
             "wire_id": "E16",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "from": "S9",
             "to": "wiper"
@@ -1826,28 +1826,28 @@
           },
           {
             "wire_id": "E7",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "from": "S9",
             "to": null
           },
           {
             "wire_id": "C16",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "from": "S15",
             "to": null
           },
           {
             "wire_id": "C13",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "from": "S15",
             "to": null
           },
           {
             "wire_id": "E2",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "gn/ge",
             "from": "S9",
             "to": "G1/E wiper/instruments",
@@ -2184,7 +2184,7 @@
             "from": "J39",
             "terminal": "P",
             "to": "V11",
-            "mm2": 4.0,
+            "mm2": 4,
             "colour": "ro",
             "description": "Relay output to headlight washer pump"
           },
@@ -2192,7 +2192,7 @@
             "from": "V",
             "terminal": "31",
             "to": "gnd",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "br",
             "description": "Wiper motor earth"
           },
@@ -2206,7 +2206,7 @@
           {
             "from": "V11",
             "to": "gnd_10",
-            "mm2": 4.0,
+            "mm2": 4,
             "colour": "br",
             "description": "Headlight washer pump earth (heavy gauge)"
           },
@@ -2502,7 +2502,7 @@
             "to": "V",
             "terminal": "53",
             "colour": null,
-            "mm2": 1.0,
+            "mm2": 1,
             "description": "Wiper motor continuous"
           },
           {
@@ -2510,7 +2510,7 @@
             "to": "V",
             "terminal": "53b",
             "colour": null,
-            "mm2": 1.0,
+            "mm2": 1,
             "description": "Wiper motor return"
           },
           {
@@ -2518,7 +2518,7 @@
             "to": "V",
             "terminal": "53a",
             "colour": "gn/ge",
-            "mm2": 1.0,
+            "mm2": 1,
             "description": "Wiper motor speed"
           },
           {
@@ -2533,7 +2533,7 @@
             "from": "V",
             "to": "gnd_10",
             "colour": "br",
-            "mm2": 1.0,
+            "mm2": 1,
             "description": "Wiper motor earth"
           },
           {
@@ -2547,7 +2547,7 @@
             "from": "V11",
             "to": "gnd_10",
             "colour": "br",
-            "mm2": 1.0,
+            "mm2": 1,
             "description": "Headlight washer pump earth"
           }
         ],
@@ -2588,9 +2588,9 @@
             "type": "relay",
             "track": "3 to 5",
             "terminals": {
-              "86": "Coil negative",
-              "85": "Coil positive",
               "30": "Common (power in)",
+              "85": "Coil positive",
+              "86": "Coil negative",
               "87": "Normally open (power out)"
             }
           },
@@ -2772,7 +2772,7 @@
             "from": "E23",
             "terminal": "83b",
             "to": "K13",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "gr/ws",
             "description": "Switch to rear fog warning"
           },
@@ -2794,35 +2794,35 @@
           {
             "from": "L20",
             "to": "gnd",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "br",
             "description": "Rear foglight earth"
           },
           {
             "from": "L22",
             "to": "gnd_12",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "br",
             "description": "Left foglight earth"
           },
           {
             "from": "L23",
             "to": "gnd_12",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "br",
             "description": "Right foglight earth"
           },
           {
             "from": "E23",
             "to": "T1d",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "ge",
             "description": "To single connector behind dash"
           },
           {
             "from": "E23",
             "to": "T1e",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "ge",
             "description": "To single connector behind cross panel"
           },
@@ -2830,7 +2830,7 @@
             "from": "L20",
             "via": "T1g",
             "to": "gnd",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "sw",
             "description": "Rear foglight via connector"
           }
@@ -3035,7 +3035,7 @@
             "from": "S12",
             "to": "E23",
             "wire_id": "E9",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "gr",
             "description": "Fuse to switch"
           },
@@ -3091,7 +3091,7 @@
             "from": "E23",
             "terminal": "83b",
             "to": "K17",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "gr/ws"
           },
           {
@@ -3144,21 +3144,21 @@
             "from": "L22",
             "via": "T1d",
             "to": "gnd_12",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "ge"
           },
           {
             "from": "L23",
             "via": "T1e",
             "to": "gnd_12",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "ge"
           },
           {
             "from": "L20",
             "via": "T1g",
             "to": "gnd_18",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "sw"
           },
           {
@@ -3264,28 +3264,28 @@
             "from": "S6",
             "to": "F",
             "wire_id": "F20",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "br/ro"
           },
           {
             "from": "S6",
             "to": "K7",
             "wire_id": "A16",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "ro/sw"
           },
           {
             "from": "S6",
             "to": "F9",
             "wire_id": "A2",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "bl/br"
           },
           {
             "from": "S6",
             "to": "F9",
             "wire_id": "A14",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "ro/ge"
           },
           {
@@ -3319,14 +3319,14 @@
           {
             "from": "F",
             "to": "M9",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "description": "Brake switch to left brake light"
           },
           {
             "from": "F",
             "to": "M10",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "description": "Brake switch to right brake light"
           },
@@ -3540,7 +3540,7 @@
           {
             "from": "S6",
             "to": "A14",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "ro/ge",
             "description": "Fuse output"
           },
@@ -3561,7 +3561,7 @@
           {
             "from": "S6",
             "to": "D15",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "sw",
             "description": "Fuse output"
           },
@@ -3814,7 +3814,7 @@
           {
             "from": "S6",
             "to": "A14",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "ro/ge",
             "description": "Fuse output"
           },
@@ -3835,7 +3835,7 @@
           {
             "from": "S6",
             "to": "D15",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "sw",
             "description": "Fuse output"
           },
@@ -4107,7 +4107,7 @@
             "from": "S14",
             "to": "trailer",
             "wire_id": "A6",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "sw/ro",
             "description": "Fuse to trailer left side"
           },
@@ -4115,7 +4115,7 @@
             "from": "S14",
             "to": "trailer",
             "wire_id": "E19",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "sw/ro",
             "description": "Fuse to trailer"
           },
@@ -4123,7 +4123,7 @@
             "from": "S14",
             "to": "trailer",
             "wire_id": "F19",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "sw/ro",
             "description": "Fuse to trailer"
           },
@@ -4131,14 +4131,14 @@
             "from": "S13",
             "to": "trailer",
             "wire_id": "F20",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "sw/ro",
             "description": "Fuse to trailer right side"
           },
           {
             "from": "S14",
             "to": "E19",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "sw/ro"
           },
           {
@@ -4150,13 +4150,13 @@
           {
             "from": "S14",
             "to": "F1",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "gn/sw"
           },
           {
             "from": "S13",
             "to": "F20",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null
           },
           {
@@ -4211,35 +4211,35 @@
           {
             "from": "existing_turn_L",
             "to": "trailer_L_turn",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "sw/ws",
             "description": "Left turn to trailer"
           },
           {
             "from": "existing_turn_R",
             "to": "trailer_R_turn",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "sw/ro",
             "description": "Right turn to trailer"
           },
           {
             "from": "existing_tail_L",
             "to": "trailer_L_tail",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "gr/sw",
             "description": "Left tail to trailer"
           },
           {
             "from": "existing_tail_R",
             "to": "trailer_R_tail",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "sw/gr",
             "description": "Right tail to trailer"
           },
           {
             "from": "existing_brake",
             "to": "trailer_brake",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": "gn/ro",
             "description": "Brake to trailer"
           },
@@ -4267,7 +4267,7 @@
           {
             "from": "M6",
             "to": "T2",
-            "mm2": 1.0,
+            "mm2": 1,
             "colour": null,
             "description": "Rear left turn via connector"
           },
